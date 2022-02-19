@@ -1,0 +1,68 @@
+
+table.calendar {
+	
+	border-collapse: collapse;
+	table-layout: fixed;
+	border: 1px solid black;
+	/* padding: 2px; */
+	text-align: center;
+	font-family: arial;
+	font-size: 14px;
+	
+}
+
+td {
+	
+	border: 1px solid black;
+	height: 20px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	
+}
+
+/*
+td.calendar {
+
+	cursor: pointer;
+	padding: 4px;
+	text-align: center;
+
+}
+*/
+
+th.calendar {
+
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+
+}
+
+.currentDay {
+	
+	padding: 2px;
+	background-color: lightgray;
+	
+}
+
+.normalDay {
+	
+	padding: 2px;
+	background-color: transparent;
+	
+}
+
+.normalDay:hover {
+	
+	padding: 2px;
+	background-color: lightgray;
+	
+}
+
+.selectedDay {
+	
+	padding: 2px;
+	background-color: lightgray;
+	
+}

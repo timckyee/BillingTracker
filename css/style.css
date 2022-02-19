@@ -1,0 +1,54 @@
+table {
+
+	border-collapse: collapse;
+    table-layout: fixed;
+	
+}
+
+td.grid {
+	
+	border: 1px solid black;
+	height: 20px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap
+	
+}
+
+td.form {
+
+	border: none;
+	height: 20px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap
+
+}
+
+table.billsGrid_chrome {
+	table-layout: fixed;
+	width: 95%;
+}
+
+.tableHover:hover {
+	
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+.highlightRow {
+
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+.noselect {
+	
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+		 -moz-user-select: none; /* Old versions of Firefox */
+		  -ms-user-select: none; /* Internet Explorer/Edge */
+			  user-select: none; /* Non-prefixed version, currently
+									supported by Chrome, Edge, Opera and Firefox */
+}
