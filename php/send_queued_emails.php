@@ -101,6 +101,10 @@ function SendEmailPHPMailer($subject, $body)
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');
 
+        //Headers
+        //$mail->addCustomHeader('MIME-Version: 1.0');
+        //$mail->addCustomHeader('Content-Type: text/html; charset=ISO-8859-1');
+
         //Attachments
         //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
         //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name

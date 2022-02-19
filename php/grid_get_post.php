@@ -26,7 +26,7 @@
 		else		
         if($queryName == "billingAccounts") {
 
-            $result = $mysqli->query("SELECT BillingAccountId, AccountName from BillingAccount");
+            $result = $mysqli->query("SELECT BillingAccountId, AccountName from BillingAccount order by AccountName");
         }
         else if($queryName == "billingAccountLoad")
         {
