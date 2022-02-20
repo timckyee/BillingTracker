@@ -101,7 +101,7 @@ curl_process_email_queue();
 function curl_process_email_queue() {
 
     $c = curl_init();
-    curl_setopt($c, CURLOPT_URL, "https://staging.closedarea.com/send_queued_emails.php");
+    curl_setopt($c, CURLOPT_URL, "https://bms.closedarea.com/BillingTracker/php/send_queued_emails.php");
     curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
     curl_setopt($c, CURLOPT_HEADER, false);         // Don't retrieve headers
     curl_setopt($c, CURLOPT_NOBODY, true);          // Don't retrieve the body
