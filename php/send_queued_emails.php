@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'phpmailer/PHPMailer-6.5.4/src/Exception.php';
-require 'phpmailer/PHPMailer-6.5.4/src/PHPMailer.php';
-require 'phpmailer/PHPMailer-6.5.4/src/SMTP.php';
+require '../../phpmailer/PHPMailer-6.5.4/src/Exception.php';
+require '../../phpmailer/PHPMailer-6.5.4/src/PHPMailer.php';
+require '../../phpmailer/PHPMailer-6.5.4/src/SMTP.php';
 
 $user = 'root';
 $password = 'root';

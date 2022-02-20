@@ -6,4 +6,5 @@ tar -xzvf /var/www/html/billingtracker.tar.gz
 mv BillingTracker ./BuildingManagementSystem
 sed -i "s/password = 'root'/password = 'password'/g" /var/www/html/BuildingManagementSystem/BillingTracker/php/grid_get_post.php
 sed -i "s/password = 'root'/password = 'password'/g" /var/www/html/BuildingManagementSystem/BillingTracker/php/phpmailer.php
-sed -i "s/password = 'root'/password = 'password'/g" /var/www/html/BuildingManagementSystem/BillingTracker/
+sed -i "s/password = 'root'/password = 'password'/g" /var/www/html/BuildingManagementSystem/BillingTracker/php/send_queued_emails.php
+sudo systemctl restart httpd
