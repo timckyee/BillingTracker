@@ -42,29 +42,6 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 
 	var platform = helper.checkPlatform();
 
-	/*
-	if(platform == "desktop_safari")
-	{
-		if(tableHtmlObjectId == "tableHomeTenantFormGridPaging")
-		{
-			tbl.className = "homeGrid_safari";
-		}
-		else
-		if(tableHtmlObjectId == "tableHomeTenant")
-		{
-			tbl.className = "homeGrid_safari";
-		}
-		else if(tableHtmlObjectId == "tableSuite")
-		{
-			tbl.className = "suiteGrid";
-		}
-		else if(tableHtmlObjectId == "tableTenant")
-		{
-			tbl.className = "tenantGrid";
-		}
-	}
-	else
-	*/
 	if(platform == "desktop_chrome")
 	{
 		if(tableHtmlObjectId == "tableBillsFormGridPaging")
@@ -72,73 +49,24 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 			tbl.className = "billsGrid_chrome";
 		}
 	}
-	/*
-	else
-	if(platform == "IOS_safari")
-	{
-		if(tableHtmlObjectId == "tableHomeTenantFormGridPaging")
-		{
-			tbl.className = "homeGridIOS_safari";
-		}
-		else
-		if(tableHtmlObjectId == "tableHomeTenant")
-		{
-			tbl.className = "homeGridIOS_safari";
-		}
-		else if(tableHtmlObjectId == "tableSuite")
-		{
-			tbl.className = "suiteGridIOS_safari";
-		}
-		else if(tableHtmlObjectId == "tableTenant")
-		{
-			tbl.className = "tenantGridIOS_safari";
-		}
-	}
 	else
 	if(platform == "IOS")
 	{
-		if(tableHtmlObjectId == "tableHomeTenantFormGridPaging")
+		if(tableHtmlObjectId == "tableBillsFormGridPaging")
 		{
 			tbl.className = "homeGridIOS";
 		}
-		else		
-		if(tableHtmlObjectId == "tableHomeTenant")
-		{
-			tbl.className = "homeGridIOS";
-		}
-		else if(tableHtmlObjectId == "tableSuite")
-		{
-			tbl.className = "suiteGridIOS";
-		}
-		else if(tableHtmlObjectId == "tableTenant")
-		{
-			tbl.className = "tenantGridIOS";
-		}
-	}
+	}	
 	else
 	if(platform == "android")
 	{
-		if(tableHtmlObjectId == "tableHomeTenantFormGridPaging")
+		if(tableHtmlObjectId == "tableBillsFormGridPaging")
 		{
 			tbl.className = "homeGridMobile";
-		}
-		else		
-		if(tableHtmlObjectId == "tableHomeTenant")
-		{
-			tbl.className = "homeGridMobile";
-		}
-		else if(tableHtmlObjectId == "tableSuite")
-		{
-			tbl.className = "suiteGridMobile";
-		}
-		else if(tableHtmlObjectId == "tableTenant")
-		{
-			tbl.className = "tenantGridMobile";
 		}
 	}
-	*/
 
-								
+	
 	var tableHeaderRow = document.createElement("tr");
 
 	var tableHeader;

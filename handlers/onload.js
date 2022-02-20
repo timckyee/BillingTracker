@@ -40,6 +40,17 @@ document.getElementById("billingTracker").onload = function() {
         server.getServerUrl() + "/images/pngfuel.com.down.gif"]
     );
 
+	var platform = helper.checkPlatform();
+
+	if(platform == "IOS")
+	{
+		document.body.className = "bodyIOS";
+	}
+	else
+	{
+		document.body.className = "bodyDesktop";
+	}    
+
     /*
     var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();
 			

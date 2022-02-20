@@ -25,7 +25,29 @@ td.form {
 
 }
 
+.bodyDesktop {
+
+	min-width: 1280px;
+
+}
+
+.bodyIOS {
+
+	min-width: 1280px;
+
+}
+
 table.billsGrid_chrome {
+	table-layout: fixed;
+	width: 95%;
+}
+
+table.homeGridIOS {
+	table-layout: fixed;
+	width: 90%;
+}
+
+table.homeGridMobile {
 	table-layout: fixed;
 	width: 95%;
 }

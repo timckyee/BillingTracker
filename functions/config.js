@@ -9,8 +9,8 @@ var BillingTracker = BillingTracker || {};
  **/
  BillingTracker.Config = function() {
     
-    //this.serverUrl = "https://staging.closedarea.com";
-    this.serverUrl = "http://localhost:8888/billingtracker";
+    this.serverUrl = "https://bms.closedarea.com/BillingTracker";
+    //this.serverUrl = "http://localhost:8888/billingtracker";
 
 };
 
