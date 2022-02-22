@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2022 at 03:39 PM
+-- Generation Time: Feb 22, 2022 at 05:59 AM
 -- Server version: 5.5.68-MariaDB
 -- PHP Version: 7.0.33
 
@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `BillingAccount` (
 CREATE TABLE IF NOT EXISTS `BillingAccountUserBills` (
   `BillsId` int(11) NOT NULL,
   `BillingAccountId` int(11) NOT NULL,
+  `BillingDate` date DEFAULT NULL,
   `DueDate` date NOT NULL,
   `BillingNumber` varchar(50) DEFAULT NULL,
   `AmountDue` float(10,2) NOT NULL,

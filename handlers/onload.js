@@ -176,16 +176,33 @@ BillingTracker.Onload.prototype = {
         }
         */
 
+        var inputCalendarBillingDateFormGridPaging = document.getElementById('billingDate');
+
         var inputCalendarDueDateFormGridPaging = document.getElementById('dueDate');
 
-        var inputCalendarTestingFormGridPaging = document.getElementById('paidDate');
+        var inputCalendarPaidDateFormGridPaging = document.getElementById('paidDate');
 
+
+        var inputCalendarBillingDateFormGridPagingIcon = document.getElementById('inputCalendarBillingDateFormGridPagingIcon');
 
         var inputCalendarDueDateFormGridPagingIcon = document.getElementById('inputCalendarDueDateFormGridPagingIcon');
 
         var inputCalendarPaidDateFormGridPagingIcon = document.getElementById('inputCalendarPaidDateFormGridPagingIcon');
 
 
+        inputCalendarBillingDateFormGridPaging.addEventListener("blur", function(event) {
+            
+                if(calendar.validateDate(this.id) == false)
+                {
+                    alert("input format date has to be dd-mmm-yyyy");
+                }
+            }
+        
+        );
+        
+        inputCalendarBillingDateFormGridPaging.placeholder = "dd-mmm-yyyy";
+
+        
         inputCalendarDueDateFormGridPaging.addEventListener("blur", function(event) {
             
                 if(calendar.validateDate(this.id) == false)
@@ -199,7 +216,7 @@ BillingTracker.Onload.prototype = {
         inputCalendarDueDateFormGridPaging.placeholder = "dd-mmm-yyyy";
 
 
-        inputCalendarTestingFormGridPaging.addEventListener("blur", function(event) {
+        inputCalendarPaidDateFormGridPaging.addEventListener("blur", function(event) {
             
                 if(calendar.validateDate(this.id) == false)
                 {
@@ -209,8 +226,26 @@ BillingTracker.Onload.prototype = {
             
         );
         
-        inputCalendarTestingFormGridPaging.placeholder = "dd-mmm-yyyy";
+        inputCalendarPaidDateFormGridPaging.placeholder = "dd-mmm-yyyy";
 
+
+        inputCalendarBillingDateFormGridPagingIcon.addEventListener("click", function(event) {
+
+                var divCalendar = document.getElementById(divCalendarId);
+
+                if(divCalendar.style.display == "block")
+                {
+                    calendar.showHideCalendar('hide' ,'billingDate', divCalendarId, monthsArray);
+                }
+                else
+                if(divCalendar.style.display == "none")
+                {
+                    calendar.showHideCalendar('show' ,'billingDate', divCalendarId, monthsArray);
+                }
+            
+            }
+
+        );
 
         inputCalendarDueDateFormGridPagingIcon.addEventListener("click", function(event) {
 

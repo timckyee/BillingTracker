@@ -14,6 +14,7 @@
 
 	this.fields = [
 		{ name: "BillsId", dbType: "int", htmlObjectId: "billsPrimaryKey", htmlObjectType: "primaryKey" },
+		{ name: "BillingDate", dbType: "date", htmlObjectId: "billingDate", htmlObjectType: "calendar", description: "Billing Date" },
 		{ name: "DueDate", dbType: "date", htmlObjectId: "dueDate", htmlObjectType: "calendar", description: "Due Date" },
 		{ name: "BillingNumber", dbType: "string", htmlObjectId: "billingNumber", htmlObjectType: "text", description: "Billing Number" },		
 		{ name: "AmountDue", dbType: "float", htmlObjectId: "amountDue", htmlObjectType: "text", description: "Amount Due" },
@@ -95,6 +96,7 @@ BillingTracker.BillsForm.prototype = {
 		
 		this.BillsId = primaryKey;
 		
+		this.BillingDate = inputValueArray["billingDate"];
 		this.DueDate = inputValueArray["dueDate"];
 		this.BillingNumber = inputValueArray["billingNumber"];	
 		this.AmountDue = inputValueArray["amountDue"];
@@ -115,13 +117,14 @@ BillingTracker.BillsForm.prototype = {
 		
 		var fieldsValuesUpdateArray = [];
 		
-		fieldsValuesUpdateArray[0] = this.BillsId
-		fieldsValuesUpdateArray[1] = this.DueDate;
-		fieldsValuesUpdateArray[2] = this.BillingNumber;		
-		fieldsValuesUpdateArray[3] = this.AmountDue;
-        fieldsValuesUpdateArray[4] = this.PaidDate;
-		fieldsValuesUpdateArray[5] = this.PaymentMethod;
-        fieldsValuesUpdateArray[6] = this.AmountPaid;
+		fieldsValuesUpdateArray[0] = this.BillsId;
+		fieldsValuesUpdateArray[1] = this.BillingDate;
+		fieldsValuesUpdateArray[2] = this.DueDate;
+		fieldsValuesUpdateArray[3] = this.BillingNumber;		
+		fieldsValuesUpdateArray[4] = this.AmountDue;
+        fieldsValuesUpdateArray[5] = this.PaidDate;
+		fieldsValuesUpdateArray[6] = this.PaymentMethod;
+        fieldsValuesUpdateArray[7] = this.AmountPaid;
 		
 		return fieldsValuesUpdateArray;
 		
@@ -138,12 +141,13 @@ BillingTracker.BillsForm.prototype = {
 		
 		var fieldsValuesInsertArray = [];
 		
-		fieldsValuesInsertArray[1] = this.DueDate;		
-		fieldsValuesInsertArray[2] = this.BillingNumber;
-		fieldsValuesInsertArray[3] = this.AmountDue;
-        fieldsValuesInsertArray[4] = this.PaidDate;
-        fieldsValuesInsertArray[5] = this.PaymentMethod;
-        fieldsValuesInsertArray[6] = this.AmountPaid;
+		fieldsValuesInsertArray[1] = this.BillingDate;
+		fieldsValuesInsertArray[2] = this.DueDate;		
+		fieldsValuesInsertArray[3] = this.BillingNumber;
+		fieldsValuesInsertArray[4] = this.AmountDue;
+        fieldsValuesInsertArray[5] = this.PaidDate;
+        fieldsValuesInsertArray[6] = this.PaymentMethod;
+        fieldsValuesInsertArray[7] = this.AmountPaid;
 		
 		return fieldsValuesInsertArray;
 		

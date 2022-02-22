@@ -69,33 +69,6 @@ while($row = $result->fetch_object()) {
 }
 
 
-$result = $mysqli->query("select BillsId, BillingAccount.AccountName as AccountName, BillingAccount.AccountNumber as AccountNumber, BillingAccount.AccountUserName as AccountUserName, DueDate, BillingNumber, AmountDue, date_add(DueDate, interval + 20 day) as 20day from BillingAccount inner join BillingAccountUserBills on BillingAccount.BillingAccountId = BillingAccountUserBills.BillingAccountId where date_add(DueDate, interval + 20 day) = curdate() and PaidDate is null");
-
-while($row = $result->fetch_object()) {
-
-    $AccountName = $row->AccountName;
-    $AccountNumber = $row->AccountNumber;
-    $AccountUserName = $row->AccountUserName;
-    $DueDate = $row->DueDate;
-    $BillingNumber = $row->BillingNumber;
-    $AmountDue = $row->AmountDue;
-
-    $dueDateCreate = date_create($DueDate);
-    $dueDateFormat = date_format($dueDateCreate,"l, M-d-Y");
-
-    $subject = "Bill for Account: " . $AccountName . " with Account Number: " . $AccountNumber . " has not been updated in 20 days";
-    $body = "<br><b>" . $AccountName . " Bill has not been updated in 20 days</b>" .
-            "<br><br>Account Name: " . $AccountName .
-            "<br><br>Account Number: " . $AccountNumber .
-            "<br><br>Account User Name: " . $AccountUserName .
-            "<br><br>Due Date: " . $dueDateFormat .
-            "<br><br>BillingNumber: " . $BillingNumber .
-            "<br><br>Amount Due: " . $AmountDue;
-
-    $mysqli->query("insert into EmailQueue (Subject, Body) values ('" . $subject . "','" . $body . "')");
-}
-
-
 curl_process_email_queue();
 
 function curl_process_email_queue() {

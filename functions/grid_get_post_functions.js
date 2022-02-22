@@ -314,7 +314,29 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 	var calendar = new BillingTracker.Calendar();
 	var helper = new BillingTracker.Helper();
 
-	var dueDate = htmlObjectFieldsValuesUpdate[1];
+	var billingDate = htmlObjectFieldsValuesUpdate[1];
+	var billingDateFromSystem = billingDate;
+	var billingDateFromDatabase = helper.convertDateFromSystem(billingDateFromSystem);
+
+	if(calendar.validateDateFromString(billingDate) == false)
+	{
+		alert("input format date has to be dd-mmm-yyyy");
+		return;
+	}	
+
+	if(arrayOldValuesTable["billingDate"] != billingDate)
+	{
+		if(billingDate == "")
+		{
+			updateString = updateString + "BillingDate=null,";
+		}
+		else
+		{
+			updateString = updateString + "BillingDate='" + billingDateFromDatabase + "',";
+		}
+	}	
+
+	var dueDate = htmlObjectFieldsValuesUpdate[2];
 	var dueDateFromSystem = dueDate;
 	var dueDateFromDatabase = helper.convertDateFromSystem(dueDateFromSystem);
 
@@ -329,7 +351,7 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 		updateString = updateString + "DueDate='" + dueDateFromDatabase + "',";
 	}
 
-	var billingNumber = htmlObjectFieldsValuesUpdate[2];
+	var billingNumber = htmlObjectFieldsValuesUpdate[3];
 	if(arrayOldValuesTable["billingNumber"] != billingNumber)
 	{
 		if(billingNumber == "")
@@ -342,13 +364,13 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 		}
 	}
 
-	var amountDue = htmlObjectFieldsValuesUpdate[3];
+	var amountDue = htmlObjectFieldsValuesUpdate[4];
 	if(arrayOldValuesTable["amountDue"] != amountDue)
 	{
 		updateString = updateString + "AmountDue='" + amountDue + "',";
 	}
 
-	var paidDate = htmlObjectFieldsValuesUpdate[4];
+	var paidDate = htmlObjectFieldsValuesUpdate[5];
 	var paidDateFromSystem = paidDate;
 	var paidDateFromDatabase = helper.convertDateFromSystem(paidDateFromSystem);
 
@@ -370,7 +392,7 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 		}
 	}
 
-	var paymentMethod = htmlObjectFieldsValuesUpdate[5];
+	var paymentMethod = htmlObjectFieldsValuesUpdate[6];
 	if(arrayOldValuesTable["paymentMethod"] != paymentMethod)
 	{
 		if(paymentMethod == "")
@@ -383,7 +405,7 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 		}
 	}
 
-	var amountPaid = htmlObjectFieldsValuesUpdate[6];
+	var amountPaid = htmlObjectFieldsValuesUpdate[7];
 	if(arrayOldValuesTable["amountPaid"] != amountPaid)
 	{
 		if(amountPaid == "")
@@ -493,7 +515,7 @@ post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert,
  	
 	var billingAccountId = document.getElementById("billingAccountId").value;
 
-	insertString = insertString + "(BillingAccountId, DueDate, BillingNumber, AmountDue, PaidDate, PaymentMethod, AmountPaid)";
+	insertString = insertString + "(BillingAccountId, BillingDate, DueDate, BillingNumber, AmountDue, PaidDate, PaymentMethod, AmountPaid)";
 	
 	insertString = insertString + " values (";
 
@@ -502,19 +524,40 @@ post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert,
 	var helper = new BillingTracker.Helper();
 	var calendar = new BillingTracker.Calendar();
 
-	var dueDate = htmlObjectFieldsValuesInsert[1];
-	var billingNumber = htmlObjectFieldsValuesInsert[2];
-	var amountDue = htmlObjectFieldsValuesInsert[3];
-	var paidDate = htmlObjectFieldsValuesInsert[4];
-	var paymentMethod = htmlObjectFieldsValuesInsert[5];
-	var amountPaid = htmlObjectFieldsValuesInsert[6];
+	var billingDate = htmlObjectFieldsValuesInsert[1];
+	var dueDate = htmlObjectFieldsValuesInsert[2];
+	var billingNumber = htmlObjectFieldsValuesInsert[3];
+	var amountDue = htmlObjectFieldsValuesInsert[4];
+	var paidDate = htmlObjectFieldsValuesInsert[5];
+	var paymentMethod = htmlObjectFieldsValuesInsert[6];
+	var amountPaid = htmlObjectFieldsValuesInsert[7];
+
+	// billingDate
+	var billingDateFromSystem = billingDate;
+	
+	var billingDateFromDatabase = helper.convertDateFromSystem(billingDateFromSystem);
+	
+	if(calendar.validateDateFromString(billingDateFromSystem) == false)
+	{
+		alert("input date format has to be dd-mmm-yyyy");
+		return;
+	}	
+
+	if(billingDateFromSystem == "")
+	{
+		insertString = insertString + "null,";
+	}
+	else
+	{
+		insertString = insertString + "'" + billingDateFromDatabase + "',";
+	}
 
 	// dueDate
-	var duedateFromSystem = dueDate;
+	var dueDateFromSystem = dueDate;
 
-	var dueDateFromDatabase = helper.convertDateFromSystem(duedateFromSystem);
+	var dueDateFromDatabase = helper.convertDateFromSystem(dueDateFromSystem);
 	
-	if(calendar.validateDateFromString(duedateFromSystem) == false)
+	if(calendar.validateDateFromString(dueDateFromSystem) == false)
 	{
 		alert("input date format has to be dd-mmm-yyyy");
 		return;
@@ -578,7 +621,7 @@ post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert,
 	insertString = insertString.substr(0, insertString.length - 1);
 			
 	insertString = insertString + ")";
-		
+	
 	window.postXmlHttpRequest.onreadystatechange = function() {
 		
 		if (this.readyState == 4 && this.status == 200) {	

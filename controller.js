@@ -97,6 +97,7 @@ BillingTracker.Controller.prototype = {
 		var saveType;
 		
 		var inputPrimaryKey = document.getElementById("billsPrimaryKey").value;
+        var inputBillingDate = document.getElementById("billingDate").value;
 		var inputDueDate = document.getElementById("dueDate").value;
         var inputBillingNumber = document.getElementById("billingNumber").value;
         var inputAmountDue = document.getElementById("amountDue").value;
@@ -106,6 +107,7 @@ BillingTracker.Controller.prototype = {
 		
 		var BillsFormGridValues = new Array();
 		
+        BillsFormGridValues["billingDate"] = inputBillingDate;
 		BillsFormGridValues["dueDate"] = inputDueDate;
 		BillsFormGridValues["billingNumber"] = inputBillingNumber;		
 		BillsFormGridValues["amountDue"] = inputAmountDue;

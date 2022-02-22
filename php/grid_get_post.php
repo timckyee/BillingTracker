@@ -52,6 +52,17 @@
 					$orderBy = "ORDER BY BillsId desc";
 				}
 			}
+			else if($sortColumn == "BillingDate")
+			{
+				if($sortDirection == "asc")
+				{
+					$orderBy = "ORDER BY BillingDate asc";
+				}
+				else if($sortDirection == "desc")
+				{
+					$orderBy = "ORDER BY BillingDate desc";
+				}
+			}			
 			else if($sortColumn == "DueDate")
 			{
 				if($sortDirection == "asc")
@@ -78,11 +89,13 @@
 			{
 				if($sortDirection == "asc")
 				{
-					$orderBy = "ORDER BY AmountDue asc";
+					$orderBy = "ORDER BY lpad(AmountDue, 10, 0) asc";
+					//$orderBy = "ORDER BY AmountDue asc";
 				}
 				else if($sortDirection == "desc")
 				{
-					$orderBy = "ORDER BY AmountDue desc";
+					$orderBy = "ORDER BY lpad(AmountDue, 10, 0) desc";
+					//$orderBy = "ORDER BY AmountDue desc";
 				}
 			}
 			else if($sortColumn == "PaidDate")
@@ -111,11 +124,13 @@
 			{
 				if($sortDirection == "asc")
 				{
-					$orderBy = "ORDER BY AmountPaid asc";
+					$orderBy = "ORDER BY lpad(AmountPaid, 10, 0) asc";
+					//orderBy = "ORDER BY AmountPaid asc";
 				}
 				else if($sortDirection == "desc")
 				{
-					$orderBy = "ORDER BY AmountPaid desc";
+					$orderBy = "ORDER BY lpad(AmountPaid, 10, 0) desc";
+					//$orderBy = "ORDER BY AmountPaid desc";
 				}
 			}
 
@@ -138,13 +153,14 @@
 					FROM
 					(
 					SELECT (@row_number:=@row_number + 1) AS num, 
-					BillsId, 
+					BillsId,
+					BillingDate,
 					DueDate,
 					BillingNumber,
-					AmountDue,
+					REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue,
                     PaidDate,
                     (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod,
-                    AmountPaid
+                    REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid
 				FROM
 					BillingAccountUserBills WHERE BillingAccountId=" . $_GET["billingAccountId"] . " " . $orderBy . ", BillsId " . $fieldPrimaryKeySortSecondColumnDirection .
 					") subqueryAddRowNumber
@@ -200,7 +216,7 @@
 					$primaryKeySortDirection = "desc";
 				}
 
-				$result = $mysqli->query("SELECT BillsId, DueDate, BillingNumber, AmountDue, PaidDate, (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod, AmountPaid from BillingAccountUserBills where BillingAccountId=" . $_GET["billingAccountId"] . " " . $orderBy . ", BillsId " . $primaryKeySortDirection . " limit " . $limit . " offset " . $offset);
+				$result = $mysqli->query("SELECT BillsId, BillingDate, DueDate, BillingNumber, REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue, PaidDate, (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod, REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid from BillingAccountUserBills where BillingAccountId=" . $_GET["billingAccountId"] . " " . $orderBy . ", BillsId " . $primaryKeySortDirection . " limit " . $limit . " offset " . $offset);
 			}
 		}      
 		else if($queryName == "griduserbillsSearch")
@@ -221,6 +237,17 @@
 					$orderBy = "ORDER BY BillsId desc";
 				}
 			}
+			else if($sortColumn == "BillingDate")
+			{
+				if($sortDirection == "asc")
+				{
+					$orderBy = "ORDER BY BillingDate asc";
+				}
+				else if($sortDirection == "desc")
+				{
+					$orderBy = "ORDER BY BillingDate desc";
+				}
+			}			
 			else if($sortColumn == "DueDate")
 			{
 				if($sortDirection == "asc")
@@ -247,11 +274,13 @@
 			{
 				if($sortDirection == "asc")
 				{
-					$orderBy = "ORDER BY AmountDue asc";
+					$orderBy = "ORDER BY lpad(AmountDue, 10, 0) asc";
+					//$orderBy = "ORDER BY AmountDue asc";
 				}
 				else if($sortDirection == "desc")
 				{
-					$orderBy = "ORDER BY AmountDue desc";
+					$orderBy = "ORDER BY lpad(AmountDue, 10, 0) desc";
+					//$orderBy = "ORDER BY AmountDue desc";
 				}
 			}
 			else if($sortColumn == "PaidDate")
@@ -280,11 +309,13 @@
 			{
 				if($sortDirection == "asc")
 				{
-					$orderBy = "ORDER BY AmountPaid asc";
+					$orderBy = "ORDER BY lpad(AmountPaid, 10, 0) asc";
+					//$orderBy = "ORDER BY AmountPaid asc";
 				}
 				else if($sortDirection == "desc")
 				{
-					$orderBy = "ORDER BY AmountPaid desc";
+					$orderBy = "ORDER BY lpad(AmountPaid, 10, 0) desc";
+					//$orderBy = "ORDER BY AmountPaid desc";
 				}
 			}
 
@@ -312,27 +343,30 @@
 					(
 					SELECT (@row_number:=@row_number + 1) AS num, 
 					BillsId,
+					BillingDate,
                     DueDate,
                     BillingNumber,
-                    AmountDue,
+                    REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue,
                     PaidDate,
                     (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod,
-                    AmountPaid
+                    REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid
 				FROM
 					BillingAccountUserBills
 				WHERE
 					BillingAccountId=" . $_GET["billingAccountId"] . " and " . 
 
-					"(date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+					"(date_format(BillingDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+						
+					date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
 
                     BillingNumber like concat('%', @searchValue, '%') or
-                    AmountDue like concat('%', @searchValue, '%') or
+                    REPLACE(FORMAT(AmountDue, 2), ',', '') like concat('%', @searchValue, '%') or
 
 					date_format(PaidDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
 					
 					(select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) like concat('%', @searchValue, '%') or
 
-                    AmountPaid like concat('%', @searchValue, '%')) " .
+                    REPLACE(FORMAT(AmountPaid, 2), ',', '') like concat('%', @searchValue, '%')) " .
                     
                     $orderBy . ", BillsId " . $fieldPrimaryKeySortSecondColumnDirection .
 					") subqueryAddRowNumber
@@ -389,16 +423,20 @@
 				}
 
 				$mysqli->query('SET @searchValue = \'' . $searchValue . '\'');
-				$sql = "SELECT BillsId, DueDate, BillingNumber, AmountDue, PaidDate, (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod, AmountPaid from BillingAccountUserBills where BillingAccountId = " . $billingAccountId . " and (date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+				$sql = "SELECT BillsId, BillingDate, DueDate, BillingNumber, REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue, PaidDate, (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod, REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid from BillingAccountUserBills where BillingAccountId = " . $billingAccountId . " and " .
+
+				"(date_format(BillingDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+
+				date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
 
                 BillingNumber like concat('%', @searchValue, '%') or
-                AmountDue like concat('%', @searchValue, '%') or
+                REPLACE(FORMAT(AmountDue, 2), ',', '') like concat('%', @searchValue, '%') or
 
 				date_format(PaidDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
 				
 				(select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) like concat('%', @searchValue, '%') or
 				
-                AmountPaid like concat('%', @searchValue, '%')) " . $orderBy  . ", BillsId " . $primaryKeySortDirection . " limit " . $limit . " offset " . $offset;
+                REPLACE(FORMAT(AmountPaid, 2), ',', '') like concat('%', @searchValue, '%')) " . $orderBy  . ", BillsId " . $primaryKeySortDirection . " limit " . $limit . " offset " . $offset;
 
 				$stmt = $mysqli->prepare($sql);
 				$stmt->execute();
@@ -423,16 +461,18 @@
 
 				BillingAccountId = " . $billingAccountId . " and " .
 
-				"(date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+				"(date_format(BillingDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+					
+				date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
 
                 BillingNumber like concat('%', @searchValue, '%') or
-                AmountDue like concat('%', @searchValue, '%') or                
+                REPLACE(FORMAT(AmountDue, 2), ',', '') like concat('%', @searchValue, '%') or                
 				
 				date_format(PaidDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
 
                 (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) like concat('%', @searchValue, '%') or
 				
-                AmountPaid like concat('%', @searchValue, '%'))";
+                REPLACE(FORMAT(AmountPaid, 2), ',', '') like concat('%', @searchValue, '%'))";
 
 				$stmt = $mysqli->prepare($sql);
 				$stmt->execute();
@@ -491,7 +531,7 @@
 		else
 		if($queryName == "populateBillsForm") {
 			
-			$result = $mysqli->query("SELECT BillsId, DueDate, BillingNumber, AmountDue, PaidDate, PaymentMethod, AmountPaid from BillingAccountUserBills where BillsId=" . $_GET["htmlObjectPrimaryKeyValue"]);
+			$result = $mysqli->query("SELECT BillsId, BillingDate, DueDate, BillingNumber, REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue, PaidDate, PaymentMethod, REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid from BillingAccountUserBills where BillsId=" . $_GET["htmlObjectPrimaryKeyValue"]);
 		
 		}	   
 

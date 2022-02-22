@@ -18,7 +18,7 @@
             <span>Select Billing Account</span>
             <br>
             <br>
-            <select id="billingAccountsSelectList" onchange="var helper = new BillingTracker.Helper(); helper.billingAccountsSelectListChange(this);">
+            <select id="billingAccountsSelectList" style="width: 245px" onchange="var helper = new BillingTracker.Helper(); helper.billingAccountsSelectListChange(this);">
             </select>
             <br>
             <br>
@@ -26,19 +26,19 @@
             <table>
                 <tr>
                     <td class="form"><span>Billing Account Id</span></td>
-                    <td class="form"><input id="billingAccountId" readonly /></td>
+                    <td class="form"><input id="billingAccountId" style="width: 225px" readonly /></td>
                 </tr>            
                 <tr>
                     <td class="form"><span>Account Name</span></td>
-                    <td class="form"><input id="accountName" /></td>   
+                    <td class="form"><input id="accountName" style="width: 225px" /></td>   
                 </tr>
                 <tr>
                     <td class="form"><span>Account Number</span></td>
-                    <td class="form"><input id="accountNumber" /></td>
+                    <td class="form"><input id="accountNumber" style="width: 225px" /></td>
                 </tr>
                 <tr>
                     <td class="form"><span>Account User Name</span></td>
-                    <td class="form"><input id="accountUserName" /></td>
+                    <td class="form"><input id="accountUserName" style="width: 225px" /></td>
                 </tr>
             </table>
 
@@ -64,6 +64,10 @@
                     <td class="form"><span>Bills Id</span></td>
                     <td class="form"><input id="billsPrimaryKey" style="width: 142" readonly /></td>
                 </tr>
+                <tr>
+                    <td class="form"><span>Billing Date</span></td>
+                    <td class="form"><input id="billingDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 142" />&nbsp;&nbsp;<img id="inputCalendarBillingDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
+                </tr>                
                 <tr>
                     <td class="form"><span>Due Date</span></td>
                     <td class="form"><input id="dueDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 142" />&nbsp;&nbsp;<img id="inputCalendarDueDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>

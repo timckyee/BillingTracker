@@ -181,6 +181,7 @@ BillingTracker.Helper.prototype = {
      newBill: function() {
 
         document.getElementById("billsPrimaryKey").value = "";
+        document.getElementById("billingDate").value = "";
         document.getElementById("dueDate").value = "";
         document.getElementById("billingNumber").value = "";
         document.getElementById("amountDue").value = "";

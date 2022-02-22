@@ -11,6 +11,7 @@
 	this.columns = [
 		
 		{ colName: "Bills Id", id: "BillsId", colType: "int", hidden: "true" },
+		{ colName: "Billing Date", id: "BillingDate", colType: "date" },
 		{ colName: "Due Date", id: "DueDate", colType: "date" },
 		{ colName: "Billing Number", id: "BillingNumber", colType: "string" },
 		{ colName: "Amount Due", id: "AmountDue", colType: "float" },
