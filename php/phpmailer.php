@@ -29,14 +29,13 @@ while($row = $result->fetch_object()) {
     $dueDateCreate = date_create($DueDate);
     $dueDateFormat = date_format($dueDateCreate,"l, M-d-Y");
 
-    $subject = "Bill for Account: " . $AccountName . " with Account Number: " . $AccountNumber . " is overdue in 7 days";
-    $body = "<br><b>" . $AccountName . " Bill is overdue in 7 days</b>" .
-            "<br><br>Account Name: " . $AccountName .
+    $subject = $AccountName . " Bill is overdue in 7 days";
+    $body = "<br><br>Account Name: " . $AccountName .
             "<br><br>Account Number: " . $AccountNumber .
             "<br><br>Account User Name: " . $AccountUserName .
             "<br><br>Due Date: " . $dueDateFormat .
             "<br><br>BillingNumber: " . $BillingNumber .
-            "<br><br>Amount Due: " . $AmountDue;
+            "<br><br>Amount Due: $" . $AmountDue;
             
     $mysqli->query("insert into EmailQueue (Subject, Body) values ('" . $subject . "','" . $body . "')");
 }
@@ -56,14 +55,13 @@ while($row = $result->fetch_object()) {
     $dueDateCreate = date_create($DueDate);
     $dueDateFormat = date_format($dueDateCreate,"l, M-d-Y");
 
-    $subject = "Bill for Account: " . $AccountName . " with Account Number: " . $AccountNumber . " is overdue in 3 days";
-    $body = "<br><b>" . $AccountName . " Bill is overdue in 3 days</b>" .
-            "<br><br>Account Name: " . $AccountName .
+    $subject = $AccountName . " Bill is overdue in 3 days";
+    $body = "<br><br>Account Name: " . $AccountName .
             "<br><br>Account Number: " . $AccountNumber .
             "<br><br>Account User Name: " . $AccountUserName .
             "<br><br>Due Date: " . $dueDateFormat .
             "<br><br>BillingNumber: " . $BillingNumber .
-            "<br><br>Amount Due: " . $AmountDue;
+            "<br><br>Amount Due: $" . $AmountDue;
 
     $mysqli->query("insert into EmailQueue (Subject, Body) values ('" . $subject . "','" . $body . "')");
 }

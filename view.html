@@ -1,0 +1,149 @@
+<html>
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/calendar.css">
+
+    </head>
+
+    <body id="billingTracker">
+
+        <br>
+        <br>
+
+        <div class="noselect">
+
+            <center>
+            
+            <table>
+                <tr>
+                    <td class="form"><span>Select Billing Account</span></td>
+                    <td class="form"><select id="billingAccountsSelectList" style="width: 225px" onchange="var helper = new BillingTracker.Helper(); helper.billingAccountsSelectListChange(this);"></select></td>
+                </tr>
+                <tr>
+                    <td class="form"><span>&nbsp;</span></td>
+                    <td class="form">&nbsp;</td>
+                </tr>                        
+                <tr>
+                    <td class="form"><span>Billing Account Id</span></td>
+                    <td class="form"><input id="billingAccountId" style="width: 225px" readonly /></td>
+                </tr>            
+                <tr>
+                    <td class="form"><span>Account Name</span></td>
+                    <td class="form"><input id="accountName" style="width: 225px" /></td>   
+                </tr>
+                <tr>
+                    <td class="form"><span>Account Number</span></td>
+                    <td class="form"><input id="accountNumber" style="width: 225px" /></td>
+                </tr>
+                <tr>
+                    <td class="form"><span>Account User Name</span></td>
+                    <td class="form"><input id="accountUserName" style="width: 225px" /></td>
+                </tr>
+                <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form">&nbsp;</td>
+                </tr>                
+                <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form">
+                        <button id="saveBillingAccount" onclick="var controller = new BillingTracker.Controller(); controller.saveBillingAccount()">Save</button>
+                        <button id="newBillingAccount" onclick="var helper = new BillingTracker.Helper(); helper.newBillingAccount();">New</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form">&nbsp;</td>
+                </tr>                
+                <tr>
+                    <td class="form">Enter Text To Search</td>
+                    <td class="form">
+                        <div id="billsFormGridPagingSearchInputAndButton">
+                            <input id="billsFormGridPagingSearchValue"><button class="button" onclick="var helper = new BillingTracker.Helper(); helper.setBillsFormGridPagingSearchValue(); helper.getBillsFormGridPagingSearchValue()">Search</button>
+                        </div>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form">&nbsp;</td>
+                    <td class="form">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="form"><span>Bills Id</span></td>
+                    <td class="form"><input id="billsPrimaryKey" style="width: 225px" readonly /></td>
+                </tr>
+                <tr>
+                    <td class="form"><span>Billing Date</span></td>
+                    <td class="form"><input id="billingDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarBillingDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
+                </tr>                
+                <tr>
+                    <td class="form"><span>Due Date</span></td>
+                    <td class="form"><input id="dueDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarDueDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
+                </tr>
+                <tr>
+                    <td class="form"><span>Billing Number</span></td>
+                    <td class="form"><input id="billingNumber" type="text" style="width: 225px" /></td>
+                </tr>
+                <tr>
+                    <td class="form"><span>Amount Due</span></td>
+                    <td class="form"><input id="amountDue" type="text" style="width: 225px" /></td>
+                </tr>
+                <tr>
+                    <td class="form"><span>Paid Date</span></td>
+                    <td class="form"><input id="paidDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarPaidDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
+                </tr>
+                <tr>
+                    <td class="form"><span>Payment Method</span></td>
+                    <td class="form">
+                        <select id="paymentMethod" style="width: 225px">
+                        </select>	
+                    </td>	                
+                </tr>
+                <tr>
+                    <td class="form"><span>Amount Paid</span></td>
+                    <td class="form"><input id="amountPaid" type="text" style="width: 225px" /></td>
+                </tr>
+            </table>
+        
+            <br>
+            <br>
+
+            <div id="gridBillsFormGridPaging" style="display:block; height: 245px"></div>
+
+            <div id="gridGetPostBillsFormGridPagingFooter" style="display: none">
+                <span style="padding: 25px; cursor: pointer" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPageArrows(this,'left',document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)"><<</span>
+                <span>Page Number</span>&nbsp;&nbsp;<input id="gridGetPostBillsFormGridPagingPageNumber" style="width: 40"/>&nbsp;&nbsp;<span id="gridGetPostBillsFormGridPagingPages"></span>&nbsp;&nbsp;<button class="button" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPage(this,document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)">Go</button>
+                <span style="padding: 25px; cursor: pointer" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPageArrows(this,'right',document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)">>></span>
+            </div>
+
+            <br>
+            <br>
+
+            <div id="saveNewButtonBillsFormGridPaging" class="buttonCenter" style="display: none;">
+                <input type="button" class="button" value="Save" onclick="var controller = new BillingTracker.Controller(); controller.billsFormGridPagingSave();" />
+                <input type="button" class="button" value="New" onclick="var helper = new BillingTracker.Helper(); helper.newBill();" />
+            </div>
+
+            <br>
+            <br>
+
+            </center>
+
+        </div>
+
+        <div id="calendarId" style="position: absolute; display: none; z-index: 2; background-color: white" class="noselect"></div>
+
+        <script src="functions/config.js" type="text/javascript"></script>
+        <script src="handlers/onload.js" type="text/javascript"></script>
+        <script src="functions/helper.js" type="text/javascript"></script>
+        <script src="controller.js" type="text/javascript"></script>
+        <script src="grid/BillsFormGridPaging.js" type="text/javascript"></script>
+        <script src="form/BillsForm.js" type="text/javascript"></script>
+        <script src="controller.js" type="text/javascript"></script>
+        <script src="functions/grid_get_post_functions.js" type="text/javascript"></script>
+        <script src="handlers/onclickhandler.js" type="text/javascript"></script>
+        <script src="functions/calendar.js" type="text/javascript"></script>
+        <script src="functions/callback.js" type="text/javascript"></script>
+    </body>
+
+</html>
