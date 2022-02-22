@@ -240,7 +240,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 				
 				if(colType == "date")
 				{	
-					if(gridColumnsInfo[i].id == "PaidDate")
+					if(gridColumnsInfo[i].id == "BillingDate" || gridColumnsInfo[i].id == "PaidDate")
 					{
 						if(response[tableRowCount][gridColumnsInfo[i].id] == null)
 							cellText = document.createTextNode('');
