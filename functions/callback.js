@@ -54,7 +54,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 	{
 		if(tableHtmlObjectId == "tableBillsFormGridPaging")
 		{
-			tbl.className = "homeGridIOS";
+			tbl.className = "billsGridIOS";
 		}
 	}	
 	else
@@ -62,7 +62,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 	{
 		if(tableHtmlObjectId == "tableBillsFormGridPaging")
 		{
-			tbl.className = "homeGridMobile";
+			tbl.className = "billsGridMobile";
 		}
 	}
 

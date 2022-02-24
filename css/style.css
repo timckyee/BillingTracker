@@ -43,12 +43,12 @@ table.billsGrid_chrome {
 	width: 95%;
 }
 
-table.homeGridIOS {
+table.billsGridIOS {
 	table-layout: fixed;
 	width: 90%;
 }
 
-table.homeGridMobile {
+table.billsGridMobile {
 	table-layout: fixed;
 	width: 95%;
 }

@@ -13,10 +13,10 @@
 		{ colName: "Bills Id", id: "BillsId", colType: "int", hidden: "true" },
 		{ colName: "Billing Date", id: "BillingDate", colType: "date" },
 		{ colName: "Due Date", id: "DueDate", colType: "date" },
-		{ colName: "Billing Number", id: "BillingNumber", colType: "string" },
+		{ colName: "Bill Number", id: "BillingNumber", colType: "string" },
 		{ colName: "Amount Due", id: "AmountDue", colType: "float" },
 		{ colName: "Paid Date", id: "PaidDate", colType: "date" },
-        { colName: "Payment Method", id: "PaymentMethod", colType: "string" },
+        { colName: "Payment", id: "PaymentMethod", colType: "string" },
         { colName: "Amount Paid", id: "AmountPaid", colType: "float" },
 		
 	];

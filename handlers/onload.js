@@ -14,6 +14,14 @@ window.getPageNumberHttpRequest = new XMLHttpRequest();
 
 document.getElementById("billingTracker").onload = function() {
 
+    var loggedIn = sessionStorage.getItem("loggedIn");
+
+    if(loggedIn != "true")
+    {
+        window.location.href = "index.html";
+        return;
+    }
+
     var onload = new BillingTracker.Onload();
     onload.loadBillingAccounts();
 
@@ -49,7 +57,9 @@ document.getElementById("billingTracker").onload = function() {
 	else
 	{
 		document.body.className = "bodyDesktop";
-	}    
+	}  
+
+    sessionStorage.setItem("loggedIn", "false");   
 
     /*
     var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();
