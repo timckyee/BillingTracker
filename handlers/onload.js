@@ -7,7 +7,7 @@ document.getElementById("billingTracker").onload = function() {
 
     if(loggedIn != "true")
     {
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
         return;
     }
 
@@ -35,7 +35,7 @@ document.getElementById("billingTracker").onload = function() {
     var server = new BillingTracker.Config();
             
     var helper = new BillingTracker.Helper();
-
+    
     helper.preload(
         [server.getServerUrl() + "/images/pngfuel.com.up.gif", 
         server.getServerUrl() + "/images/pngfuel.com.down.gif"]
@@ -125,7 +125,7 @@ BillingTracker.Onload.prototype = {
      
          queryString = "queryName" + "=" + "billingAccounts";
          
-         window.getXmlHttpRequest.open("GET", "php/grid_get_post.php" + "?" + queryString, true);
+         window.getXmlHttpRequest.open("GET", "../php/grid_get_post.php" + "?" + queryString, true);
          window.getXmlHttpRequest.send();
      },
 
@@ -162,7 +162,7 @@ BillingTracker.Onload.prototype = {
      
          queryString = "queryName" + "=" + "paymentMethods";
          
-         window.getXmlHttpRequest.open("GET", "php/grid_get_post.php" + "?" + queryString, true);
+         window.getXmlHttpRequest.open("GET", "../php/grid_get_post.php" + "?" + queryString, true);
          window.getXmlHttpRequest.send();
      },     
 

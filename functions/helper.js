@@ -151,7 +151,7 @@ BillingTracker.Helper.prototype = {
     
         queryString = "queryName=" + "billingAccountLoad" + "&billingAccountId=" + obj.value;
         
-        window.getXmlHttpRequest.open("GET", "php/grid_get_post.php" + "?" + queryString, true);
+        window.getXmlHttpRequest.open("GET", "../php/grid_get_post.php" + "?" + queryString, true);
         window.getXmlHttpRequest.send();        
 
      },

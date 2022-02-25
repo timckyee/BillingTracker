@@ -23,7 +23,7 @@
         { name: "AmountPaid", dbType: "float", htmlObjectId: "amountPaid", htmlObjectType: "text", description: "Amount Paid" }
     ];
 		
-	this.phpFileGridGetPost = "php/grid_get_post.php";
+	this.phpFileGridGetPost = "../php/grid_get_post.php";
 
 	this.billsUpdateQueryName = "updateTableBillingAccountUserBills";
 

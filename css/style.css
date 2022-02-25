@@ -20,7 +20,7 @@ td.form {
 	border: none;
 	height: 20px;
 	text-overflow: ellipsis;
-	padding-left: 25px;
+	padding-left: 10px;
 	overflow: hidden;
 	white-space: nowrap;
 

@@ -55,7 +55,7 @@ BillingTracker.Controller.prototype = {
 
             var formVariables = "postType=" + "createBillingAccount" + "&insertString" + "=" + encodeURIComponent(insertString);
                 
-            window.postXmlHttpRequest.open("POST", "php/grid_get_post.php", true);
+            window.postXmlHttpRequest.open("POST", "../php/grid_get_post.php", true);
             window.postXmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             window.postXmlHttpRequest.send(formVariables);
         }
@@ -80,7 +80,7 @@ BillingTracker.Controller.prototype = {
 
             var formVariables = "postType=" + "updateBillingAccount" + "&billingAccountId=" + billingAccountId + "&updateString" + "=" + encodeURIComponent(updateString);
                 
-            window.postXmlHttpRequest.open("POST", "php/grid_get_post.php", true);
+            window.postXmlHttpRequest.open("POST", "../php/grid_get_post.php", true);
             window.postXmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             window.postXmlHttpRequest.send(formVariables);
 

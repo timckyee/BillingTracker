@@ -2,8 +2,10 @@
 
     <head>
 
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/calendar.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/calendar.css">
 
     </head>
 
@@ -13,9 +15,9 @@
         <br>
 
         <div class="noselect">
-
-            <center>
             
+            <center>
+
             <table>
                 <tr>
                     <td class="form"><span>Select Billing Account</span></td>
@@ -74,11 +76,11 @@
                 </tr>
                 <tr>
                     <td class="form"><span>Billing Date</span></td>
-                    <td class="form"><input id="billingDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarBillingDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
+                    <td class="form"><input id="billingDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarBillingDateFormGridPagingIcon" src="../images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
                 </tr>                
                 <tr>
                     <td class="form"><span>Due Date</span></td>
-                    <td class="form"><input id="dueDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarDueDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
+                    <td class="form"><input id="dueDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarDueDateFormGridPagingIcon" src="../images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
                 </tr>
                 <tr>
                     <td class="form"><span>Billing Number</span></td>
@@ -90,7 +92,7 @@
                 </tr>
                 <tr>
                     <td class="form"><span>Paid Date</span></td>
-                    <td class="form"><input id="paidDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarPaidDateFormGridPagingIcon" src="images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
+                    <td class="form"><input id="paidDate" type="text" style="position: relative; z-index: 1; background-color: white; width: 225px" />&nbsp;&nbsp;<img id="inputCalendarPaidDateFormGridPagingIcon" src="../images/favpng_font-awesome-calendar-font.png" width="14" height="14" style="cursor: pointer"></td>
                 </tr>
                 <tr>
                     <td class="form"><span>Payment Method</span></td>
@@ -128,22 +130,21 @@
             <br>
 
             </center>
-
+            
         </div>
 
         <div id="calendarId" style="position: absolute; display: none; z-index: 2; background-color: white" class="noselect"></div>
 
-        <script src="functions/config.js" type="text/javascript"></script>
-        <script src="handlers/onload.js" type="text/javascript"></script>
-        <script src="functions/helper.js" type="text/javascript"></script>
-        <script src="controller.js" type="text/javascript"></script>
-        <script src="grid/BillsFormGridPaging.js" type="text/javascript"></script>
-        <script src="form/BillsForm.js" type="text/javascript"></script>
-        <script src="controller.js" type="text/javascript"></script>
-        <script src="functions/grid_get_post_functions.js" type="text/javascript"></script>
-        <script src="handlers/onclickhandler.js" type="text/javascript"></script>
-        <script src="functions/calendar.js" type="text/javascript"></script>
-        <script src="functions/callback.js" type="text/javascript"></script>
+        <script src="../functions/config.js" type="text/javascript"></script>
+        <script src="../handlers/onload.js" type="text/javascript"></script>
+        <script src="../functions/helper.js" type="text/javascript"></script>
+        <script src="../grid/BillsFormGridPaging.js" type="text/javascript"></script>
+        <script src="../form/BillsForm.js" type="text/javascript"></script>
+        <script src="../controller.js" type="text/javascript"></script>
+        <script src="../functions/grid_get_post_functions.js" type="text/javascript"></script>
+        <script src="../handlers/onclickhandler.js" type="text/javascript"></script>
+        <script src="../functions/calendar.js" type="text/javascript"></script>
+        <script src="../functions/callback.js" type="text/javascript"></script>
     </body>
 
 </html>

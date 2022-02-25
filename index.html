@@ -1,5 +1,11 @@
 <html>
 
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
 <style>
 
     .noselect {
@@ -17,6 +23,48 @@
 
 <script>    
      
+    /*
+    * The BillingTracker object
+    */
+    var BillingTracker = BillingTracker || {};
+
+    function checkPlatform() {
+
+        var isIOS_safari = (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
+
+        var isAndroid = /Android/i.test(navigator.userAgent);
+
+        if(isIOS_safari == false && isIOS == false && isAndroid == false)
+        {
+            if(navigator.userAgent.indexOf('Chrome') != -1)
+            {
+                return "desktop_chrome";
+            }
+            else
+            {
+                return "desktop_safari";
+            }
+        }
+        else
+        if(isIOS_safari == true)
+        {
+            return "IOS_safari";
+        }
+        else
+        if(isIOS == true)
+        {
+            return "IOS";
+        }
+        else
+        if(isAndroid == true)
+        {
+            return "android";
+        }
+
+    }
+
     function login() {
     
         var xhr = new XMLHttpRequest();
@@ -54,8 +102,21 @@
                 }
                 else
                 {
-                    sessionStorage.setItem("loggedIn", "true");   
-                    window.location.href = "view.html";
+                    sessionStorage.setItem("loggedIn", "true");
+
+                    var platform = checkPlatform();
+
+                    if(platform == "desktop_chrome" || platform == "IOS")
+                    {
+                        window.location.href = "view/viewdesktop.html";
+                    }
+                    else
+                    {
+                        if(platform = "android")
+                        {
+                            window.location.href = "view/viewphone.html";
+                        }
+                    }
                 }
 
             }

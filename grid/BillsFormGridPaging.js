@@ -29,7 +29,7 @@
 
 	this.rowOnClick =  handler.BillFormGridPagingOnClickHandler;
 	
-	this.phpFileGridGetPost = "php/grid_get_post.php";
+	this.phpFileGridGetPost = "../php/grid_get_post.php";
 
 	this.refreshBillsGridQueryName = "griduserbills";
 
