@@ -32,7 +32,7 @@ BillingTracker.Grid_Get_Post_Functions.prototype = {
  * @param {string} highlightRowId the row in the table which is highlighted after editing and saving the row
  * @param {string} pageSize paging size for the grid
  **/
-grid: function(divElement, phpFile, queryName, gridIdField, gridColumnsInfo, tableHtmlObjectId, additionalArgs, additionalArgsValue, additionalArgs2, additionalArgsValue2, callback, rowOnClick, showEditColumn, sortColumn, sortDirection, pageNumber, highlightRowId, pageSize) {
+grid: function(divElement, phpFile, queryName, gridIdField, gridColumnsInfo, tableHtmlObjectId, additionalArgs, additionalArgsValue, additionalArgs2, additionalArgsValue2, callback, rowOnClick, sortColumn, sortDirection, pageNumber, highlightRowId, pageSize) {
 
 	var divTable = document.getElementById(divElement);
 
@@ -42,7 +42,7 @@ grid: function(divElement, phpFile, queryName, gridIdField, gridColumnsInfo, tab
 
 			var response = JSON.parse(this.responseText);				
 						
-			callback(phpFile, response, divTable, tableHtmlObjectId, gridIdField, gridColumnsInfo, rowOnClick, showEditColumn, sortColumn, sortDirection, pageNumber, highlightRowId);					
+			callback(phpFile, response, divTable, tableHtmlObjectId, gridIdField, gridColumnsInfo, rowOnClick, sortColumn, sortDirection, pageNumber, highlightRowId);					
 		}
 	};
 	
@@ -119,11 +119,11 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 			
 					if(searchValue == "" || searchValue == undefined)
 					{
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
 					}
 					else
 					{
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
 					}
 
 					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberBillsGrid;
@@ -134,11 +134,11 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 				{
 					if(searchValue == "" || searchValue == undefined)
 					{			
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());
 					}
 					else
 					{
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());
 					}
 
 					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberString;

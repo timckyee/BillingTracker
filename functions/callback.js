@@ -20,13 +20,12 @@ BillingTracker.Callback.prototype = {
  * @param {string} gridIdField the primary key for the table rows
  * @param {Array} gridColumnsInfo grid object array of columns 
  * @param {function} rowOnClick the handler to call when the user clicks on row in the table
- * @param {string} showEditColumn to show or hide the edit column in the table
  * @param {string} sortColumn the grid column which is currently sorted
  * @param {string} sortDirection the direction which is currently sorted
  * @param {string} pageNumber the page number of the table we are currently showing
  * @param {string} highlightRowId the row in the table which is highlighted after editing and saving the row
  **/
-gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdField, gridColumnsInfo, rowOnClick, showEditColumn, sortColumn, sortDirection, pageNumber, highlightRowId) {
+gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdField, gridColumnsInfo, rowOnClick, sortColumn, sortDirection, pageNumber, highlightRowId) {
 	
 	var tbl = document.createElement("table");
 	tbl.id = tableHtmlObjectId;
