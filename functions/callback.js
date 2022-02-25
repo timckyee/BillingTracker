@@ -70,17 +70,6 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 	var tableHeaderRow = document.createElement("tr");
 
 	var tableHeader;
-	/*
-	if(showEditColumn == "showEdit")
-	{
-		tableHeader = document.createElement("th");
-		
-		tableHeader.style.width = "70px";
-		//tableHeader.style.height = "25px";
-
-		tableHeaderRow.appendChild(tableHeader);
-	}
-	*/
 
 	for(var i=0; i<gridColumnsInfo.length; i++)
 	{	
@@ -307,32 +296,6 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 	{
 		document.getElementById("saveNewButtonBillsFormGridPaging").style.display = "block";
 	}
-    
-	// if showPagingFooter == "true" and sessionStorage.getItem("editMode") != "true"
-	// then update the total pageNumbers
-	// the get_pageNumbers onload parameter will help preload the second grid, HomeTenantFormGridPaging
-	/*
-	if(showPagingFooter == "true" && sessionStorage.getItem("editMode") != "true")
-	{	
-		var grid_get_post_functions = new CodeReuse.Grid_Get_Post_Functions();
-		
-		if(tableHtmlObjectId == "tableBillsFormGridPaging")
-		{
-			var home_tenant_form_grid_paging = new CodeReuse.HomeTenantFormGridPaging();
-
-			var searchValue = home_tenant_form_grid_paging.getSearchValue();
-
-			if(searchValue == "" || searchValue == undefined)
-			{
-				grid_get_post_functions.get_pageNumbers(home_tenant_form_grid_paging.getPhpFile(), divPagingFooter, home_tenant_form_grid_paging.getPageNumbersQueryName(), home_tenant_form_grid_paging.getPageSize(), home_tenant_form_grid_paging.getTableHtmlObjectId(), '', '', onload);
-			}
-			else
-			{
-				grid_get_post_functions.get_pageNumbers(home_tenant_form_grid_paging.getPhpFile(), divPagingFooter, home_tenant_form_grid_paging.getPageNumbersQueryName(), home_tenant_form_grid_paging.getPageSize(), home_tenant_form_grid_paging.getTableHtmlObjectId(), "searchValue", searchValue, onload);
-			}
-		}
-	}
-	*/
 
 	if(tableHtmlObjectId == "tableBillsFormGridPaging")
 	{
@@ -346,11 +309,11 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 
 		if(searchValue == "" || searchValue == undefined)
 		{
-			grid_get_post_functions.get_pageNumbers(bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageNumbersQueryName(), bills_form_grid_paging.getPageSize(), bills_form_grid_paging.getTableHtmlObjectId(), '', '', billingAccount, '');
+			grid_get_post_functions.get_pageNumbers(bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageNumbersQueryName(), bills_form_grid_paging.getPageSize(), bills_form_grid_paging.getTableHtmlObjectId(), '', '', billingAccount);
 		}
 		else
 		{
-			grid_get_post_functions.get_pageNumbers(bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageNumbersQueryName(), bills_form_grid_paging.getPageSize(), bills_form_grid_paging.getTableHtmlObjectId(), "searchValue", searchValue, billingAccount, '');
+			grid_get_post_functions.get_pageNumbers(bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageNumbersQueryName(), bills_form_grid_paging.getPageSize(), bills_form_grid_paging.getTableHtmlObjectId(), "searchValue", searchValue, billingAccount);
 		}
 	}	
 

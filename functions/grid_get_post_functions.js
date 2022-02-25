@@ -1,5 +1,5 @@
 /**
- * Class for creating grid with or without row editing, http method get populate form, get populate grid, post update form, post update grid, post insert record form
+ * Class for creating grid, http method get populate form, post update form, post insert record form
  * @class
  **/
  BillingTracker.Grid_Get_Post_Functions = function() {
@@ -220,7 +220,7 @@ get_populateForm: function(phpFile, queryName, htmlObjectPrimaryKeyValue, fields
  * @param {string} billingAccount the billing account we are viewing
  * @param {string} onload whether this is the first time loading grid to preload second grid
  **/
-get_pageNumbers: function(phpFile, divPagingFooter, queryName, pageSize, tableHtmlObjectId, searchValueField, searchValue, billingAccount, onload)
+get_pageNumbers: function(phpFile, divPagingFooter, queryName, pageSize, tableHtmlObjectId, searchValueField, searchValue, billingAccount)
 {
 	window.getXmlHttpRequest.onreadystatechange = function() {
 		
@@ -239,26 +239,6 @@ get_pageNumbers: function(phpFile, divPagingFooter, queryName, pageSize, tableHt
 			}
 
 			document.getElementById(divPagingFooter).style.display = "block";
-			
-			// to preload the second grid, HomeTenantFormGridPaging
-			/*
-			if(onload == "true")
-			{
-				var grid_get_post_functions = new CodeReuse.Grid_Get_Post_Functions();
-			
-				var home_tenant_form_grid_paging = new CodeReuse.HomeTenantFormGridPaging();
-			
-				var callback = new CodeReuse.Callback();
-			
-				var sortColumn = sessionStorage.getItem("arraySortColumn_tenant_form_grid_paging");
-			
-				var sortDirection = sessionStorage.getItem("arraySortDirection_tenant_form_grid_paging");
-			
-				var pageNumber = sessionStorage.getItem("homeTenantFormGridPagingPageNumber");
-			
-				grid_get_post_functions.grid(home_tenant_form_grid_paging.getGridGetPostDivElement(), home_tenant_form_grid_paging.getPhpFile(), home_tenant_form_grid_paging.getRefreshHomeTenantGridQueryName(), home_tenant_form_grid_paging.getGridIdField(), home_tenant_form_grid_paging.getGridColumnsInfo(), home_tenant_form_grid_paging.getTableHtmlObjectId(), '', '', callback.gridCallback, home_tenant_form_grid_paging.getRowOnClick(), '', sortColumn, sortDirection, pageNumber, '', "false", '' ,'', "true", home_tenant_form_grid_paging.getHomeTenantGridPagingDiv(), home_tenant_form_grid_paging.getPageSize(), '');
-			}
-			*/
 		}
 	}
 	
@@ -290,10 +270,9 @@ get_pageNumbers: function(phpFile, divPagingFooter, queryName, pageSize, tableHt
  * @param {Array} htmlObjectFieldsValuesUpdate the html objects updated values
  * @param {Array} fieldsInfo form object array of fields
  * @param {Array} arrayOldValuesTable array of old values before the update. is set to the new values after an update.
- * @param {function} refreshGridCallback refresh grid callback when the XMLHttpRequest post method returns
  * @param {string} tableHtmlObjectId table name of the form grid
  **/
-post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObjectFieldsValuesUpdate, fieldsInfo, arrayOldValuesTable, refreshGridCallback, tableHtmlObjectId)
+post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObjectFieldsValuesUpdate, fieldsInfo, arrayOldValuesTable, tableHtmlObjectId)
 {	
 	if(document.getElementById("dueDate").value == "")
 	{
@@ -450,8 +429,6 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 				{
 					var grid_get_post_function = new BillingTracker.Grid_Get_Post_Functions();
 
-					//var home_tenant_form_grid_paging = new CodeReuse.HomeTenantFormGridPaging();
-
 					var billingAccountId = document.getElementById("billingAccountId").value;
 
 					var searchValue = bills_form_grid_paging.getSearchValue();
@@ -468,8 +445,6 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 				
 			}
 		}
-		
-		//var sessionId = sessionStorage.getItem("sessionId");
 
 		var formVariables = "postType" + "=" + postType + "&" + "htmlObjectPrimaryKeyValue" + "=" + htmlObjectPrimaryKeyValue + "&" + "updateString" + "=" + encodeURIComponent(updateString);
 			
@@ -490,10 +465,9 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
  * @param {Array} fieldsInfo form object array of fields
  * @param {string} inputPrimaryKeyId the input object id to set the new insert id
  * @param {Array} arrayOldValuesTable array of old values before the insert. is set to the new values after an insert.
- * @param {function} refreshGridCallback refresh grid callback when the XMLHttpRequest post method returns
  * @param {string} tableHtmlObjectId table name of the form grid
  **/
-post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert, fieldsInfo, inputPrimaryKeyId, arrayOldValuesTable, refreshGridCallback, tableHtmlObjectId)
+post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert, fieldsInfo, inputPrimaryKeyId, arrayOldValuesTable, tableHtmlObjectId)
 {	
 	if (confirm("Confirm to create new record?") == false) {
 		return;

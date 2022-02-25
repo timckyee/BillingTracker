@@ -27,8 +27,6 @@
 
 	this.billsUpdateQueryName = "updateTableBillingAccountUserBills";
 
-	this.recordExist = "recordExistsHomeTenantFormGridPaging";
-
 	this.tableNameInDb = "BillingAccountUserBills";
 
 	this.billsInsertQueryName = "createRecordBillingAccountUserBills";
@@ -38,7 +36,7 @@
 BillingTracker.BillsForm.prototype = {
 			
 	/**
-	 * Array to store old values for inserting and updating records in Tenant form grid paging object
+	 * Array to store old values for inserting and updating records in Bills form object
 	 * @var {Array} arrayOldValuesTable
 	 **/		
 	arrayOldValuesTable: [],
@@ -53,19 +51,7 @@ BillingTracker.BillsForm.prototype = {
 		return this.tableNameInDb;
 
 	},
-
-	getAutocompleteInputs: function() {
-	
-		return this.autocomplete_inputs;
 		
-	},
-		
-	getRecordExistsHomeTenantFormGridPaging: function() {
-
-		return this.recordExist;
-
-	},
-	
 	getPhpFile: function() {
 		
 		return this.phpFileGridGetPost;	
@@ -154,7 +140,7 @@ BillingTracker.BillsForm.prototype = {
 	},
 		
 	/**
-	 * Bills form grid paging update
+	 * Bills form grid update
 	 * @function
 	 * @name BillsForm#billsFormGridUpdate
 	 **/
@@ -166,12 +152,12 @@ BillingTracker.BillsForm.prototype = {
 			
 		var billsFormGridPaging = new BillingTracker.BillsFormGridPaging();
 
-		grid_get_post_functions.post_updateForm(this.getPhpFile(), this.getBillsUpdateQueryName(), document.getElementById("billsPrimaryKey").value, htmlObjectFieldsValuesUpdate, this.getFieldsInfo(), this.arrayOldValuesTable, '', billsFormGridPaging.getTableHtmlObjectId());
+		grid_get_post_functions.post_updateForm(this.getPhpFile(), this.getBillsUpdateQueryName(), document.getElementById("billsPrimaryKey").value, htmlObjectFieldsValuesUpdate, this.getFieldsInfo(), this.arrayOldValuesTable, billsFormGridPaging.getTableHtmlObjectId());
 		
 	},
 	
 	/**
-	 * Bills form grid paging insert
+	 * Bills form grid insert
 	 * @function
 	 * @name BillsForm#billsFormGridInsert
 	 **/	
@@ -183,6 +169,6 @@ BillingTracker.BillsForm.prototype = {
 			
 		var billsFormGridPaging = new BillingTracker.BillsFormGridPaging();
 
-		grid_get_post_functions.post_insertRecordForm(this.getPhpFile(), this.getBillsInsertQueryName(), htmlObjectFieldsValuesInsert, this.getFieldsInfo(), "billsPrimaryKey", this.arrayOldValuesTable, '', billsFormGridPaging.getTableHtmlObjectId());
+		grid_get_post_functions.post_insertRecordForm(this.getPhpFile(), this.getBillsInsertQueryName(), htmlObjectFieldsValuesInsert, this.getFieldsInfo(), "billsPrimaryKey", this.arrayOldValuesTable, billsFormGridPaging.getTableHtmlObjectId());
 	}
 }

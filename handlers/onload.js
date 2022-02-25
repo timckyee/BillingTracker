@@ -1,16 +1,5 @@
-/*
- * The BillingTracker object
- */
-//var BillingTracker = BillingTracker || {};
-
 
 var images = [];
-
-window.gridXmlHttpRequest = new XMLHttpRequest();
-window.getXmlHttpRequest = new XMLHttpRequest();
-window.postXmlHttpRequest = new XMLHttpRequest();
-window.getPageNumberHttpRequest = new XMLHttpRequest();
-
 
 document.getElementById("billingTracker").onload = function() {
 
@@ -23,12 +12,16 @@ document.getElementById("billingTracker").onload = function() {
     }
 
     var onload = new BillingTracker.Onload();
-    onload.loadBillingAccounts();
 
-    //onload.loadPaymentMethods();
+    onload.htmlBody_init_class();
+
+    onload.init_gridGetPost_xmlHttpRequests();    
+    
+    onload.loadBillingAccounts();
 
     onload.init_calendar_inputs();
 
+    
     sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
     document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
@@ -48,35 +41,7 @@ document.getElementById("billingTracker").onload = function() {
         server.getServerUrl() + "/images/pngfuel.com.down.gif"]
     );
 
-	var platform = helper.checkPlatform();
-
-	if(platform == "IOS")
-	{
-		document.body.className = "bodyIOS";
-	}
-	else
-	{
-		document.body.className = "bodyDesktop";
-	}  
-
-    sessionStorage.setItem("loggedIn", "false");   
-
-    /*
-    var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();
-			
-    var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
-
-    var callback = new BillingTracker.Callback();
-
-    var sortColumn = sessionStorage.getItem("arraySortColumn");
-
-    var sortDirection = sessionStorage.getItem("arraySortDirection");
-
-    var pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
-
-    grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', sortColumn, sortDirection, pageNumber, '', "false", '' ,'', "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
-    */
-
+    sessionStorage.setItem("loggedIn", "false");
 }
 
 /**
@@ -88,6 +53,42 @@ document.getElementById("billingTracker").onload = function() {
 };
 
 BillingTracker.Onload.prototype = {
+
+    /**
+     * init html body
+     * @function
+     * @name Onload#htmlBody_init_class
+     **/
+    htmlBody_init_class: function() {
+
+        var helper = new BillingTracker.Helper();
+
+        var platform = helper.checkPlatform();
+
+        if(platform == "IOS")
+        {
+            document.body.className = "bodyIOS";
+        }
+        else
+        {
+            document.body.className = "bodyDesktop";
+        }
+
+    },
+
+    /**
+     * init grid get post http requests
+     * @function
+     * @name Onload#init_gridGetPost_xmlHttpRequests
+     **/
+    init_gridGetPost_xmlHttpRequests: function() {
+        
+        window.gridXmlHttpRequest = new XMLHttpRequest();
+        window.getXmlHttpRequest = new XMLHttpRequest();
+        window.postXmlHttpRequest = new XMLHttpRequest();
+        window.getPageNumberHttpRequest = new XMLHttpRequest();
+        
+    },
 
 	/**
 	 * Load the Billing Accounts in the select box

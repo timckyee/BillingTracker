@@ -1,5 +1,5 @@
 /**
- * Class for creating autocomplete input box
+ * Class for creating calendar popup
  * @class
  **/
  BillingTracker.Calendar = function() {
@@ -438,22 +438,7 @@ populateMonthsArray: function() {
 	monthsArray[8] = "Sep";
 	monthsArray[9] = "Oct";
 	monthsArray[10] = "Nov";
-	monthsArray[11] = "Dec";	
-	
-	/*
-	monthsArray[0] = "January";
-	monthsArray[1] = "February";
-	monthsArray[2] = "March";
-	monthsArray[3] = "April";
-	monthsArray[4] = "May";
-	monthsArray[5] = "Jun";
-	monthsArray[6] = "July";
-	monthsArray[7] = "August";
-	monthsArray[8] = "September";
-	monthsArray[9] = "October";
-	monthsArray[10] = "November";
-	monthsArray[11] = "December";
-	*/
+	monthsArray[11] = "Dec";
 	
 	return monthsArray;
 	

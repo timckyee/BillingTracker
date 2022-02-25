@@ -1,5 +1,5 @@
 /**
- * The app controller to save Billing Account and Billing Account User Bills
+ * The app controller to save Billing Account and User Bills
  * @class
  **/
  BillingTracker.Controller = function () {
@@ -9,9 +9,9 @@
 BillingTracker.Controller.prototype = {
 	
 	/**
-	 * Save the suite form values
+	 * Save the billing account form values
 	 * @function
-	 * @name Controller#suiteSave
+	 * @name Controller#saveBillingAccount
 	 **/
 	saveBillingAccount: function() {
 
@@ -88,7 +88,7 @@ BillingTracker.Controller.prototype = {
     },
 
 	/**
-	 * Save the bills form grid paging values
+	 * Save the bill form values
 	 * @function
 	 * @name Controller#billsFormGridPagingSave
 	 **/
@@ -136,23 +136,5 @@ BillingTracker.Controller.prototype = {
 			billsForm.setFieldValuesFromInputs(BillsFormGridValues, "");
 			billsForm.billsFormGridInsert();			
 		}
-	},
-
-    /**
-	 * Set the bills form grid paging values to empty
-	 * @function
-	 * @name Controller#resetBillsFormGridPagingFields
-	 **/
-	resetBillsFormGridPagingFields: function() {
-		
-		var billsFormGridPaging = new BillingTracker.BillsForm();
-		
-		var fieldsInfo = billsFormGridPaging.getFieldsInfo();
-		
-		for(i=0; i<fieldsInfo.length; i++)
-		{
-			document.getElementById(fieldsInfo[i].htmlObjectId).value = "";
-		}
-		
-	},
+	}
 }

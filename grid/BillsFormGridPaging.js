@@ -1,5 +1,5 @@
 /**
- * Class for BillsGrid object
+ * Class for BillsFormGridPaging object
  * @class
  **/
  BillingTracker.BillsFormGridPaging = function() {
@@ -109,11 +109,13 @@ BillingTracker.BillsFormGridPaging.prototype = {
 
 	},
 
+	/*
 	getDivPagingFooter: function() {
 
 		return this.divPagingFooter;
 		
 	},
+	*/
 
 	getBillsGridPagingDiv: function () {
 

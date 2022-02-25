@@ -9,9 +9,9 @@
 BillingTracker.Handler.prototype = {
 
 /**
- * Clicking on BillsGridPaging header row that goes to the server
+ * Clicking on BillsFormGridPaging header row that goes to the server
  * @function
- * @name Handler#sortTableColumnOnclickHandlerHomeTenantFormGridPaging
+ * @name Handler#sortTableColumnOnclickHandlerBillsFormGridPaging
  * 
  * @param {Array} gridColumnsInfo array of grid columns and properties
  * @param {string} column the column number that is being sorted
@@ -82,9 +82,6 @@ sortTableColumnOnclickHandlerBillsFormGridPaging: function(gridColumnsInfo, colu
 	{
 		grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumber, '', "false", '', '', "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
 	}
-
-	//var controller = new CodeReuse.Controller();
-	//controller.resetTenantFormGridPagingFields();
 	
 },
 

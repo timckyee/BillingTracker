@@ -26,7 +26,7 @@ BillingTracker.Helper.prototype = {
     /**
      * Sets the bills form grid paging search field to null
      * @function
-     * @name Helper#setBillsFormGridPagingSearchValue
+     * @name Helper#setBillsFormGridPagingSearchValueNull
      **/
      setBillsFormGridPagingSearchValueNull: function() {
 
@@ -76,14 +76,12 @@ BillingTracker.Helper.prototype = {
         sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
-
-        //controller.resetTenantFormGridPagingFields();
     },
 
     /**
-	 * Load the Billing Accounts in the select box
+	 * Billing account select box change event
 	 * @function
-	 * @name Onload#billingAccountsSelectListChange
+	 * @name Helper#billingAccountsSelectListChange
 	 **/
      billingAccountsSelectListChange: function(obj) 
      {
@@ -107,20 +105,11 @@ BillingTracker.Helper.prototype = {
                 document.getElementById("accountNumber").value = response[0].AccountNumber;
                 document.getElementById("accountUserName").value = response[0].AccountUserName;
 
-                //sessionStorage.setItem("arraySortColumn", "DueDate");
-                //sessionStorage.setItem("arraySortDirection", "desc");
-
                 var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();
 			
                 var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
             
                 var callback = new BillingTracker.Callback();
-            
-                /*
-                var sortColumn = sessionStorage.getItem("arraySortColumn");
-            
-                var sortDirection = sessionStorage.getItem("arraySortDirection");
-                */
 
                 var sortColumn = "DueDate";
                 var sortDirection = "desc";
@@ -167,6 +156,11 @@ BillingTracker.Helper.prototype = {
 
      },
 
+    /**
+	 * New billing account reset billing account fields
+	 * @function
+	 * @name Helper#newBillingAccount
+	 **/
      newBillingAccount: function() {
 
         document.getElementById("billingAccountsSelectList").selectedIndex  = 0;
@@ -178,6 +172,11 @@ BillingTracker.Helper.prototype = {
 
      },
 
+    /**
+	 * New bill reset bill fields
+	 * @function
+	 * @name Helper#newBill
+	 **/     
      newBill: function() {
 
         document.getElementById("billsPrimaryKey").value = "";
@@ -319,19 +318,7 @@ BillingTracker.Helper.prototype = {
         var pageNumberUpdate;
 
         if(pagingFooter == "gridGetPostBillsFormGridPagingFooter")
-        {
-            /*
-            var inputPage = document.getElementById("gridGetPostHomeFormGridPagingPageNumber").value;
-            var totalPagesString = document.getElementById("gridGetPostHomeFormGridPagingPages").innerText;
-            var totalPages = totalPagesString.substr(3, totalPagesString.length);
-            
-            if(parseInt(inputPage) > totalPages)
-            {
-                alert('This page number is greater than the total number of pages');
-                return;
-            }
-            */
-            
+        {      
             var inputPage = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
             var totalPagesString = document.getElementById("gridGetPostBillsFormGridPagingPages").innerText;
             var totalPages = totalPagesString.substr(3, totalPagesString.length);
@@ -367,8 +354,6 @@ BillingTracker.Helper.prototype = {
             {
                 grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberUpdate, '', "false", '' ,'', "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
             }
-    
-            //controller.resetTenantFormGridPagingFields();
         }
     },
 
@@ -411,29 +396,7 @@ BillingTracker.Helper.prototype = {
         var pagingFooter = object.parentNode.id;
 
         if(pagingFooter == "gridGetPostBillsFormGridPagingFooter")
-        {
-            /*
-            if(direction == "left") {
-    
-                if(pageNumber == "1") {
-                    alert('You are on the first page');
-                    return;
-                }
-    
-            } else if(direction == "right") {
-    
-                var inputPage = pageNumber;
-                var totalPagesString = document.getElementById("gridGetPostHomeFormGridPagingPages").innerText;
-                var totalPages = totalPagesString.substr(3, totalPagesString.length);
-                
-                if(parseInt(inputPage) == parseInt(totalPages))
-                {
-                    alert('You have reached the last page');
-                    return;
-                }
-            }
-            */
-    
+        {    
             if(direction == "left") {
                 if(pageNumber == "1") {
                     alert('You are on the first page');
@@ -481,8 +444,6 @@ BillingTracker.Helper.prototype = {
             {
                 grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount,"searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberUpdate.toString(), '', "false", '', '', "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
             }
-    
-            //controller.resetTenantFormGridPagingFields();
         }
     },
 
