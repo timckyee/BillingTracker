@@ -30,15 +30,9 @@ BillingTracker.Grid_Get_Post_Functions.prototype = {
  * @param {string} sortDirection the direction which is currently sorted
  * @param {string} pageNumber the page number of the table we are currently showing
  * @param {string} highlightRowId the row in the table which is highlighted after editing and saving the row
- * @param {string} showEditRow show the edit row html objects - not using this field
- * @param {string} savePrimaryKeyValue the primary key value of the edit row were are saving
- * @param {string} highlightRow flag to highlight the row after save
- * @param {string} showPagingFooter if there is a grid footer for paging
- * @param {string} divPagingFooter the paging footer div
  * @param {string} pageSize paging size for the grid
- * @param {string} onload whether this is the first time loading grid to load second grid
  **/
-grid: function(divElement, phpFile, queryName, gridIdField, gridColumnsInfo, tableHtmlObjectId, additionalArgs, additionalArgsValue, additionalArgs2, additionalArgsValue2, callback, rowOnClick, showEditColumn, sortColumn, sortDirection, pageNumber, highlightRowId, showEditRow, savePrimaryKeyValue, highlightRow, showPagingFooter, divPagingFooter, pageSize, onload) {
+grid: function(divElement, phpFile, queryName, gridIdField, gridColumnsInfo, tableHtmlObjectId, additionalArgs, additionalArgsValue, additionalArgs2, additionalArgsValue2, callback, rowOnClick, showEditColumn, sortColumn, sortDirection, pageNumber, highlightRowId, pageSize) {
 
 	var divTable = document.getElementById(divElement);
 
@@ -48,8 +42,7 @@ grid: function(divElement, phpFile, queryName, gridIdField, gridColumnsInfo, tab
 
 			var response = JSON.parse(this.responseText);				
 						
-			callback(phpFile, response, divTable, tableHtmlObjectId, gridIdField, gridColumnsInfo, rowOnClick, showEditColumn, sortColumn, sortDirection, pageNumber, highlightRowId, showEditRow, savePrimaryKeyValue, highlightRow, showPagingFooter, divPagingFooter, onload);
-					
+			callback(phpFile, response, divTable, tableHtmlObjectId, gridIdField, gridColumnsInfo, rowOnClick, showEditColumn, sortColumn, sortDirection, pageNumber, highlightRowId);					
 		}
 	};
 	
@@ -119,8 +112,6 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 				var pageNumber = response;
 				
 				var pageNumberString = pageNumber.toString();
-
-				//sessionStorage.setItem("editMode", "false");
 			
 				if(pageNumberString == "0")
 				{
@@ -128,11 +119,11 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 			
 					if(searchValue == "" || searchValue == undefined)
 					{
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberBillsGrid, '', "false", '', '', "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
 					}
 					else
 					{
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberBillsGrid, '', "false", '', '', "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
 					}
 
 					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberBillsGrid;
@@ -143,11 +134,11 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 				{
 					if(searchValue == "" || searchValue == undefined)
 					{			
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberString, savePrimaryKeyValue, "false", '', "true", "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());
 					}
 					else
 					{
-						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberString, savePrimaryKeyValue, "false", '', "true", "true", bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageSize(), '');
+						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), '', column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());
 					}
 
 					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberString;
