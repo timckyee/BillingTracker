@@ -82,7 +82,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 		tableHeaderStyle.textAlign = "left";
 		tableHeaderStyle.whiteSpace = "nowrap";
 		tableHeaderStyle.overflow = "hidden";
-		tableHeaderStyle.className = "grid";
+		//tableHeaderStyle.className = "grid";
 		tableHeaderStyle.textOverflow = "ellipsis";
 
         var columnName = gridColumnsInfo[i].colName;
@@ -98,6 +98,11 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 		tableHeaderSpanStyle.cursor = "pointer";
 		tableHeaderSpanStyle.paddingLeft = "20px";
 		//tableHeaderSpanStyle.paddingRight = "10px";
+		
+		if(platform == "IOS")
+		{
+			tableHeaderSpanStyle.fontSize = "14px";
+		}
 
 		if(tableHtmlObjectId == "tableBillsFormGridPaging")
 		{
@@ -205,6 +210,11 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 		{	
 			cell = document.createElement("td");
 
+			if(platform == "IOS")
+			{
+				cell.style.fontSize = "14px";
+			}
+			
 			/*
 			if(gridColumnsInfo[i].hidden == "true")
 			{

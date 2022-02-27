@@ -106,16 +106,19 @@
 
                     var platform = checkPlatform();
 
-                    if(platform == "desktop_chrome" || platform == "IOS")
+                    if(platform == "desktop_chrome")
                     {
                         window.location.href = "view/viewdesktop.html";
                     }
                     else
+                    if(platform == "android")
                     {
-                        if(platform = "android")
-                        {
-                            window.location.href = "view/viewphone.html";
-                        }
+                        window.location.href = "view/viewphone.html";
+                    }
+                    else                
+                    if(platform == "IOS")
+                    {
+                        window.location.href = "view/viewipad.html";
                     }
                 }
 

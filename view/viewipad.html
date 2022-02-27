@@ -2,20 +2,22 @@
 
     <head>
 
-        <meta name="viewport" content="width=device-width, initial-scale=0.9">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" type="text/css" href="../css/calendar.css">
 
     </head>
 
-    <body id="billingTracker" class="bodyAndroid">
+    <body id="billingTracker" class="bodyIOS">
 
         <br>
         <br>
 
         <div class="noselect">
             
+            <center>
+
             <table>
                 <tr>
                     <td class="form"><span>Select Billing Account</span></td>
@@ -107,6 +109,8 @@
         
             <br>
             <br>
+            <br>
+            <br>
 
             <div id="gridBillsFormGridPaging" style="display:block; height: 245px"></div>
 
@@ -118,10 +122,8 @@
 
             <br>
             <br>
-                
+
             <div id="saveNewButtonBillsFormGridPaging" class="buttonCenter" style="display: none;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="button" class="button" value="Save" onclick="var controller = new BillingTracker.Controller(); controller.billsFormGridPagingSave();" />
                 <input type="button" class="button" value="New" onclick="var helper = new BillingTracker.Helper(); helper.newBill();" />
             </div>
@@ -129,6 +131,8 @@
             <br>
             <br>
 
+            </center>
+            
         </div>
 
         <div id="calendarId" style="position: absolute; display: none; z-index: 2; background-color: white" class="noselect"></div>

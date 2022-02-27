@@ -13,7 +13,7 @@ document.getElementById("billingTracker").onload = function() {
 
     var onload = new BillingTracker.Onload();
 
-    onload.htmlBody_init_class();
+    //onload.htmlBody_init_class();
 
     onload.init_gridGetPost_xmlHttpRequests();    
     
@@ -65,14 +65,22 @@ BillingTracker.Onload.prototype = {
 
         var platform = helper.checkPlatform();
 
+        /*
+        if(platform == "android")
+        {
+            document.body.className = "bodyAndroid";
+        }
+        else
+        if(platform == "desktop_chrome")
+        {
+            document.body.className = "bodyDesktop";
+        }        
+        else
         if(platform == "IOS")
         {
             document.body.className = "bodyIOS";
         }
-        else
-        {
-            document.body.className = "bodyDesktop";
-        }
+        */
 
     },
 

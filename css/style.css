@@ -26,15 +26,23 @@ td.form {
 
 }
 
-.bodyDesktop {
+.bodyAndroid {
 
 	min-width: 1280px;
 
 }
 
+/*
+.bodyDesktop {
+
+	min-width: 1024px;
+
+}
+*/
+
 .bodyIOS {
 
-	min-width: 1280px;
+	min-width: 1024px;
 
 }
 
