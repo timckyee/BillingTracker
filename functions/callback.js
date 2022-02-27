@@ -101,7 +101,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 		
 		if(platform == "IOS")
 		{
-			tableHeaderSpanStyle.fontSize = "14px";
+			tableHeaderSpanStyle.fontSize = "12px";
 		}
 
 		if(tableHtmlObjectId == "tableBillsFormGridPaging")
@@ -212,7 +212,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 
 			if(platform == "IOS")
 			{
-				cell.style.fontSize = "14px";
+				cell.style.fontSize = "12px";
 			}
 			
 			/*
