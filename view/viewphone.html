@@ -108,12 +108,14 @@
             <br>
             <br>
 
-            <div id="gridBillsFormGridPaging" style="display:block; height: 245px; width: 400px; overflow-x: scroll; padding: 14px;"></div>
+            <span id="gridScrollNote" style="display: none; padding-left: 14px">Note: grid scrolls left or right</span>
+            
+            <br>
+
+            <div id="gridBillsFormGridPaging" class="invisible-scrollbar" style="display:block; height: 245px; width: 400px; overflow-x: scroll; padding: 14px;"></div>
 
             <br>
             <br>
-            <br>
-            <br>            
 
             <div id="gridGetPostBillsFormGridPagingFooter" style="display: none">
                 <span style="padding: 25px; cursor: pointer" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPageArrows(this,'left',document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)"><<</span>

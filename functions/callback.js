@@ -96,7 +96,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
         tableHeaderSpanStyle.textDecoration = "underline";
         tableHeaderSpanStyle.userSelect = "none";
 		tableHeaderSpanStyle.cursor = "pointer";
-		tableHeaderSpanStyle.paddingLeft = "20px";
+		tableHeaderSpanStyle.paddingLeft = "10px";
 		//tableHeaderSpanStyle.paddingRight = "10px";
 		
 		if(platform == "IOS")

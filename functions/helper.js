@@ -142,6 +142,11 @@ BillingTracker.Helper.prototype = {
 
                 document.getElementById("billsFormGridPagingSearchValue").value = "";
 
+                if(document.getElementById("gridScrollNote") != null)
+                {
+                    document.getElementById("gridScrollNote").style.display = "block";
+                }
+
                 var helper = new BillingTracker.Helper();
                 helper.newBill();
             }
