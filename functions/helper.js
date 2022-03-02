@@ -162,6 +162,23 @@ BillingTracker.Helper.prototype = {
      },
 
     /**
+	 * Logout of system
+	 * @function
+	 * @name Helper#logout
+	 **/
+    logout: function() {
+    
+        if (confirm("Continue with Logout?") == false) {
+            return;
+        }
+        else
+        {
+            window.location.href = "../index.html";
+        }
+
+    },
+     
+    /**
 	 * New billing account reset billing account fields
 	 * @function
 	 * @name Helper#newBillingAccount
