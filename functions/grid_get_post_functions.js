@@ -41,7 +41,7 @@ grid: function(divElement, phpFile, queryName, gridIdField, gridColumnsInfo, tab
 		if (this.readyState == 4 && this.status == 200) {
 
 			var response = JSON.parse(this.responseText);				
-						
+				
 			callback(phpFile, response, divTable, tableHtmlObjectId, gridIdField, gridColumnsInfo, rowOnClick, sortColumn, sortDirection, pageNumber, highlightRowId);					
 		}
 	};

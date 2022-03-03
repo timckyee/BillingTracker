@@ -295,9 +295,12 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 		document.getElementById("billsFormGridPagingSearchInputAndButton").style.display = "block";
 	}
 
-	if(tableHtmlObjectId == "tableBillsFormGridPaging" && document.getElementById("saveNewButtonBillsFormGridPaging").style.display != "block")
+	// if platform is not android then show the save and new div
+	// if platform is android then there is no div and html components are inline
+	if(tableHtmlObjectId == "tableBillsFormGridPaging" && platform != "android")
 	{
-		document.getElementById("saveNewButtonBillsFormGridPaging").style.display = "block";
+		if(document.getElementById("saveNewButtonBillsFormGridPaging").style.display != "block")
+			document.getElementById("saveNewButtonBillsFormGridPaging").style.display = "block";
 	}
 
 	if(tableHtmlObjectId == "tableBillsFormGridPaging")
@@ -309,7 +312,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 		var billingAccount = document.getElementById("billingAccountsSelectList").value;
 
 		var searchValue = bills_form_grid_paging.getSearchValue();
-
+		
 		if(searchValue == "" || searchValue == undefined)
 		{
 			grid_get_post_functions.get_pageNumbers(bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getBillsGridPagingDiv(), bills_form_grid_paging.getPageNumbersQueryName(), bills_form_grid_paging.getPageSize(), bills_form_grid_paging.getTableHtmlObjectId(), '', '', billingAccount);

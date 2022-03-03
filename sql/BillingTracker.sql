@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2022 at 05:59 AM
+-- Generation Time: Mar 03, 2022 at 03:57 AM
 -- Server version: 5.5.68-MariaDB
 -- PHP Version: 7.0.33
 
@@ -63,6 +63,17 @@ CREATE TABLE IF NOT EXISTS `EmailQueue` (
   `EmailQueueId` int(11) NOT NULL,
   `Subject` text NOT NULL,
   `Body` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Login`
+--
+
+CREATE TABLE IF NOT EXISTS `Login` (
+  `username` varchar(40) NOT NULL,
+  `password` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
