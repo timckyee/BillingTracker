@@ -251,9 +251,6 @@ BillingTracker.Onload.prototype = {
         
         );
         
-        inputCalendarBillingDateFormGridPaging.placeholder = "dd-mmm-yyyy";
-
-        
         inputCalendarDueDateFormGridPaging.addEventListener("blur", function(event) {
             
                 if(calendar.validateDate(this.id) == false)
@@ -263,9 +260,6 @@ BillingTracker.Onload.prototype = {
             }
             
         );
-        
-        inputCalendarDueDateFormGridPaging.placeholder = "dd-mmm-yyyy";
-
 
         inputCalendarPaidDateFormGridPaging.addEventListener("blur", function(event) {
             
@@ -277,7 +271,17 @@ BillingTracker.Onload.prototype = {
             
         );
         
-        inputCalendarPaidDateFormGridPaging.placeholder = "dd-mmm-yyyy";
+
+        var helper = new BillingTracker.Helper();
+
+        var platform = helper.checkPlatform();
+
+        if(platform == "desktop_chrome" || platform == "IOS")
+        {
+            inputCalendarBillingDateFormGridPaging.placeholder = "dd-mmm-yyyy";
+            inputCalendarDueDateFormGridPaging.placeholder = "dd-mmm-yyyy";
+            inputCalendarPaidDateFormGridPaging.placeholder = "dd-mmm-yyyy";
+        }
 
 
         inputCalendarBillingDateFormGridPagingIcon.addEventListener("click", function(event) {
