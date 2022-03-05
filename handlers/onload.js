@@ -45,7 +45,7 @@ document.getElementById("billingTracker").onload = function() {
         server.getServerUrl() + "/images/pngfuel.com.down.gif"]
     );
 
-    sessionStorage.setItem("loggedIn", "false");
+    //sessionStorage.setItem("loggedIn", "false");
 }
 
 /**
