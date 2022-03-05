@@ -51,8 +51,8 @@
                 <tr>
                     <td class="form">&nbsp;</td>
                     <td class="form">
-                        <button id="saveBillingAccount" onclick="var controller = new BillingTracker.Controller(); controller.saveBillingAccount()">Save</button>
-                        <button id="newBillingAccount" onclick="var helper = new BillingTracker.Helper(); helper.newBillingAccount();">New</button>
+                        <span id="saveBillingAccount" style="text-decoration: underline;" onclick="var controller = new BillingTracker.Controller(); controller.saveBillingAccount()">Save</span>
+                        &nbsp;<span id="newBillingAccount" style="text-decoration: underline;" onclick="var helper = new BillingTracker.Helper(); helper.newBillingAccount();">New</span>
                     </td>
                 </tr>
                 <tr>
@@ -63,7 +63,7 @@
                     <td class="form">Enter Text To Search</td>
                     <td class="form">
                         <div id="billsFormGridPagingSearchInputAndButton">
-                            <input id="billsFormGridPagingSearchValue"><button class="button" onclick="var helper = new BillingTracker.Helper(); helper.setBillsFormGridPagingSearchValue(); helper.getBillsFormGridPagingSearchValue()">Search</button>
+                            <input id="billsFormGridPagingSearchValue">&nbsp;&nbsp;<span style="text-decoration: underline;" onclick="var helper = new BillingTracker.Helper(); helper.setBillsFormGridPagingSearchValue(); helper.getBillsFormGridPagingSearchValue()">Search</span>
                         </div>                        
                     </td>
                 </tr>
@@ -121,12 +121,12 @@
             <br>
 
             <div id="gridGetPostBillsFormGridPagingFooter" style="display: none">
-                &nbsp;&nbsp;<span style="cursor: pointer" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPageArrows(this,'left',document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)"><<</span>
-                <span>Page Number</span>&nbsp;<input id="gridGetPostBillsFormGridPagingPageNumber" style="width: 40"/>&nbsp;<span id="gridGetPostBillsFormGridPagingPages"></span>&nbsp;<button class="button" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPage(this,document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)">Go</button>
-                <span style="cursor: pointer" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPageArrows(this,'right',document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)">>></span>
-                &nbsp;<input type="button" class="button" value="Save" onclick="var controller = new BillingTracker.Controller(); controller.billsFormGridPagingSave();" />
-                &nbsp;<input type="button" class="button" value="New" onclick="var helper = new BillingTracker.Helper(); helper.newBill();" />
-                &nbsp;<span style="text-decoration: underline; cursor: pointer;" onclick="var helper = new BillingTracker.Helper(); helper.logout()">Logout</span>
+                &nbsp;&nbsp;<span onclick="var helper = new BillingTracker.Helper(); helper.updateGridPageArrows(this,'left',document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)"><<</span>
+                <span>Page Number</span>&nbsp;<input id="gridGetPostBillsFormGridPagingPageNumber" style="width: 40"/>&nbsp;<span id="gridGetPostBillsFormGridPagingPages"></span>&nbsp;<span style="text-decoration: underline;" onclick="var helper = new BillingTracker.Helper(); helper.updateGridPage(this,document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)">Go</span>
+                <span onclick="var helper = new BillingTracker.Helper(); helper.updateGridPageArrows(this,'right',document.getElementById('gridGetPostBillsFormGridPagingPageNumber').value)">>></span>
+                &nbsp;&nbsp;<span style="text-decoration: underline;" onclick="var controller = new BillingTracker.Controller(); controller.billsFormGridPagingSave();">Save</span>
+                &nbsp;&nbsp;<span style="text-decoration: underline;" onclick="var helper = new BillingTracker.Helper(); helper.newBill();">New</span>
+                &nbsp;&nbsp;<span style="text-decoration: underline;" onclick="var helper = new BillingTracker.Helper(); helper.logout()">Logout</span>
             </div>
             
         </div>
