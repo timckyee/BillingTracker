@@ -1,0 +1,271 @@
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=1.0, user-scalable=no">
+
+</head>
+
+<style>
+
+    body {
+        margin: 0; 
+        padding: 0; 
+        overflow-x: hidden;
+    }
+
+    .noselect {
+        
+        -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+                -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome, Edge, Opera and Firefox */
+    }
+
+    table.billsGrid_chrome {
+        table-layout: fixed;
+        width: 95%;
+    }
+
+    table.billsGridIOS {
+        table-layout: fixed;
+        width: 90%;
+    }   
+
+    table.billsGridMobile {
+        table-layout: fixed;
+	    width: 400px;
+    }
+
+    table {
+
+        border-collapse: collapse;
+        table-layout: fixed;
+
+    }
+
+    th {
+	
+        border: 1px solid black;
+        height: 20px;
+        background: lightgray;
+        padding: 10px;
+        text-align: left;
+	
+    }
+
+    td {
+	
+        border: 1px solid black;
+        padding: 10px;
+        height: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: wrap;
+	
+    }
+    
+    .bodyMinWidth {
+
+        min-width: 1280px;
+
+    }    
+    
+
+</style>
+
+<body id="bodyNotPaid" class="noselect bodyMinWidth">
+
+    <br>
+    <br>
+
+    <!-- <span style="text-decoration: underline; cursor: pointer; padding-left: 10px" onclick="goBackToPage();">Go Back</span> -->
+    &nbsp;&nbsp;<button style="cursor: pointer;" onclick="goBackToPage();">Go Back</button>
+
+    <br>
+    <br>
+
+    <div id="gridBillsNotPaid" style="padding-left: 10px; height: 245px; width: 400px; overflow-x: scroll;"></div>
+    
+    <script>
+
+        window.getXmlHttpRequest = new XMLHttpRequest();
+        
+        document.getElementById("bodyNotPaid").onload = function() {
+        
+            showNotPaidGrid();
+        
+        }
+        
+        function showNotPaidGrid()
+        {		
+            window.getXmlHttpRequest.onreadystatechange = function() {
+                
+                if (this.readyState == 4 && this.status == 200) {			
+        
+                    var response = JSON.parse(this.responseText);
+        
+
+                    var tbl = document.createElement("table");
+                    
+
+                    var platform = checkPlatform();
+
+                    if(platform == "desktop_chrome")
+                    {
+                        tbl.className = "billsGrid_chrome";
+                        document.getElementById("gridBillsNotPaid").style.width = "950px";
+                    }
+                    else
+                    if(platform == "IOS")
+                    {
+                        tbl.className = "billsGridIOS";
+                        document.getElementById("gridBillsNotPaid").style.width = "950px";
+                    }	
+                    else
+                    if(platform == "android")
+                    {
+                        tbl.className = "billsGridMobile";
+                        document.getElementById("gridBillsNotPaid").style.width = "400px";
+                    }
+        
+                    
+                    var tableHeaderRow = document.createElement("tr");
+        
+                    var tableHeader = document.createElement("th");
+                    
+                    // Account Name
+                    var tableHeaderSpan = document.createElement("span");
+                    tableHeaderSpan.innerHTML = "Account Name";
+        
+                    tableHeader = document.createElement("th");
+                    tableHeader.appendChild(tableHeaderSpan);
+                    tableHeaderRow.appendChild(tableHeader);
+        
+                    // Due Date
+                    var tableHeaderSpan = document.createElement("span");
+                    tableHeaderSpan.innerHTML = "Due Date";
+        
+                    tableHeader = document.createElement("th");
+                    tableHeader.appendChild(tableHeaderSpan);
+                    tableHeaderRow.appendChild(tableHeader);
+                    
+                    // Notification
+                    var tableHeaderSpan = document.createElement("span");
+                    tableHeaderSpan.innerHTML = "Notification";
+        
+                    tableHeader = document.createElement("th");
+                    tableHeader.appendChild(tableHeaderSpan);
+                    tableHeaderRow.appendChild(tableHeader);
+                    
+        
+                    tbl.appendChild(tableHeaderRow);
+        
+        
+                    for(var i=0; i<response.length; i++)
+                    {
+                        var record = response[i];
+        
+                        var row = document.createElement("tr");
+        
+                        var AccountName = record["AccountName"];
+                        var DueDate = record["DueDate"];
+                        var Notification = record["Notification"];
+        
+                        var cell = document.createElement("td");
+                        var cellText = document.createTextNode(AccountName);
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+        
+                        var cell = document.createElement("td");
+                        var cellText = document.createTextNode(DueDate);
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+        
+                        var cell = document.createElement("td");
+                        var cellText = document.createTextNode(Notification);
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+        
+                        tbl.appendChild(row);
+                    }
+        
+                    var divTable = document.getElementById("gridBillsNotPaid");
+        
+                    divTable.appendChild(tbl);
+        
+                }
+            }
+            
+            var queryString = "queryName" + "=" + "notpaidbills";
+            
+            window.getXmlHttpRequest.open("GET", "../php/grid_get_post.php" + "?" + queryString, true);
+            window.getXmlHttpRequest.send();
+        }
+
+        function goBackToPage()
+        {
+            var currentPage = sessionStorage.getItem("currentPage");
+
+            if(currentPage == "android")
+            {
+                window.location.href = "../view/viewphone.html";
+            }
+            else
+            if(currentPage == "desktop_chrome")
+            {
+                window.location.href = "../view/viewdesktop.html";
+            }
+            else
+            if(currentPage == "IOS")
+            {
+                window.location.href = "../view/viewipad.html";
+            }
+        }
+        
+        function checkPlatform() {
+
+            var isIOS_safari = (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
+
+            var isAndroid = /Android/i.test(navigator.userAgent);
+
+            if(isIOS_safari == false && isIOS == false && isAndroid == false)
+            {
+                if(navigator.userAgent.indexOf('Chrome') != -1)
+                {
+                    return "desktop_chrome";
+                }
+                else
+                {
+                    return "desktop_safari";
+                }
+            }
+            else
+            if(isIOS_safari == true)
+            {
+                return "IOS_safari";
+            }
+            else
+            if(isIOS == true)
+            {
+                return "IOS";
+            }
+            else
+            if(isAndroid == true)
+            {
+                return "android";
+            }
+    }        
+                
+        </script>
+
+</body>
+
+
+
+</html>

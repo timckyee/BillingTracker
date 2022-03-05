@@ -34,6 +34,11 @@
 
             $result = $mysqli->query("SELECT BillingAccountId, AccountName, AccountNumber, AccountUserName from BillingAccount where BillingAccountId = " . $billingAccountId);
         }
+		else if($queryName == "notpaidbills") {
+
+            $result = $mysqli->query("select BillingAccount.AccountName, BillingAccountUserBills.DueDate, date_add(BillingAccountUserBills.DueDate, interval - 7 day) as Notification from BillingAccount inner join BillingAccountUserBills on BillingAccount.BillingAccountId = BillingAccountUserBills.BillingAccountId where BillingAccountUserBills.PaidDate is null order by BillingAccountUserBills.DueDate desc, BillingAccount.AccountName asc");
+
+		}
         else if($queryName == "griduserbills") {
 			
 			$sortColumn = $_GET["sortColumn"];

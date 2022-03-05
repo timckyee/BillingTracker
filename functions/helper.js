@@ -162,6 +162,18 @@ BillingTracker.Helper.prototype = {
      },
 
     /**
+	 * Go to the view bills not paid grid
+	 * @function
+	 * @name Helper#goToViewBillsNotPaid
+	 **/
+
+     goToViewBillsNotPaid: function() {
+
+        window.location.href = "../view/notpaid.html";
+
+     },
+
+    /**
 	 * Logout of system
 	 * @function
 	 * @name Helper#logout

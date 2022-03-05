@@ -3,6 +3,7 @@ var images = [];
 
 document.getElementById("billingTracker").onload = function() {
 
+    /*
     var loggedIn = sessionStorage.getItem("loggedIn");
 
     if(loggedIn != "true")
@@ -10,10 +11,13 @@ document.getElementById("billingTracker").onload = function() {
         window.location.href = "../index.html";
         return;
     }
+    */
 
     var onload = new BillingTracker.Onload();
 
     //onload.htmlBody_init_class();
+
+    onload.set_page_type();
 
     onload.init_gridGetPost_xmlHttpRequests();    
     
@@ -53,6 +57,34 @@ document.getElementById("billingTracker").onload = function() {
 };
 
 BillingTracker.Onload.prototype = {
+
+    /**
+     * set page type
+     * @function
+     * @name Onload#set_page_type
+     **/
+     set_page_type: function() {
+
+        var helper = new BillingTracker.Helper();
+
+        var platform = helper.checkPlatform();
+
+        if(platform == "android")
+        {
+            sessionStorage.setItem("currentPage", "android");
+        }
+        else
+        if(platform == "desktop_chrome")
+        {
+            sessionStorage.setItem("currentPage", "desktop_chrome");
+        }        
+        else
+        if(platform == "IOS")
+        {
+            sessionStorage.setItem("currentPage", "IOS");
+        }
+
+    },
 
     /**
      * init html body
