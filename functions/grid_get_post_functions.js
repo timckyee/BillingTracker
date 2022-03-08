@@ -422,7 +422,7 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 
 					var billingAccountId = document.getElementById("billingAccountId").value;
 
-					var searchValue = bills_form_grid_paging.getSearchValue();
+					var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
 					if(searchValue == "" || searchValue == undefined)
 					{
@@ -608,7 +608,7 @@ post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert,
 			{
 				var grid_get_post_function = new BillingTracker.Grid_Get_Post_Functions();
 
-				var searchValue = bills_form_grid_paging.getSearchValue();
+				var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
 				if(searchValue == "" || searchValue == undefined)
 				{

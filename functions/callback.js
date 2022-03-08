@@ -311,8 +311,6 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 
 		var billingAccount = document.getElementById("billingAccountsSelectList").value;
 
-		//var searchValue = bills_form_grid_paging.getSearchValue();
-
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
 		if(searchValue == "" || searchValue == undefined)

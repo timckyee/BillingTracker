@@ -132,7 +132,8 @@ BillingTracker.Onload.prototype = {
 
         var column = sessionStorage.getItem("arraySortColumn");
         var direction = sessionStorage.getItem("arraySortDirection");
-        var pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+        //var pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+        var pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
 
         var billingAccount = document.getElementById("billingAccountId").value;
 
@@ -141,8 +142,6 @@ BillingTracker.Onload.prototype = {
     
 
         var highlightId = sessionStorage.getItem("highlightRowId");
-
-        //var searchValue = bills_form_grid_paging.getSearchValue();
     
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 

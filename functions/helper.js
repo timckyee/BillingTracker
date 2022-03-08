@@ -30,8 +30,6 @@ BillingTracker.Helper.prototype = {
      **/
      setBillsFormGridPagingSearchValueNull: function() {
 
-        var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
-
         var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
 
         bills_form_grid_paging.setSearchValue("");
@@ -70,8 +68,10 @@ BillingTracker.Helper.prototype = {
             return;
         }
 
+        var highlightId = sessionStorage.getItem("highlightRowId");
+
         grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(),
-        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", bills_form_grid_paging.getSearchValue(), callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, '', bills_form_grid_paging.getPageSize());
+        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", bills_form_grid_paging.getSearchValue(), callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
 
         sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
@@ -149,7 +149,7 @@ BillingTracker.Helper.prototype = {
             
                 var billingAccount = document.getElementById("billingAccountId").value;
 
-                var searchValue = bills_form_grid_paging.getSearchValue();
+                var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
                 
                 if(searchValue != "")
                 {
@@ -403,15 +403,17 @@ BillingTracker.Helper.prototype = {
 
             var billingAccount = document.getElementById("billingAccountId").value;
         
-            var searchValue = bills_form_grid_paging.getSearchValue();
+            var highlightId = sessionStorage.getItem("highlightRowId");
+
+            var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
             
             if(searchValue == "" || searchValue == undefined)
             {
-                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate, '', bills_form_grid_paging.getPageSize());
+                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate, highlightId, bills_form_grid_paging.getPageSize());
             }
             else
             {
-                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate, '', bills_form_grid_paging.getPageSize());
+                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate, highlightId, bills_form_grid_paging.getPageSize());
             }
         }
     },
@@ -493,15 +495,17 @@ BillingTracker.Helper.prototype = {
 
             var billingAccount = document.getElementById("billingAccountId").value;
 
-            var searchValue = bills_form_grid_paging.getSearchValue();
+            var highlightId = sessionStorage.getItem("highlightRowId");
+
+            var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
         
             if(searchValue == "" || searchValue == undefined)
             {
-                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate.toString(), '', bills_form_grid_paging.getPageSize());
+                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate.toString(), highlightId, bills_form_grid_paging.getPageSize());
             }
             else
             {
-                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount,"searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate.toString(), '', bills_form_grid_paging.getPageSize());
+                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount,"searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate.toString(), highlightId, bills_form_grid_paging.getPageSize());
             }
         }
     },
