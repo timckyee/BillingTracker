@@ -112,6 +112,8 @@ sortTableColumnOnclickHandlerBillsFormGridPaging: function(gridColumnsInfo, colu
 		}
 	}
 
+	sessionStorage.setItem("highlightRowId", gridRowId);
+
 	var billsForm= new BillingTracker.BillsForm();
 		
 	var arrayOldValuesTable = billsForm.arrayOldValuesTable;

@@ -170,6 +170,8 @@ BillingTracker.Helper.prototype = {
 
                 document.getElementById("billsFormGridPagingSearchValue").value = "";
 
+                sessionStorage.setItem("highlightRowId", "");
+
                 var helper = new BillingTracker.Helper();
                 helper.newBill();
             }

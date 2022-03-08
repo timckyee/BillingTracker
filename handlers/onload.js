@@ -138,18 +138,22 @@ BillingTracker.Onload.prototype = {
 
         if(column == null || direction == null || billingAccount == "")
             return;
-        
+    
+
+        var highlightId = sessionStorage.getItem("highlightRowId");
+
         //var searchValue = bills_form_grid_paging.getSearchValue();
     
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
+
         if(searchValue == "" || searchValue == undefined)
         {
-            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, '', bills_form_grid_paging.getPageSize());
+            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
         }
         else
         {
-            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(),column, direction, pageNumber, '', bills_form_grid_paging.getPageSize());
+            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(),column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
         }
 
     },
