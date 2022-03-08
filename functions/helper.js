@@ -91,6 +91,28 @@ BillingTracker.Helper.prototype = {
             document.getElementById("accountName").value = "";
             document.getElementById("accountNumber").value = "";
             document.getElementById("accountUserName").value = "";
+            document.getElementById("billsPrimaryKey").value = "";
+            document.getElementById("dueDate").value = "";
+            document.getElementById("billingNumber").value = "";
+            document.getElementById("amountDue").value = "";
+            document.getElementById("paidDate").value = "";
+            document.getElementById("paymentMethod").value = "";
+            document.getElementById("amountPaid").value = "";
+
+            document.getElementById("gridBillsFormGridPaging").innerHTML = "";
+
+            if(document.getElementById("gridScrollNote") != null)
+            {
+                document.getElementById("gridScrollNote").style.display = "none";
+            }
+
+            document.getElementById("gridGetPostBillsFormGridPagingFooter").style.display = "none";
+
+            if(document.getElementById("saveNewButtonBillsFormGridPaging") != null)
+            {
+                document.getElementById("saveNewButtonBillsFormGridPaging").style.display = "none";
+            }
+
             return;
         }
 

@@ -2,7 +2,7 @@
 var images = [];
 
 document.getElementById("billingTracker").onload = function() {
-
+    
     /*
     var loggedIn = sessionStorage.getItem("loggedIn");
 
@@ -20,8 +20,18 @@ document.getElementById("billingTracker").onload = function() {
     onload.set_page_type();
 
     onload.init_gridGetPost_xmlHttpRequests();    
-    
-    onload.loadBillingAccounts();
+
+    if(sessionStorage.getItem("onLoad") == "true")
+    {
+        // if logging in do not reload form values
+        sessionStorage.setItem("onLoad", "false");
+        onload.loadBillingAccounts();
+    }
+    else
+    {
+        // if not logging in and refreshing page, reload form values
+        onload.loadBillingAccounts("true");        
+    }
 
     onload.init_calendar_inputs();
 
@@ -31,9 +41,9 @@ document.getElementById("billingTracker").onload = function() {
     document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
 
 
-    sessionStorage.setItem("arraySortColumn", "DueDate");
+    //sessionStorage.setItem("arraySortColumn", "DueDate");
     
-    sessionStorage.setItem("arraySortDirection", "desc");
+    //sessionStorage.setItem("arraySortDirection", "desc");
         
     
     var server = new BillingTracker.Config();
@@ -57,6 +67,112 @@ document.getElementById("billingTracker").onload = function() {
 };
 
 BillingTracker.Onload.prototype = {
+
+    /**
+     * reload form values
+     * @function
+     * @name Onload#reload_form_values
+     **/
+     reload_form_values: function() {
+
+        var form_billingAccountsSelectList = sessionStorage.getItem("form_billingAccountsSelectList");
+        document.getElementById("billingAccountsSelectList").value = form_billingAccountsSelectList;
+        
+
+        var form_billingAccountId = sessionStorage.getItem("form_billingAccountId");
+        document.getElementById("billingAccountId").value = form_billingAccountId;
+
+        var form_accountName = sessionStorage.getItem("form_accountName");
+        document.getElementById("accountName").value = form_accountName;    
+        
+        var form_accountNumber = sessionStorage.getItem("form_accountNumber");
+        document.getElementById("accountNumber").value = form_accountNumber;         
+
+        var form_accountUserName = sessionStorage.getItem("form_accountUserName");
+        document.getElementById("accountUserName").value = form_accountUserName;
+
+
+        var form_billsFormGridPagingSearchValue = sessionStorage.getItem("form_billsFormGridPagingSearchValue");
+        document.getElementById("billsFormGridPagingSearchValue").value = form_billsFormGridPagingSearchValue;        
+
+
+        var form_billsPrimaryKey = sessionStorage.getItem("form_billsPrimaryKey");
+        document.getElementById("billsPrimaryKey").value = form_billsPrimaryKey;      
+        
+        var form_billingDate = sessionStorage.getItem("form_billingDate");
+        document.getElementById("billingDate").value = form_billingDate;          
+     
+        var form_dueDate = sessionStorage.getItem("form_dueDate");
+        document.getElementById("dueDate").value = form_dueDate;
+    
+        var form_billingNumber = sessionStorage.getItem("form_billingNumber");
+        document.getElementById("billingNumber").value = form_billingNumber;
+
+        var form_amountDue = sessionStorage.getItem("form_amountDue");
+        document.getElementById("amountDue").value = form_amountDue;
+
+        var form_paidDate = sessionStorage.getItem("form_paidDate");
+        document.getElementById("paidDate").value = form_paidDate;
+
+        var form_paymentMethod = sessionStorage.getItem("form_paymentMethod");
+        document.getElementById("paymentMethod").value = form_paymentMethod;
+
+        var form_amountPaid = sessionStorage.getItem("form_amountPaid");
+        document.getElementById("amountPaid").value = form_amountPaid;
+
+
+        var form_gridGetPostBillsFormGridPagingPageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumber");
+        document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;        
+    
+        var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();			
+    
+        var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
+
+        var callback = new BillingTracker.Callback();
+
+        var column = sessionStorage.getItem("arraySortColumn");
+        var direction = sessionStorage.getItem("arraySortDirection");
+        var pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+
+        var billingAccount = document.getElementById("billingAccountId").value;
+
+        if(column == null || direction == null || billingAccount == "")
+            return;
+        
+        //var searchValue = bills_form_grid_paging.getSearchValue();
+    
+        var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
+
+        if(searchValue == "" || searchValue == undefined)
+        {
+            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, '', bills_form_grid_paging.getPageSize());
+        }
+        else
+        {
+            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(),column, direction, pageNumber, '', bills_form_grid_paging.getPageSize());
+        }
+
+    },
+    
+    /**
+     * navigation type
+     * @function
+     * @name Onload#reload_form_values
+     **/     
+     navigationType: function() {
+ 
+        var p; 
+    
+        if (window.performance.getEntriesByType("navigation")) {
+           p=window.performance.getEntriesByType("navigation")[0].type;
+    
+           if (p=='navigate'){result=0}
+           if (p=='reload'){result=1}
+           if (p=='back_forward'){result=2}
+           if (p=='prerender'){result=3}
+        }
+        return result;
+    },
 
     /**
      * set page type
@@ -135,29 +251,26 @@ BillingTracker.Onload.prototype = {
 	 * @function
 	 * @name Onload#loadBillingAccounts
 	 **/
-     loadBillingAccounts: function() 
+     loadBillingAccounts: function(reload) 
      {
         window.getXmlHttpRequest.onreadystatechange = function() {
          
              if (this.readyState == 4 && this.status == 200) {
 
                  var response = JSON.parse(this.responseText);
-
+                
                  var select = "";
-     
-                 select += "<select id=\"billingAccountsSelectList\">";
      
                  select += "<option value=\"\"></option>";
      
                  for (item in response) {
                      select += "<option value=\"" + response[item].BillingAccountId + "\">" + response[item].AccountName + "</option>";
                  }
-                 select += "</select>"
  
                  document.getElementById("billingAccountsSelectList").innerHTML = select;
-                 
+
                  var onload = new BillingTracker.Onload();
-                 onload.loadPaymentMethods();                 
+                 onload.loadPaymentMethods(reload);                 
              }
          }
  
@@ -174,7 +287,7 @@ BillingTracker.Onload.prototype = {
 	 * @function
 	 * @name Onload#loadPaymentMethods
 	 **/
-     loadPaymentMethods: function() 
+     loadPaymentMethods: function(reload) 
      {
         window.getXmlHttpRequest.onreadystatechange = function() {
          
@@ -184,17 +297,26 @@ BillingTracker.Onload.prototype = {
      
                  var select = "";
      
-                 select += "<select id=\"paymentMethod\">";
-     
                  select += "<option value=\"\"></option>";
      
                  for (item in response) {
                      select += "<option value=\"" + response[item].PaymentMethodId + "\">" + response[item].PaymentMethod + "</option>";
                  }
-                 select += "</select>"
  
                  document.getElementById("paymentMethod").innerHTML = select;
-                 
+
+                if(reload == "true")
+                {
+                    // reload the form values
+                    var onload = new BillingTracker.Onload();
+
+                    // if navigation type is reload
+                    //if(onload.navigationType() == 1)
+                    //{             
+                    onload.reload_form_values();
+                    //}
+                }
+
              }
          }
  

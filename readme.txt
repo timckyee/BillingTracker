@@ -16,6 +16,8 @@ grid - BillsFormGridPaging.js
 - can specify page size, shows page number total at bottom
 - initial sort column: DueDate and initial sort direction: desc
 - onload of page, load Billing Accounts and PaymentMethods select list
+- when refreshing the page the form values are preserved along with
+  the grid with sorting and searching preserved
 
 select list - Billing Account
 - This is the select list at the top of the page

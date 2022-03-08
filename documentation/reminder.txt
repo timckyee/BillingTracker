@@ -1,0 +1,15 @@
+
+please note that using getXmlHttpRequest is asynchronous
+so that any call after this ajax call possibly may never be called
+
+note: need to put the call after the ajax call in the response
+
+window.getXmlHttpRequest.onreadystatechange 
+
+if (this.readyState == 4 && this.status == 200) {
+
+    var response = JSON.parse(this.responseText);
+
+    //code should go here
+    
+}
