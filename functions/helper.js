@@ -246,7 +246,13 @@ BillingTracker.Helper.prototype = {
         document.getElementById("paidDate").value = "";
         document.getElementById("dueDate").value = "";
         document.getElementById("paymentMethod").value = "";
-        document.getElementById("amountPaid").value = "";                
+        document.getElementById("amountPaid").value = "";
+     
+        sessionStorage.setItem("highlightRowId", "");
+
+        var helper = new BillingTracker.Helper();
+
+        helper.resetRowHighlight("tableBillsFormGridPaging");
 
      },
 
@@ -348,6 +354,29 @@ BillingTracker.Helper.prototype = {
             images[i] = new Image();
             images[i].src = preload[i];
         }
+    },
+
+    /**
+     * Clear the row highlight for the given table
+     * @function
+     * @name Helper#resetRowHighlight
+     * 
+     * @param {string} tableHtmlObjectId the html table object
+     **/
+    resetRowHighlight: function(tableHtmlObjectId) {
+
+        var tableReset = document.getElementById(tableHtmlObjectId);
+        var row;
+
+        for(var i=0; i<tableReset.rows.length; i++)
+        {
+            if(i == 0)
+                continue;
+                
+            row = tableReset.rows[i];
+            row.className = "tableHover";
+        }	
+
     },
 
     /**
