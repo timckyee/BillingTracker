@@ -212,7 +212,7 @@ gridCallback: function(phpFile, response, divTable, tableHtmlObjectId, gridIdFie
 
 			if(platform == "IOS")
 			{
-				cell.style.fontSize = "12px";
+				cell.style.fontSize = "14px";
 			}
 			
 			/*
