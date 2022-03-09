@@ -140,6 +140,10 @@ BillingTracker.Onload.prototype = {
         if(column == null || direction == null || billingAccount == "")
             return;
     
+        if(document.getElementById("gridScrollNote") != null)
+        {
+            document.getElementById("gridScrollNote").style.display = "block";
+        }
 
         var highlightId = sessionStorage.getItem("highlightRowId");
     
