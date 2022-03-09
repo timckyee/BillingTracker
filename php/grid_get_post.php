@@ -225,7 +225,7 @@
 			}
 		}      
 		else if($queryName == "griduserbillsSearch")
-		{			
+		{
 			$sortColumn = $_GET["sortColumn"];
 			$sortDirection = $_GET["sortDirection"];
 
@@ -412,39 +412,49 @@
 				$primaryKeySortDirection = '';
 
 				$pageNumber = $_GET["pageNumber"];
-
-				$pageSize = $_GET["pageSize"];
-
-				$limit = $pageSize;
-				$offset = ($pageNumber - 1) * $pageSize;
-
-				if($sortDirection == "asc")
-				{
-					$primaryKeySortDirection = "asc";
-				}
-				else if($sortDirection == "desc")
-				{
-					$primaryKeySortDirection = "desc";
-				}
-
-				$mysqli->query('SET @searchValue = \'' . $searchValue . '\'');
-				$sql = "SELECT BillsId, BillingDate, DueDate, BillingNumber, REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue, PaidDate, (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod, REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid from BillingAccountUserBills where BillingAccountId = " . $billingAccountId . " and " .
-
-				"(date_format(BillingDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
-
-				date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
-
-                BillingNumber like concat('%', @searchValue, '%') or
-                REPLACE(FORMAT(AmountDue, 2), ',', '') like concat('%', @searchValue, '%') or
-
-				date_format(PaidDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
 				
-				(select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) like concat('%', @searchValue, '%') or
-				
-                REPLACE(FORMAT(AmountPaid, 2), ',', '') like concat('%', @searchValue, '%')) " . $orderBy  . ", BillsId " . $primaryKeySortDirection . " limit " . $limit . " offset " . $offset;
+				if($pageNumber == "0")
+				{
+					$sql = "SELECT BillsId, BillingDate, DueDate, BillingNumber, REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue, PaidDate, (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod, REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid from BillingAccountUserBills where 0";
 
-				$stmt = $mysqli->prepare($sql);
-				$stmt->execute();
+					$stmt = $mysqli->prepare($sql);
+					$stmt->execute();					
+				}
+				else
+				{
+					$pageSize = $_GET["pageSize"];
+
+					$limit = $pageSize;
+					$offset = ($pageNumber - 1) * $pageSize;
+
+					if($sortDirection == "asc")
+					{
+						$primaryKeySortDirection = "asc";
+					}
+					else if($sortDirection == "desc")
+					{
+						$primaryKeySortDirection = "desc";
+					}
+
+					$mysqli->query('SET @searchValue = \'' . $searchValue . '\'');
+					$sql = "SELECT BillsId, BillingDate, DueDate, BillingNumber, REPLACE(FORMAT(AmountDue, 2), ',', '') as AmountDue, PaidDate, (select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) as PaymentMethod, REPLACE(FORMAT(AmountPaid, 2), ',', '') as AmountPaid from BillingAccountUserBills where BillingAccountId = " . $billingAccountId . " and " .
+
+					"(date_format(BillingDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+
+					date_format(DueDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+
+					BillingNumber like concat('%', @searchValue, '%') or
+					REPLACE(FORMAT(AmountDue, 2), ',', '') like concat('%', @searchValue, '%') or
+
+					date_format(PaidDate, '%d-%b-%Y') like concat('%', @searchValue, '%') or
+					
+					(select PaymentMethod from PaymentMethod where PaymentMethodId = BillingAccountUserBills.PaymentMethod) like concat('%', @searchValue, '%') or
+					
+					REPLACE(FORMAT(AmountPaid, 2), ',', '') like concat('%', @searchValue, '%')) " . $orderBy  . ", BillsId " . $primaryKeySortDirection . " limit " . $limit . " offset " . $offset;
+
+					$stmt = $mysqli->prepare($sql);
+					$stmt->execute();
+				}
 
 				$result = $stmt->get_result();
 			}

@@ -70,8 +70,10 @@ BillingTracker.Helper.prototype = {
 
         var highlightId = sessionStorage.getItem("highlightRowId");
 
+        var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
+
         grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(),
-        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", bills_form_grid_paging.getSearchValue(), callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
+        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
 
         sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
@@ -151,11 +153,13 @@ BillingTracker.Helper.prototype = {
 
                 var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
                 
+                /*
                 if(searchValue != "")
                 {
                     var helper = new BillingTracker.Helper();
                     helper.setBillsFormGridPagingSearchValueNull();
                 }
+                */
 
                 if(document.getElementById("gridScrollNote") != null)
                 {
@@ -366,6 +370,10 @@ BillingTracker.Helper.prototype = {
     resetRowHighlight: function(tableHtmlObjectId) {
 
         var tableReset = document.getElementById(tableHtmlObjectId);
+
+        if(tableReset == null)
+            return;
+
         var row;
 
         for(var i=0; i<tableReset.rows.length; i++)
