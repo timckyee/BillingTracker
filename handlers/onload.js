@@ -121,23 +121,18 @@ BillingTracker.Onload.prototype = {
         document.getElementById("amountPaid").value = form_amountPaid;
 
         var form_gridGetPostBillsFormGridPagingPageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumber");
-        document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;   
-    
+        document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;
+
         var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();			
     
         var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
 
         var callback = new BillingTracker.Callback();
 
-        var column = sessionStorage.getItem("arraySortColumn");
-        var direction = sessionStorage.getItem("arraySortDirection");
-        //var pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
-        var pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
-
         var billingAccount = document.getElementById("billingAccountId").value;
 
-        if(column == null || direction == null || billingAccount == "")
-            return;
+        //if(column == null || direction == null ||billingAccount == "")
+            //return;
 
         var highlightId = sessionStorage.getItem("highlightRowId");
     
@@ -155,12 +150,27 @@ BillingTracker.Onload.prototype = {
             }
         }
 
+        var column;
+        var direction;
+        var pageNumber;
+
         if(searchValue == "" || searchValue == undefined)
         {            
+            column = "DueDate";
+            direction = "desc";
+            pageNumber = "1";
+
+            document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
+
             grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
         }
         else
-        {  
+        {
+            column = sessionStorage.getItem("arraySortColumn");
+            direction = sessionStorage.getItem("arraySortDirection");
+            //pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+            pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
+
             grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(),
             bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
         } 

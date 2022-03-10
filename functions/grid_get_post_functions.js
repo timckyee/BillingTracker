@@ -221,10 +221,10 @@ get_pageNumbers: function(phpFile, divPagingFooter, queryName, pageSize, tableHt
 
 			if(tableHtmlObjectId == "tableBillsFormGridPaging")
 			{
-				//if(response == "0")
-				//{
-				//	document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "0";
-				//}
+				if(response == "0")
+				{
+					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "0";
+				}
 
 				document.getElementById("gridGetPostBillsFormGridPagingPages").innerText = "of " + response;
 			}
