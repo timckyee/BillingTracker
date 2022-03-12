@@ -36,7 +36,7 @@
         }
 		else if($queryName == "notpaidbills") {
 
-            $result = $mysqli->query("select BillingAccount.AccountName, lower(date_format(BillingAccountUserBills.BillingDate, '%d-%b-%Y')) as BillingDate, lower(date_format(BillingAccountUserBills.DueDate, '%d-%b-%Y')) as DueDate from BillingAccount inner join BillingAccountUserBills on BillingAccount.BillingAccountId = BillingAccountUserBills.BillingAccountId where BillingAccountUserBills.PaidDate is null order by BillingAccountUserBills.DueDate asc, BillingAccount.AccountName asc");
+            $result = $mysqli->query("select BillingAccount.AccountName, lower(date_format(date_add(BillingAccountUserBills.DueDate, interval - 7 day),'%d-%b-%Y')) as Notification, lower(date_format(BillingAccountUserBills.DueDate, '%d-%b-%Y')) as DueDate from BillingAccount inner join BillingAccountUserBills on BillingAccount.BillingAccountId = BillingAccountUserBills.BillingAccountId where BillingAccountUserBills.PaidDate is null order by BillingAccountUserBills.DueDate asc, BillingAccount.AccountName asc");
 
 		}
         else if($queryName == "griduserbills") {
