@@ -146,7 +146,7 @@
         
                     // Due Date
                     var tableHeaderSpan = document.createElement("span");
-                    tableHeaderSpan.innerHTML = "Due Date";
+                    tableHeaderSpan.innerHTML = "Billing Date";
         
                     tableHeader = document.createElement("th");
                     tableHeader.appendChild(tableHeaderSpan);
@@ -154,7 +154,7 @@
                     
                     // Notification
                     var tableHeaderSpan = document.createElement("span");
-                    tableHeaderSpan.innerHTML = "Notification";
+                    tableHeaderSpan.innerHTML = "Due Date";
         
                     tableHeader = document.createElement("th");
                     tableHeader.appendChild(tableHeaderSpan);
@@ -171,8 +171,8 @@
                         var row = document.createElement("tr");
         
                         var AccountName = record["AccountName"];
+                        var BillingDate = record["BillingDate"];
                         var DueDate = record["DueDate"];
-                        var Notification = record["Notification"];
         
                         var cell = document.createElement("td");
                         var cellText = document.createTextNode(AccountName);
@@ -180,12 +180,12 @@
                         row.appendChild(cell);
         
                         var cell = document.createElement("td");
-                        var cellText = document.createTextNode(DueDate);
+                        var cellText = document.createTextNode(BillingDate);
                         cell.appendChild(cellText);
                         row.appendChild(cell);
         
                         var cell = document.createElement("td");
-                        var cellText = document.createTextNode(Notification);
+                        var cellText = document.createTextNode(DueDate);
                         cell.appendChild(cellText);
                         row.appendChild(cell);
         
