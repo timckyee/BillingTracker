@@ -26,18 +26,18 @@
     }
 
     table.billsGrid_chrome {
-        table-layout: fixed;
-        width: 95%;
+        width: 1014px;
+        height: 200px;
     }
 
     table.billsGridIOS {
-        table-layout: fixed;
-        width: 90%;
+        width: 1025px;
+        height: 200px;
     }   
 
     table.billsGridMobile {
-        table-layout: fixed;
 	    width: 400px;
+        height: 400px
     }
 
     table {
@@ -82,13 +82,16 @@
     <br>
     <br>
 
-    &nbsp;&nbsp;&nbsp;&nbsp;<span style="text-decoration: underline;" onclick="goBackToPage();">Go Back</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span style="text-decoration: underline; cursor: pointer" onclick="goBackToPage();">Go Back</span>
 
     <br>
     <br>
 
-    <div id="gridBillsNotPaid" style="padding-left: 22px; height: 245px; width: 400px; overflow-x: scroll;"></div>
+    <div id="gridBillsNotPaid" style="padding-left: 22px; overflow-y: hidden;"></div>
     
+    <br>
+    <br>
+
     <script>
 
         window.getXmlHttpRequest = new XMLHttpRequest();
@@ -116,19 +119,16 @@
                     if(platform == "desktop_chrome")
                     {
                         tbl.className = "billsGrid_chrome";
-                        document.getElementById("gridBillsNotPaid").style.width = "950px";
                     }
                     else
                     if(platform == "IOS")
                     {
                         tbl.className = "billsGridIOS";
-                        document.getElementById("gridBillsNotPaid").style.width = "950px";
                     }	
                     else
                     if(platform == "android")
                     {
                         tbl.className = "billsGridMobile";
-                        document.getElementById("gridBillsNotPaid").style.width = "400px";
                     }
         
                     

@@ -131,8 +131,8 @@ BillingTracker.Onload.prototype = {
 
         var billingAccount = document.getElementById("billingAccountId").value;
 
-        //if(column == null || direction == null ||billingAccount == "")
-            //return;
+        if(billingAccount == "")
+            return;
 
         var highlightId = sessionStorage.getItem("highlightRowId");
     
