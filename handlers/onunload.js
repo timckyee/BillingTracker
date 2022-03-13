@@ -1,7 +1,7 @@
 
 // note: cannot put alert or console in the onbeforeunload
 document.getElementById("billingTracker").onbeforeunload = function() {
-
+    
     var billingAccountsSelectList = document.getElementById("billingAccountsSelectList").value;
     sessionStorage.setItem("form_billingAccountsSelectList", billingAccountsSelectList);
 
@@ -22,34 +22,41 @@ document.getElementById("billingTracker").onbeforeunload = function() {
     sessionStorage.setItem("form_billsFormGridPagingSearchValue", billsFormGridPagingSearchValue);  
 
 
-    var billsPrimaryKey = document.getElementById("billsPrimaryKey").value;
-    sessionStorage.setItem("form_billsPrimaryKey", billsPrimaryKey);
+	var tableGetValues = document.getElementById("tableBillsFormGridPaging");
 
-    var billingDate = document.getElementById("billingDate").value;
-    sessionStorage.setItem("form_billingDate", billingDate);
+	if(tableGetValues == null)
+		return;
 
-    var dueDate = document.getElementById("dueDate").value;
-    sessionStorage.setItem("form_dueDate", dueDate);
+	var row;
+	var gridValuesArray;
 
-    var billingNumber = document.getElementById("billingNumber").value;
-    sessionStorage.setItem("form_billingNumber", billingNumber);
+    //row.cells[0] - billsPrimaryKey
+    //row.cells[1] - billingDate
+    //row.cells[2] - dueDate
+    //row.cells[4] - billingNumber
+    //row.cells[3] - amountDue
+    //row.cells[5] - paidDate
+    //row.cells[6] - paymentMethod
+    //row.cells[7] - amountPaid
+    
+	for(var i=0; i<tableGetValues.rows.length; i++)
+	{
+		if(i == 0)
+			continue;
+		
+		row = tableGetValues.rows[i];
 
-    var amountDue = document.getElementById("amountDue").value;
-    sessionStorage.setItem("form_amountDue", amountDue);
+		if(row.className == "tableHover highlightRow")
+		{
+			gridValuesArray = row.cells[0].innerHTML + ";" + row.cells[1].innerHTML + ";" + row.cells[2].innerHTML + ";" + row.cells[4].innerHTML + ";" + row.cells[3].innerHTML + ";" + row.cells[5].innerHTML + ";" + row.cells[6].innerHTML + ";" + row.cells[7].innerHTML;
+		}
+    }
 
-    var paidDate = document.getElementById("paidDate").value;
-    sessionStorage.setItem("form_paidDate", paidDate);
-
-    var paymentMethod = document.getElementById("paymentMethod").value;
-    sessionStorage.setItem("form_paymentMethod", paymentMethod);
-
-    var amountPaid = document.getElementById("amountPaid").value;
-    sessionStorage.setItem("form_amountPaid", amountPaid);
+    sessionStorage.setItem("grid_values", gridValuesArray);
 
 
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
-    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);    
-
+    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
 }
 
 document.getElementById("billingTracker").onpagehide = function() {
@@ -74,29 +81,37 @@ document.getElementById("billingTracker").onpagehide = function() {
     sessionStorage.setItem("form_billsFormGridPagingSearchValue", billsFormGridPagingSearchValue);  
 
 
-    var billsPrimaryKey = document.getElementById("billsPrimaryKey").value;
-    sessionStorage.setItem("form_billsPrimaryKey", billsPrimaryKey);
+	var tableGetValues = document.getElementById("tableBillsFormGridPaging");
 
-    var billingDate = document.getElementById("billingDate").value;
-    sessionStorage.setItem("form_billingDate", billingDate);
+	if(tableGetValues == null)
+		return;
 
-    var dueDate = document.getElementById("dueDate").value;
-    sessionStorage.setItem("form_dueDate", dueDate);
+	var row;
+	var gridValuesArray;
 
-    var billingNumber = document.getElementById("billingNumber").value;
-    sessionStorage.setItem("form_billingNumber", billingNumber);
+    //row.cells[0] - billsPrimaryKey
+    //row.cells[1] - billingDate
+    //row.cells[2] - dueDate
+    //row.cells[4] - billingNumber
+    //row.cells[3] - amountDue
+    //row.cells[5] - paidDate
+    //row.cells[6] - paymentMethod
+    //row.cells[7] - amountPaid
+    
+	for(var i=0; i<tableGetValues.rows.length; i++)
+	{
+		if(i == 0)
+			continue;
+		
+		row = tableGetValues.rows[i];
 
-    var amountDue = document.getElementById("amountDue").value;
-    sessionStorage.setItem("form_amountDue", amountDue);
+		if(row.className == "tableHover highlightRow")
+		{
+			gridValuesArray = row.cells[0].innerHTML + ";" + row.cells[1].innerHTML + ";" + row.cells[2].innerHTML + ";" + row.cells[4].innerHTML + ";" + row.cells[3].innerHTML + ";" + row.cells[5].innerHTML + ";" + row.cells[6].innerHTML + ";" + row.cells[7].innerHTML;
+		}
+    }
 
-    var paidDate = document.getElementById("paidDate").value;
-    sessionStorage.setItem("form_paidDate", paidDate);
-
-    var paymentMethod = document.getElementById("paymentMethod").value;
-    sessionStorage.setItem("form_paymentMethod", paymentMethod);
-
-    var amountPaid = document.getElementById("amountPaid").value;
-    sessionStorage.setItem("form_amountPaid", amountPaid);
+    sessionStorage.setItem("grid_values", gridValuesArray);
 
 
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;

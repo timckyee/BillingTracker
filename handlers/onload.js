@@ -73,7 +73,7 @@ BillingTracker.Onload.prototype = {
      * @function
      * @name Onload#reload_form_values
      **/
-     reload_form_values: function() {
+     reload_form_values: function() {        
 
         var form_billingAccountsSelectList = sessionStorage.getItem("form_billingAccountsSelectList");
         document.getElementById("billingAccountsSelectList").value = form_billingAccountsSelectList;
@@ -95,30 +95,49 @@ BillingTracker.Onload.prototype = {
         var form_billsFormGridPagingSearchValue = sessionStorage.getItem("form_billsFormGridPagingSearchValue");
         document.getElementById("billsFormGridPagingSearchValue").value = form_billsFormGridPagingSearchValue;        
 
+        // repopulate grid values on the form in case user updates a value on the form and forgets to save
+        var grid_values = sessionStorage.getItem("grid_values");
 
-        var form_billsPrimaryKey = sessionStorage.getItem("form_billsPrimaryKey");
-        document.getElementById("billsPrimaryKey").value = form_billsPrimaryKey;      
+        if(grid_values != "undefined")
+        {
+            var split = grid_values.split(";");
+            
+            var billsPrimaryKey = split[0];
+            var billingDate = split[1];
+            var dueDate = split[2];
+            var billingNumber = split[3];
+            var amountDue = split[4];
+            var paidDate = split[5];
+            var paymentMethod = split[6];
+            var amountPaid = split[7];
+
+            document.getElementById("billsPrimaryKey").value = billsPrimaryKey;      
+            
+            document.getElementById("billingDate").value = billingDate;          
         
-        var form_billingDate = sessionStorage.getItem("form_billingDate");
-        document.getElementById("billingDate").value = form_billingDate;          
-     
-        var form_dueDate = sessionStorage.getItem("form_dueDate");
-        document.getElementById("dueDate").value = form_dueDate;
-    
-        var form_billingNumber = sessionStorage.getItem("form_billingNumber");
-        document.getElementById("billingNumber").value = form_billingNumber;
+            document.getElementById("dueDate").value = dueDate;
+        
+            document.getElementById("billingNumber").value = billingNumber;
 
-        var form_amountDue = sessionStorage.getItem("form_amountDue");
-        document.getElementById("amountDue").value = form_amountDue;
+            document.getElementById("amountDue").value = amountDue;
 
-        var form_paidDate = sessionStorage.getItem("form_paidDate");
-        document.getElementById("paidDate").value = form_paidDate;
+            document.getElementById("paidDate").value = paidDate;
 
-        var form_paymentMethod = sessionStorage.getItem("form_paymentMethod");
-        document.getElementById("paymentMethod").value = form_paymentMethod;
+            var paymentMethods = document.getElementById("paymentMethod");
 
-        var form_amountPaid = sessionStorage.getItem("form_amountPaid");
-        document.getElementById("amountPaid").value = form_amountPaid;
+            for(var i=0; i<paymentMethods.length; i++)
+            {
+                if(paymentMethods[i].innerHTML == paymentMethod)
+                {
+                    break;
+                }
+            }
+            document.getElementById("paymentMethod").value = i - 1;
+
+            
+            document.getElementById("amountPaid").value = amountPaid;
+        }
+
 
         var form_gridGetPostBillsFormGridPagingPageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumber");
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;
@@ -128,6 +147,18 @@ BillingTracker.Onload.prototype = {
         var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
 
         var callback = new BillingTracker.Callback();
+
+        var bills_form = new BillingTracker.BillsForm();
+
+        var arrayOldValuesTable = bills_form.arrayOldValuesTable;
+
+        arrayOldValuesTable["billingDate"] = document.getElementById("billingDate").value;
+        arrayOldValuesTable["dueDate"] = document.getElementById("dueDate").value;
+        arrayOldValuesTable["billingNumber"] = document.getElementById("billingNumber").value;
+        arrayOldValuesTable["amountDue"] = document.getElementById("amountDue").value;
+        arrayOldValuesTable["paidDate"] = document.getElementById("paidDate").value;
+        arrayOldValuesTable["paymentMethod"] = document.getElementById("paymentMethod").value;
+        arrayOldValuesTable["amountPaid"] = document.getElementById("amountPaid").value;
 
         var billingAccount = document.getElementById("billingAccountId").value;
 
@@ -173,7 +204,7 @@ BillingTracker.Onload.prototype = {
 
             grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(),
             bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
-        } 
+        }
 
     },
     
