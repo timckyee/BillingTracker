@@ -78,6 +78,15 @@ BillingTracker.Helper.prototype = {
         sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
+    
+        if(document.getElementById("billsFormGridPagingSearchValue").value == "")
+        {
+            sessionStorage.setItem("showGridWithStoredSortingPage", "false");
+        }
+        else
+        {
+            sessionStorage.setItem("showGridWithStoredSortingPage", "true");
+        }
     },
 
     /**
@@ -143,9 +152,9 @@ BillingTracker.Helper.prototype = {
     
                 sessionStorage.setItem("arraySortDirection", sortDirection);
 
-                sessionStorage.setItem("sortOnload", "true");
+                sessionStorage.setItem("showGridWithStoredSortingPage", "false");
 
-                sessionStorage.setItem("billingAccountsLoad", "true");
+                sessionStorage.setItem("sortOnload", "true");
 
                 var pageNumber = "1";
             
@@ -161,13 +170,6 @@ BillingTracker.Helper.prototype = {
                 }
                 */
 
-                if(document.getElementById("gridScrollNote") != null)
-                {
-                    document.getElementById("gridScrollNote").style.display = "block";
-                }
-
-                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, '', bills_form_grid_paging.getPageSize());
-
                 document.getElementById(bills_form_grid_paging.getBillsGridPagingDiv()).style.display = "block";
 
                 document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
@@ -178,6 +180,13 @@ BillingTracker.Helper.prototype = {
 
                 var helper = new BillingTracker.Helper();
                 helper.newBill();
+
+                if(document.getElementById("gridScrollNote") != null)
+                {
+                    document.getElementById("gridScrollNote").style.display = "block";
+                }
+
+                grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, '', bills_form_grid_paging.getPageSize());
             }
         }
 
@@ -269,6 +278,22 @@ BillingTracker.Helper.prototype = {
         helper.resetRowHighlight("tableBillsFormGridPaging");
 
      },
+
+    /**
+     * keyUp function on input box to detect clearing of input text
+     * @function
+     * @name Helper#keyUp_input_search
+     * 
+     * @param {string} val the value in the search text box
+     **/     
+    keyUp_input_search: function(val) {
+
+        if (val == "") {
+
+            sessionStorage.setItem("showGridWithStoredSortingPage", "false");
+
+        }
+    },
 
     /**
      * Convert month number to month character string
@@ -454,6 +479,8 @@ BillingTracker.Helper.prototype = {
 
             var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
             
+            sessionStorage.setItem("showGridWithStoredSortingPage", "true");
+
             if(searchValue == "" || searchValue == undefined)
             {
                 grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate, highlightId, bills_form_grid_paging.getPageSize());
@@ -545,7 +572,9 @@ BillingTracker.Helper.prototype = {
             var highlightId = sessionStorage.getItem("highlightRowId");
 
             var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
-        
+
+            sessionStorage.setItem("showGridWithStoredSortingPage", "true");
+
             if(searchValue == "" || searchValue == undefined)
             {
                 grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '',callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberUpdate.toString(), highlightId, bills_form_grid_paging.getPageSize());

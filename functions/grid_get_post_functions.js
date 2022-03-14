@@ -132,6 +132,8 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 				}
 				else
 				{
+					sessionStorage.setItem("highlightRowId", savePrimaryKeyValue);
+
 					if(searchValue == "" || searchValue == undefined)
 					{			
 						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());

@@ -21,6 +21,30 @@ document.getElementById("billingTracker").onload = function() {
 
     onload.init_gridGetPost_xmlHttpRequests();    
 
+    onload.init_calendar_inputs();
+
+    sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
+
+    document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
+
+    //sessionStorage.setItem("showGridWithStoredSortingPage", "false");
+
+    //sessionStorage.setItem("arraySortColumn", "DueDate");
+    
+    //sessionStorage.setItem("arraySortDirection", "desc");
+    
+    var server = new BillingTracker.Config();
+            
+    var helper = new BillingTracker.Helper();
+    
+    helper.preload(
+        [server.getServerUrl() + "/images/pngfuel.com.up.gif", 
+        server.getServerUrl() + "/images/pngfuel.com.down.gif"]
+    );
+
+    //sessionStorage.setItem("loggedIn", "false");
+
+
     if(sessionStorage.getItem("onLoad") == "true")
     {
         // if logging in do not reload form values
@@ -33,29 +57,6 @@ document.getElementById("billingTracker").onload = function() {
         onload.loadBillingAccounts("true");        
     }
 
-    onload.init_calendar_inputs();
-
-    
-    sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
-
-    document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
-
-
-    //sessionStorage.setItem("arraySortColumn", "DueDate");
-    
-    //sessionStorage.setItem("arraySortDirection", "desc");
-        
-    
-    var server = new BillingTracker.Config();
-            
-    var helper = new BillingTracker.Helper();
-    
-    helper.preload(
-        [server.getServerUrl() + "/images/pngfuel.com.up.gif", 
-        server.getServerUrl() + "/images/pngfuel.com.down.gif"]
-    );
-
-    //sessionStorage.setItem("loggedIn", "false");
 }
 
 /**
@@ -189,18 +190,35 @@ BillingTracker.Onload.prototype = {
         var direction;
         var pageNumber;
 
-        if(searchValue == "" || searchValue == undefined)
-        {            
-            column = "DueDate";
-            direction = "desc";
-            pageNumber = "1";
+        var showGridWithStoredSortingPage = sessionStorage.getItem("showGridWithStoredSortingPage");
 
-            document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
+        if(searchValue == "" || searchValue == undefined)
+        {   
+            if(showGridWithStoredSortingPage == "true")
+            {
+                // shows the grid with the column, sort, page number in sessionStorage
+                column = sessionStorage.getItem("arraySortColumn");
+                direction = sessionStorage.getItem("arraySortDirection");
+                pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
+            }
+            else
+            {   
+                // if showGridWithStoredSortingPage == false
+                // which is when clearing the search text box,
+                // and refreshing page or clicking on Search, then show
+                // records non filtered with sort column: DueDate and direction: desc
+                // and pageNumber: 1
+                column = "DueDate";
+                direction = "desc";
+                pageNumber = "1";
+                document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1"; 
+            }
 
             grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
         }
         else
         {
+            // shows the grid with the column, sort, page number in sessionStorage
             column = sessionStorage.getItem("arraySortColumn");
             direction = sessionStorage.getItem("arraySortDirection");
             //pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
