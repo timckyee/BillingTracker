@@ -231,8 +231,18 @@ BillingTracker.Helper.prototype = {
         document.getElementById("billingAccountId").value = "";
         document.getElementById("accountName").value = "";
         document.getElementById("accountNumber").value = "";
-        document.getElementById("accountUserName").value = "";        
+        document.getElementById("accountUserName").value = "";
+        
+        document.getElementById("billsPrimaryKey").value = "";
+        document.getElementById("billingDate").value = "";
+        document.getElementById("dueDate").value = "";
+        document.getElementById("billingNumber").value = "";
+        document.getElementById("amountDue").value = "";
+        document.getElementById("paidDate").value = "";
+        document.getElementById("paymentMethod").value = "";
+        document.getElementById("amountPaid").value = "";
 
+        document.getElementById("gridBillsFormGridPaging").innerHTML = "";
      },
 
     /**

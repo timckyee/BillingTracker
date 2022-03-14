@@ -73,7 +73,7 @@ BillingTracker.Onload.prototype = {
      * @function
      * @name Onload#reload_form_values
      **/
-     reload_form_values: function() {        
+     reload_form_values: function() {
 
         var form_billingAccountsSelectList = sessionStorage.getItem("form_billingAccountsSelectList");
         document.getElementById("billingAccountsSelectList").value = form_billingAccountsSelectList;
@@ -81,6 +81,14 @@ BillingTracker.Onload.prototype = {
 
         var form_billingAccountId = sessionStorage.getItem("form_billingAccountId");
         document.getElementById("billingAccountId").value = form_billingAccountId;
+
+
+        // no billing account selected no populate form
+        var billingAccount = document.getElementById("billingAccountId").value;
+
+        if(billingAccount == "")
+            return;
+
 
         var form_accountName = sessionStorage.getItem("form_accountName");
         document.getElementById("accountName").value = form_accountName;    
@@ -93,13 +101,13 @@ BillingTracker.Onload.prototype = {
 
 
         var form_billsFormGridPagingSearchValue = sessionStorage.getItem("form_billsFormGridPagingSearchValue");
-        document.getElementById("billsFormGridPagingSearchValue").value = form_billsFormGridPagingSearchValue;        
+        document.getElementById("billsFormGridPagingSearchValue").value = form_billsFormGridPagingSearchValue;
 
         // repopulate grid values on the form in case user updates a value on the form and forgets to save
         var grid_values = sessionStorage.getItem("grid_values");
 
         if(grid_values != "undefined")
-        {
+        {            
             var split = grid_values.split(";");
             
             var billsPrimaryKey = split[0];
@@ -150,6 +158,7 @@ BillingTracker.Onload.prototype = {
 
         var bills_form = new BillingTracker.BillsForm();
 
+        
         var arrayOldValuesTable = bills_form.arrayOldValuesTable;
 
         arrayOldValuesTable["billingDate"] = document.getElementById("billingDate").value;
@@ -159,12 +168,7 @@ BillingTracker.Onload.prototype = {
         arrayOldValuesTable["paidDate"] = document.getElementById("paidDate").value;
         arrayOldValuesTable["paymentMethod"] = document.getElementById("paymentMethod").value;
         arrayOldValuesTable["amountPaid"] = document.getElementById("amountPaid").value;
-
-        var billingAccount = document.getElementById("billingAccountId").value;
-
-        if(billingAccount == "")
-            return;
-
+        
         var highlightId = sessionStorage.getItem("highlightRowId");
     
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
