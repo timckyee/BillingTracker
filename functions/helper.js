@@ -87,15 +87,6 @@ BillingTracker.Helper.prototype = {
         sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
-    
-        if(document.getElementById("billsFormGridPagingSearchValue").value == "")
-        {
-            sessionStorage.setItem("showGridWithStoredSortingPage", "false");
-        }
-        else
-        {
-            sessionStorage.setItem("showGridWithStoredSortingPage", "true");
-        }
     },
 
     /**
@@ -160,8 +151,6 @@ BillingTracker.Helper.prototype = {
                 sessionStorage.setItem("arraySortColumn", sortColumn);
     
                 sessionStorage.setItem("arraySortDirection", sortDirection);
-
-                sessionStorage.setItem("showGridWithStoredSortingPage", "false");
 
                 sessionStorage.setItem("sortOnload", "true");
 
@@ -251,6 +240,7 @@ BillingTracker.Helper.prototype = {
         document.getElementById("accountNumber").value = "";
         document.getElementById("accountUserName").value = "";
         
+        document.getElementById("billsFormGridPagingSearchValue").value = "";
         document.getElementById("billsPrimaryKey").value = "";
         document.getElementById("billingDate").value = "";
         document.getElementById("dueDate").value = "";
@@ -294,22 +284,6 @@ BillingTracker.Helper.prototype = {
         helper.resetRowHighlight("tableBillsFormGridPaging");
 
      },
-
-    /**
-     * keyUp function on input box to detect clearing of input text
-     * @function
-     * @name Helper#keyUp_input_search
-     * 
-     * @param {string} val the value in the search text box
-     **/     
-    keyUp_input_search: function(val) {
-
-        if (val == "") {
-
-            sessionStorage.setItem("showGridWithStoredSortingPage", "false");
-
-        }
-    },
 
     /**
      * Convert month number to month character string
@@ -468,8 +442,8 @@ BillingTracker.Helper.prototype = {
         {      
             var inputPage = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
             var totalPagesString = document.getElementById("gridGetPostBillsFormGridPagingPages").innerText;
-            var totalPages = totalPagesString.substr(3, totalPagesString.length);
-            
+            var totalPages = totalPagesString.substring(3, totalPagesString.length);
+
             if(parseInt(inputPage) > totalPages)
             {
                 alert('This page number is greater than the total number of pages');
@@ -494,8 +468,6 @@ BillingTracker.Helper.prototype = {
             var highlightId = sessionStorage.getItem("highlightRowId");
 
             var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
-            
-            sessionStorage.setItem("showGridWithStoredSortingPage", "true");
 
             if(searchValue == "" || searchValue == undefined)
             {
@@ -534,7 +506,7 @@ BillingTracker.Helper.prototype = {
         
         var inputPage = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
         var totalPagesString = document.getElementById("gridGetPostBillsFormGridPagingPages").innerText;
-        var totalPages = totalPagesString.substr(3, totalPagesString.length);
+        var totalPages = totalPagesString.substring(3, totalPagesString.length);
         
         if(parseInt(inputPage) > totalPages)
         {
@@ -560,8 +532,8 @@ BillingTracker.Helper.prototype = {
 
                 var inputPage = pageNumber;
                 var totalPagesString = document.getElementById("gridGetPostBillsFormGridPagingPages").innerText;
-                var totalPages = totalPagesString.substr(3, totalPagesString.length);
-                
+                var totalPages = totalPagesString.substring(3, totalPagesString.length);
+
                 if(parseInt(inputPage) == parseInt(totalPages))
                 {
                     alert('You have reached the last page');
@@ -588,8 +560,6 @@ BillingTracker.Helper.prototype = {
             var highlightId = sessionStorage.getItem("highlightRowId");
 
             var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
-
-            sessionStorage.setItem("showGridWithStoredSortingPage", "true");
 
             if(searchValue == "" || searchValue == undefined)
             {

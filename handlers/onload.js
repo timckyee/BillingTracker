@@ -27,8 +27,6 @@ document.getElementById("billingTracker").onload = function() {
 
     document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
 
-    //sessionStorage.setItem("showGridWithStoredSortingPage", "false");
-
     //sessionStorage.setItem("arraySortColumn", "DueDate");
     
     //sessionStorage.setItem("arraySortDirection", "desc");
@@ -179,48 +177,18 @@ BillingTracker.Onload.prototype = {
             document.getElementById("gridScrollNote").style.display = "block";
         }
 
-        var column;
-        var direction;
-        var pageNumber;
-
-        var showGridWithStoredSortingPage = sessionStorage.getItem("showGridWithStoredSortingPage");
+        var column = sessionStorage.getItem("arraySortColumn");
+        var direction = sessionStorage.getItem("arraySortDirection");
+        var pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
 
         if(searchValue == "" || searchValue == undefined)
-        {   
-            if(showGridWithStoredSortingPage == "true")
-            {
-                // shows the grid with the column, sort, page number in sessionStorage
-                column = sessionStorage.getItem("arraySortColumn");
-                direction = sessionStorage.getItem("arraySortDirection");
-                pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
-            }
-            else
-            {   
-                // if showGridWithStoredSortingPage == false
-                // which is when clearing the search text box,
-                // and refreshing page or clicking on Search, then show
-                // records non filtered with sort column: DueDate and direction: desc
-                // and pageNumber: 1
-                column = "DueDate";
-                direction = "desc";
-                pageNumber = "1";
-                document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1"; 
-            }
-
+        {
             grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
         }
         else
         {
-            // shows the grid with the column, sort, page number in sessionStorage
-            column = sessionStorage.getItem("arraySortColumn");
-            direction = sessionStorage.getItem("arraySortDirection");
-            //pageNumber = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
-            pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
-
-            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(),
-            bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
+            grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
         }
-
     },
     
     /**

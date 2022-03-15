@@ -74,8 +74,6 @@ sortTableColumnOnclickHandlerBillsFormGridPaging: function(gridColumnsInfo, colu
 
 	var highlightId = sessionStorage.getItem("highlightRowId");
 
-	sessionStorage.setItem("showGridWithStoredSortingPage", "true");
-
 	var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
 	if(searchValue == "" || searchValue == undefined)
