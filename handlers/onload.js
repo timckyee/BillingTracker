@@ -176,14 +176,7 @@ BillingTracker.Onload.prototype = {
 
         if(document.getElementById("gridScrollNote") != null)
         {
-            if(searchValue == "")
-            {
-                document.getElementById("gridScrollNote").style.display = "none";
-            }
-            else
-            {
-                document.getElementById("gridScrollNote").style.display = "block";
-            }
+            document.getElementById("gridScrollNote").style.display = "block";
         }
 
         var column;

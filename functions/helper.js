@@ -252,6 +252,13 @@ BillingTracker.Helper.prototype = {
         document.getElementById("amountPaid").value = "";
 
         document.getElementById("gridBillsFormGridPaging").innerHTML = "";
+
+        if(document.getElementById("gridScrollNote") != null)
+        {
+            document.getElementById("gridScrollNote").style.display = "none";
+        }
+
+        document.getElementById("gridGetPostBillsFormGridPagingFooter").style.display = "none";
      },
 
     /**
