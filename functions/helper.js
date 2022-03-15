@@ -43,6 +43,15 @@ BillingTracker.Helper.prototype = {
      **/
     getBillsFormGridPagingSearchValue: function() {
 
+        document.getElementById("billsPrimaryKey").value = "";
+        document.getElementById("billingDate").value = "";
+        document.getElementById("dueDate").value = "";
+        document.getElementById("billingNumber").value = "";
+        document.getElementById("amountDue").value = "";
+        document.getElementById("paidDate").value = "";
+        document.getElementById("paymentMethod").value = "";
+        document.getElementById("amountPaid").value = "";
+
         var sortColumn = "DueDate";
         var sortDirection = "desc";
 
@@ -68,12 +77,12 @@ BillingTracker.Helper.prototype = {
             return;
         }
 
-        var highlightId = sessionStorage.getItem("highlightRowId");
+        sessionStorage.setItem("highlightRowId", "");
 
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
         grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(),
-        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, highlightId, bills_form_grid_paging.getPageSize());
+        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, '', bills_form_grid_paging.getPageSize());
 
         sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
