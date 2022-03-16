@@ -54,7 +54,9 @@ document.getElementById("billingTracker").onbeforeunload = function() {
 
     sessionStorage.setItem("grid_values", gridValuesArray);
 
-
+    // if entering search term, clicking on search, and no records
+    // or entering search term as empty and refreshing the page
+    // pageNumber will be 0
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
     sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
 }
@@ -114,6 +116,9 @@ document.getElementById("billingTracker").onpagehide = function() {
     sessionStorage.setItem("grid_values", gridValuesArray);
 
 
+    // if entering search term, clicking on search, and no records
+    // or entering search term as empty and refreshing the page
+    // pageNumber will be 0
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
     sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);    
 

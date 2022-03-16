@@ -258,7 +258,9 @@ BillingTracker.Helper.prototype = {
         }
 
         document.getElementById("gridGetPostBillsFormGridPagingFooter").style.display = "none";
-     },
+     
+        document.getElementById("saveNewButtonBillsFormGridPaging").style.display = "none";
+    },
 
     /**
 	 * New bill reset bill fields
@@ -284,6 +286,20 @@ BillingTracker.Helper.prototype = {
         helper.resetRowHighlight("tableBillsFormGridPaging");
 
      },
+
+    /**
+     * keyUp function on input box to detect clearing of input text
+     * @function
+     * @name Helper#keyUp_input_search
+     * 
+     * @param {string} val the value in the search text box
+     **/     
+     keyUp_input_search: function(val) {
+
+        if (val == "") {
+            sessionStorage.setItem("highlightRowId", "");
+        }
+    },
 
     /**
      * Convert month number to month character string

@@ -82,10 +82,13 @@ BillingTracker.Onload.prototype = {
         document.getElementById("billingAccountId").value = form_billingAccountId;
 
 
-        // no billing account selected no populate form
+        // no billing account selected or no sort column or direction then do not repopulate form
         var billingAccount = document.getElementById("billingAccountId").value;
 
-        if(billingAccount == "")
+        var column = sessionStorage.getItem("arraySortColumn");
+        var direction = sessionStorage.getItem("arraySortDirection");
+
+        if(billingAccount == "" || column == null || direction == null)
             return;
 
 
@@ -149,6 +152,14 @@ BillingTracker.Onload.prototype = {
         var form_gridGetPostBillsFormGridPagingPageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumber");
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;
 
+        // if entering search term, clicking on search, and no records
+        // or entering search term as empty and refreshing the page the page number is 0
+        // if this is the case then records are shown without filter and set page number to 1
+        if(form_gridGetPostBillsFormGridPagingPageNumber == "0")
+        {
+            document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
+        }
+        
         var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();			
     
         var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
@@ -177,8 +188,6 @@ BillingTracker.Onload.prototype = {
             document.getElementById("gridScrollNote").style.display = "block";
         }
 
-        var column = sessionStorage.getItem("arraySortColumn");
-        var direction = sessionStorage.getItem("arraySortDirection");
         var pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
 
         if(searchValue == "" || searchValue == undefined)

@@ -66,7 +66,7 @@
                     <td class="form">Enter Text To Search</td>
                     <td class="form">
                         <div id="billsFormGridPagingSearchInputAndButton">
-                            <input id="billsFormGridPagingSearchValue" /><button class="button" onclick="var helper = new BillingTracker.Helper(); helper.setBillsFormGridPagingSearchValue(); helper.getBillsFormGridPagingSearchValue()">Search</button>
+                            <input id="billsFormGridPagingSearchValue" oninput="var helper = new BillingTracker.Helper(); helper.keyUp_input_search(this.value);" /><button class="button" onclick="var helper = new BillingTracker.Helper(); helper.setBillsFormGridPagingSearchValue(); helper.getBillsFormGridPagingSearchValue()">Search</button>
                         </div>                        
                     </td>
                 </tr>
