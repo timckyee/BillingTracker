@@ -108,6 +108,8 @@ BillingTracker.Onload.prototype = {
         // repopulate grid values on the form in case user updates a value on the form and forgets to save
         var grid_values = sessionStorage.getItem("grid_values");
 
+        document.getElementById("gridBillsFormGridPaging").style.display = "block";
+
         if(grid_values != "undefined")
         {            
             var split = grid_values.split(";");

@@ -43,14 +43,18 @@ BillingTracker.Helper.prototype = {
      **/
     getBillsFormGridPagingSearchValue: function() {
 
-        document.getElementById("billsPrimaryKey").value = "";
-        document.getElementById("billingDate").value = "";
-        document.getElementById("dueDate").value = "";
-        document.getElementById("billingNumber").value = "";
-        document.getElementById("amountDue").value = "";
-        document.getElementById("paidDate").value = "";
-        document.getElementById("paymentMethod").value = "";
-        document.getElementById("amountPaid").value = "";
+        // if search for empty string then clear fields
+        if(document.getElementById("billsFormGridPagingSearchValue").value == "")
+        {
+            document.getElementById("billsPrimaryKey").value = "";
+            document.getElementById("billingDate").value = "";
+            document.getElementById("dueDate").value = "";
+            document.getElementById("billingNumber").value = "";
+            document.getElementById("amountDue").value = "";
+            document.getElementById("paidDate").value = "";
+            document.getElementById("paymentMethod").value = "";
+            document.getElementById("amountPaid").value = "";
+        }
 
         var sortColumn = "DueDate";
         var sortDirection = "desc";
@@ -102,6 +106,8 @@ BillingTracker.Helper.prototype = {
             document.getElementById("accountName").value = "";
             document.getElementById("accountNumber").value = "";
             document.getElementById("accountUserName").value = "";
+
+            document.getElementById("billsFormGridPagingSearchValue").value;
             document.getElementById("billsPrimaryKey").value = "";
             document.getElementById("billingDate").value = "";
             document.getElementById("dueDate").value = "";
