@@ -117,6 +117,10 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 				{
 					var pageNumberBillsGrid = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
 			
+					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberBillsGrid;
+
+					sessionStorage.setItem("gridBillsFormGridPagingPageNumber", pageNumberBillsGrid);
+
 					if(searchValue == "" || searchValue == undefined)
 					{
 						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryName(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, '', '', callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
@@ -125,13 +129,13 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 					{
 						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberBillsGrid, '', bills_form_grid_paging.getPageSize());
 					}
-
-					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberBillsGrid;
-
-					sessionStorage.setItem("gridBillsFormGridPagingPageNumber", pageNumberBillsGrid);
 				}
 				else
 				{
+					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberString;
+
+					sessionStorage.setItem("gridBillsFormGridPagingPageNumber", pageNumberString);
+
 					sessionStorage.setItem("highlightRowId", savePrimaryKeyValue);
 
 					if(searchValue == "" || searchValue == undefined)
@@ -141,11 +145,7 @@ showTheGridAfterSaveRecord: function(phpFile, queryName, queryType, savePrimaryK
 					else
 					{
 						grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(), bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccountId, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), column, direction, pageNumberString, savePrimaryKeyValue, bills_form_grid_paging.getPageSize());
-					}
-
-					document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumberString;
-
-					sessionStorage.setItem("gridBillsFormGridPagingPageNumber", pageNumberString);				
+					}		
 				}
 			}
 		}

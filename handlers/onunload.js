@@ -50,6 +50,10 @@ document.getElementById("billingTracker").onbeforeunload = function() {
     // pageNumber will be 0
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
     sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
+
+    // this is the page number in the session storage
+    var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumberSession", gridGetPostBillsFormGridPagingPageNumberSession);
 }
 
 document.getElementById("billingTracker").onpagehide = function() {
@@ -101,7 +105,11 @@ document.getElementById("billingTracker").onpagehide = function() {
     // or entering search term as empty and refreshing the page
     // pageNumber will be 0
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
-    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);    
+    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
+
+    // this is the page number in the session storage
+    var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumberSession", gridGetPostBillsFormGridPagingPageNumberSession);
 
 }
 

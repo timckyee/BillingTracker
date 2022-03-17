@@ -73,7 +73,7 @@ BillingTracker.Onload.prototype = {
      * @name Onload#reload_form_values
      **/
      reload_form_values: function() {
-
+        
         var form_billingAccountsSelectList = sessionStorage.getItem("form_billingAccountsSelectList");
         document.getElementById("billingAccountsSelectList").value = form_billingAccountsSelectList;
         
@@ -83,7 +83,7 @@ BillingTracker.Onload.prototype = {
 
 
         // no billing account selected or no sort column or direction then do not repopulate form
-        var billingAccount = document.getElementById("billingAccountId").value;
+        var billingAccount = form_billingAccountId;
 
         var column = sessionStorage.getItem("arraySortColumn");
         var direction = sessionStorage.getItem("arraySortDirection");
@@ -133,6 +133,14 @@ BillingTracker.Onload.prototype = {
         var form_gridGetPostBillsFormGridPagingPageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumber");
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;
 
+        
+        // this is the page number in the session storage stored on unload of page
+        // this page number is used when reloading the grid
+        var pageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumberSession");
+
+        document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumber;
+        
+        
         // if entering search term, clicking on search, and no records
         // or entering search term as empty and refreshing the page the page number is 0
         // if this is the case then records are shown without filter and set page number to 1
@@ -140,6 +148,7 @@ BillingTracker.Onload.prototype = {
         {
             document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
         }
+
 
         document.getElementById("gridBillsFormGridPaging").style.display = "block";
         
@@ -170,8 +179,6 @@ BillingTracker.Onload.prototype = {
         {
             document.getElementById("gridScrollNote").style.display = "block";
         }
-
-        var pageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
 
         if(searchValue == "" || searchValue == undefined)
         {
