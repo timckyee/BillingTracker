@@ -43,19 +43,6 @@ BillingTracker.Helper.prototype = {
      **/
     getBillsFormGridPagingSearchValue: function() {
 
-        // if search for empty string then clear fields
-        if(document.getElementById("billsFormGridPagingSearchValue").value == "")
-        {
-            document.getElementById("billsPrimaryKey").value = "";
-            document.getElementById("billingDate").value = "";
-            document.getElementById("dueDate").value = "";
-            document.getElementById("billingNumber").value = "";
-            document.getElementById("amountDue").value = "";
-            document.getElementById("paidDate").value = "";
-            document.getElementById("paymentMethod").value = "";
-            document.getElementById("amountPaid").value = "";
-        }
-
         var sortColumn = "DueDate";
         var sortDirection = "desc";
 
