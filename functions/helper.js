@@ -68,12 +68,12 @@ BillingTracker.Helper.prototype = {
             return;
         }
 
-        sessionStorage.setItem("highlightRowId", "");
+        var highlightRowId = sessionStorage.getItem("highlightRowId");
 
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
         grid_get_post_functions.grid(bills_form_grid_paging.getGridGetPostDivElement(), bills_form_grid_paging.getPhpFile(), bills_form_grid_paging.getRefreshBillsGridQueryNameSearch(),
-        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, '', bills_form_grid_paging.getPageSize());
+        bills_form_grid_paging.getGridIdField(), bills_form_grid_paging.getGridColumnsInfo(), bills_form_grid_paging.getTableHtmlObjectId(), "billingAccountId", billingAccount, "searchValue", searchValue, callback.gridCallback, bills_form_grid_paging.getRowOnClick(), sortColumn, sortDirection, pageNumber, highlightRowId, bills_form_grid_paging.getPageSize());
 
         sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
 
@@ -279,20 +279,6 @@ BillingTracker.Helper.prototype = {
         helper.resetRowHighlight("tableBillsFormGridPaging");
 
      },
-
-    /**
-     * keyUp function on input box to detect clearing of input text
-     * @function
-     * @name Helper#keyUp_input_search
-     * 
-     * @param {string} val the value in the search text box
-     **/     
-     keyUp_input_search: function(val) {
-
-        if (val == "") {
-            sessionStorage.setItem("highlightRowId", "");
-        }
-    },
 
     /**
      * Convert month number to month character string

@@ -163,7 +163,7 @@ BillingTracker.Onload.prototype = {
         arrayOldValuesTable["amountPaid"] = document.getElementById("amountPaid").value;
         
         var highlightId = sessionStorage.getItem("highlightRowId");
-    
+        
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
 
         if(document.getElementById("gridScrollNote") != null)
