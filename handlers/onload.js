@@ -133,14 +133,8 @@ BillingTracker.Onload.prototype = {
         var form_gridGetPostBillsFormGridPagingPageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumber");
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;
 
-        
-        // this is the page number in the session storage stored on unload of page
-        // this page number is used when reloading the grid
-        var pageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumberSession");
+        //var pageSession = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumberSession"));
 
-        document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumber;
-        
-        
         // if entering search term, clicking on search, and no records
         // or entering search term as empty and refreshing the page the page number is 0
         // if this is the case then records are shown without filter and set page number to 1
@@ -149,7 +143,7 @@ BillingTracker.Onload.prototype = {
             document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
         }
 
-
+        
         document.getElementById("gridBillsFormGridPaging").style.display = "block";
         
         var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();			
@@ -179,6 +173,39 @@ BillingTracker.Onload.prototype = {
         {
             document.getElementById("gridScrollNote").style.display = "block";
         }
+
+
+        //var totalPagesText = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPages");
+
+        //var totalPages = totalPagesText.substring(3, totalPagesText.length);
+
+        var pageNumber;
+
+        //debugger
+
+        if(sessionStorage.getItem("onInputSearchClear") == "true")
+        {
+            pageNumber = 1;
+        }
+        else
+        {
+            /*
+            if(parseInt(form_gridGetPostBillsFormGridPagingPageNumber) > parseInt(totalPages))
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                pageNumber = form_gridGetPostBillsFormGridPagingPageNumber;
+            } 
+            */
+
+            pageNumber = form_gridGetPostBillsFormGridPagingPageNumber;
+
+            sessionStorage.setItem("onInputSearchClear", "false");
+        }
+
+        document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumber;
 
         if(searchValue == "" || searchValue == undefined)
         {

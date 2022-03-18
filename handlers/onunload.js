@@ -52,8 +52,11 @@ document.getElementById("billingTracker").onbeforeunload = function() {
     sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
 
     // this is the page number in the session storage
-    var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
-    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumberSession", gridGetPostBillsFormGridPagingPageNumberSession);
+    //var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+    //sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumberSession", gridGetPostBillsFormGridPagingPageNumberSession);
+
+    //var gridGetPostBillsFormGridPagingPages = document.getElementById("gridGetPostBillsFormGridPagingPages").innerHTML;
+    //sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPages", gridGetPostBillsFormGridPagingPages);
 }
 
 document.getElementById("billingTracker").onpagehide = function() {
@@ -108,8 +111,10 @@ document.getElementById("billingTracker").onpagehide = function() {
     sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
 
     // this is the page number in the session storage
-    var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
-    sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumberSession", gridGetPostBillsFormGridPagingPageNumberSession);
+    //var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
+    //sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumberSession", gridGetPostBillsFormGridPagingPageNumberSession);
 
+    //var gridGetPostBillsFormGridPagingPages = document.getElementById("gridGetPostBillsFormGridPagingPages").innerHTML;
+    //sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPages", gridGetPostBillsFormGridPagingPages);
 }
 

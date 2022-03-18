@@ -146,6 +146,8 @@ BillingTracker.Helper.prototype = {
                 sessionStorage.setItem("arraySortDirection", sortDirection);
 
                 sessionStorage.setItem("sortOnload", "true");
+                
+                sessionStorage.setItem("onInputSearchClear", "false");
 
                 var pageNumber = "1";
             
@@ -293,7 +295,8 @@ BillingTracker.Helper.prototype = {
 
         if (val == "") 
         {
-            sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
+            sessionStorage.setItem("onInputSearchClear", "true");
+            //sessionStorage.setItem("gridBillsFormGridPagingPageNumber", "1");
         }
     },
 
