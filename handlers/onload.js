@@ -201,9 +201,9 @@ BillingTracker.Onload.prototype = {
             */
 
             pageNumber = form_gridGetPostBillsFormGridPagingPageNumber;
-
-            sessionStorage.setItem("onInputSearchClear", "false");
         }
+
+        sessionStorage.setItem("onInputSearchClear", "false");
 
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumber;
 

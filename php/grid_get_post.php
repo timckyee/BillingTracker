@@ -21,7 +21,7 @@
 
         if($queryName == "paymentMethods") {
 
-            $result = $mysqli->query("SELECT PaymentMethodId, PaymentMethod from PaymentMethod");
+            $result = $mysqli->query("SELECT PaymentMethodId, PaymentMethod from PaymentMethod order by PaymentMethod");
         }
 		else		
         if($queryName == "billingAccounts") {

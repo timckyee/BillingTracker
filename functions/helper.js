@@ -52,6 +52,8 @@ BillingTracker.Helper.prototype = {
 
         sessionStorage.setItem("sortOnload", "true");
 
+        sessionStorage.setItem("onInputSearchClear", "false");
+
         var pageNumber = "1";
         
         var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();
