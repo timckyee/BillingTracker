@@ -147,28 +147,45 @@ BillingTracker.Onload.prototype = {
 
         
         var gridValuesArray = sessionStorage.getItem("gridValuesArray");
+        
+        if(gridValuesArray != null)
+        {
 
-        var gridValuesArrayValues = gridValuesArray.split(";");
+            var gridValuesArrayValues = gridValuesArray.split(";");
 
-        //var grid_billsPrimaryKey = gridValuesArrayValues[0];
-        var grid_billingDate = gridValuesArrayValues[1];
-        var grid_dueDate = gridValuesArrayValues[2];
-        var grid_billingNumber = gridValuesArrayValues[3];
-        var grid_amountDue = gridValuesArrayValues[4];
-        var grid_paidDate = gridValuesArrayValues[5];
-        var grid_paymentMethod = gridValuesArrayValues[6];
-        var grid_amountPaid = gridValuesArrayValues[7];
+            //var grid_billsPrimaryKey = gridValuesArrayValues[0];
+            var grid_billingDate = gridValuesArrayValues[1];
+            var grid_dueDate = gridValuesArrayValues[2];
+            var grid_billingNumber = gridValuesArrayValues[3];
+            var grid_amountDue = gridValuesArrayValues[4];
+            var grid_paidDate = gridValuesArrayValues[5];
+            var grid_paymentMethod = gridValuesArrayValues[6];
+            var grid_amountPaid = gridValuesArrayValues[7];
+
+            var paymentMethod = document.getElementById("paymentMethod");
+            var paymentMethodId;
+
+            for(var i=0; i<paymentMethod.length; i++) 
+            {
+                if(paymentMethod[i].innerHTML == grid_paymentMethod)
+                {
+                    paymentMethodId = paymentMethod[i].value;
+                    break;
+                }
+            }
 
 
-        var arrayOldValuesTable = bills_form.arrayOldValuesTable;
+            var arrayOldValuesTable = bills_form.arrayOldValuesTable;
 
-        arrayOldValuesTable["billingDate"] = grid_billingDate;
-        arrayOldValuesTable["dueDate"] = grid_dueDate;
-        arrayOldValuesTable["billingNumber"] = grid_billingNumber;
-        arrayOldValuesTable["amountDue"] =grid_amountDue
-        arrayOldValuesTable["paidDate"] = grid_paidDate;
-        arrayOldValuesTable["paymentMethod"] = grid_paymentMethod;
-        arrayOldValuesTable["amountPaid"] = grid_amountPaid;
+            arrayOldValuesTable["billingDate"] = grid_billingDate;
+            arrayOldValuesTable["dueDate"] = grid_dueDate;
+            arrayOldValuesTable["billingNumber"] = grid_billingNumber;
+            arrayOldValuesTable["amountDue"] =grid_amountDue
+            arrayOldValuesTable["paidDate"] = grid_paidDate;
+            arrayOldValuesTable["paymentMethod"] = paymentMethodId;
+            arrayOldValuesTable["amountPaid"] = grid_amountPaid;
+
+        }
         
         
         var highlightId = sessionStorage.getItem("highlightRowId");
@@ -212,13 +229,14 @@ BillingTracker.Onload.prototype = {
         sessionStorage.setItem("onInputSearchClear", "false");
 
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumber;
-
+        
         // if entering search term, clicking on search, and no records
         // or entering search term as empty and refreshing the page the page number is 0
         // if this is the case then records are shown without filter and set page number to 1
-        if(pageNumber == "0")
+        if(pageNumber == "0" || pageNumber == null)
         {
             document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
+            pageNumber = "1";
         }
 
         if(searchValue == "" || searchValue == undefined)
