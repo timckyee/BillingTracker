@@ -1,0 +1,22 @@
+
+when selecting account and going to last page of the grid eg. page 4
+enter search term that brings back no records and do a browser refresh
+- the grid will show with no records but the page number
+  input box at the bottom will be out of sync
+- for example if the total number of pages is 3 after the search,
+  the page input box at bottom will show 4 because this is the
+  value of the page input box when stored in the session on unload
+  and repopulated from the session on load of form
+
+
+on reload when repopulating the form records values from the session
+compare the form_pageNumber session value with the number of pages
+of the search
+- need to create an new ajax function: getTotalPageNumber
+  that brings back the total page number of the search
+- after the call returns then compare the form_pageNumber with
+  the value returned by getTotalPageNumber
+- if the value of form_pageNumber is greater than getTotalPageNumber
+  then set the page number to 1 before painting the grid on reload_values function
+- otherwise if form_pageNumber is less than or equal to getTotalPageNumber
+  then continue 

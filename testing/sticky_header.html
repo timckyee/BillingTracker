@@ -1,0 +1,61 @@
+<html>
+
+<style>
+
+.tableFixHead          { overflow: auto; height: 277px; }
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; }
+
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%; border-right: solid 1px black; }
+th, td { padding: 8px 16px; text-align: left; }
+th     { background:#eee; border-bottom: solid 1px black; }
+
+/* Borders (if you need them) */
+.tableFixHead,
+.tableFixHead td {
+  box-shadow: inset 1px -1px #000;
+}
+.tableFixHead th {
+  box-shadow: inset 1px 1px #000, 0 1px #000;
+}
+
+/*
+.tableFixHead          { overflow: auto; height: 200px; }
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; }
+
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; text-align: left; }
+td     { border: solid 1px black; }
+th     { background:#eee; }
+*/
+  
+</style>
+
+<body>
+
+  <br>
+  <br>
+
+  <div class="tableFixHead">
+    <table>
+      <thead>
+        <tr><th>TH 1</th><th>TH 2</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A1</td><td>A2</td></tr>
+        <tr><td>B1</td><td>B2</td></tr>
+        <tr><td>C1</td><td>C2</td></tr>
+        <tr><td>D1</td><td>D2</td></tr>
+        <tr><td>E1</td><td>E2</td></tr>
+        <tr><td>A1</td><td>A2</td></tr>
+        <tr><td>B1</td><td>B2</td></tr>
+        <tr><td>C1</td><td>C2</td></tr>
+        <tr><td>D1</td><td>D2</td></tr>
+        <tr><td>E1</td><td>E2</td></tr>
+      </tbody>
+    </table>
+  </div>
+    
+</body>
+
+</html>
