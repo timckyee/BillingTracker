@@ -17,7 +17,7 @@ document.getElementById("billingTracker").onbeforeunload = function() {
     var accountUserName = document.getElementById("accountUserName").value;
     sessionStorage.setItem("form_accountUserName", accountUserName);      
 
-    
+
     var billsFormGridPagingSearchValue = document.getElementById("billsFormGridPagingSearchValue").value;
     sessionStorage.setItem("form_billsFormGridPagingSearchValue", billsFormGridPagingSearchValue);
 
@@ -44,6 +44,36 @@ document.getElementById("billingTracker").onbeforeunload = function() {
 
     var amountPaid = document.getElementById("amountPaid").value;
     sessionStorage.setItem("form_amountPaid", amountPaid);
+
+
+    var tableGetValues = document.getElementById("tableBillsFormGridPaging");
+
+    var billsPrimaryKey = sessionStorage.getItem("billsPrimaryKey");
+
+    //row.cells[0] - billsPrimaryKey
+    //row.cells[1] - billingDate
+    //row.cells[2] - dueDate
+    //row.cells[4] - billingNumber
+    //row.cells[3] - amountDue
+    //row.cells[5] - paidDate
+    //row.cells[6] - paymentMethod
+    //row.cells[7] - amountPaid
+
+    for(var i=0; i<tableGetValues.rows.length; i++)
+    {
+        if(i == 0)
+            continue;
+
+        row = tableGetValues.rows[i];
+
+        if(row.cells[0].innerHTML == billsPrimaryKey)
+        {
+            gridValuesArray = row.cells[0].innerHTML + ";" + row.cells[1].innerHTML + ";" + row.cells[2].innerHTML + ";" + row.cells[4].innerHTML + ";" + row.cells[3].innerHTML + ";" + row.cells[5].innerHTML + ";" + row.cells[6].innerHTML + ";" + row.cells[7].innerHTML;
+        }
+    }
+    
+    sessionStorage.setItem("gridValuesArray", gridValuesArray);
+
 
     // if entering search term, clicking on search, and no records
     // or entering search term as empty and refreshing the page
@@ -103,6 +133,36 @@ document.getElementById("billingTracker").onpagehide = function() {
 
     var amountPaid = document.getElementById("amountPaid").value;
     sessionStorage.setItem("form_amountPaid", amountPaid);
+
+
+    var tableGetValues = document.getElementById("tableBillsFormGridPaging");
+
+    var billsPrimaryKey = sessionStorage.getItem("billsPrimaryKey");
+
+    //row.cells[0] - billsPrimaryKey
+    //row.cells[1] - billingDate
+    //row.cells[2] - dueDate
+    //row.cells[4] - billingNumber
+    //row.cells[3] - amountDue
+    //row.cells[5] - paidDate
+    //row.cells[6] - paymentMethod
+    //row.cells[7] - amountPaid
+
+    for(var i=0; i<tableGetValues.rows.length; i++)
+    {
+        if(i == 0)
+            continue;
+
+        row = tableGetValues.rows[i];
+
+        if(row.cells[0].innerHTML == billsPrimaryKey)
+        {
+            gridValuesArray = row.cells[0].innerHTML + ";" + row.cells[1].innerHTML + ";" + row.cells[2].innerHTML + ";" + row.cells[4].innerHTML + ";" + row.cells[3].innerHTML + ";" + row.cells[5].innerHTML + ";" + row.cells[6].innerHTML + ";" + row.cells[7].innerHTML;
+        }
+    }
+    
+    sessionStorage.setItem("gridValuesArray", gridValuesArray);
+        
 
     // if entering search term, clicking on search, and no records
     // or entering search term as empty and refreshing the page

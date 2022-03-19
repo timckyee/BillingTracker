@@ -146,15 +146,30 @@ BillingTracker.Onload.prototype = {
         var bills_form = new BillingTracker.BillsForm();
 
         
+        var gridValuesArray = sessionStorage.getItem("gridValuesArray");
+
+        var gridValuesArrayValues = gridValuesArray.split(";");
+
+        //var grid_billsPrimaryKey = gridValuesArrayValues[0];
+        var grid_billingDate = gridValuesArrayValues[1];
+        var grid_dueDate = gridValuesArrayValues[2];
+        var grid_billingNumber = gridValuesArrayValues[3];
+        var grid_amountDue = gridValuesArrayValues[4];
+        var grid_paidDate = gridValuesArrayValues[5];
+        var grid_paymentMethod = gridValuesArrayValues[6];
+        var grid_amountPaid = gridValuesArrayValues[7];
+
+
         var arrayOldValuesTable = bills_form.arrayOldValuesTable;
 
-        arrayOldValuesTable["billingDate"] = document.getElementById("billingDate").value;
-        arrayOldValuesTable["dueDate"] = document.getElementById("dueDate").value;
-        arrayOldValuesTable["billingNumber"] = document.getElementById("billingNumber").value;
-        arrayOldValuesTable["amountDue"] = document.getElementById("amountDue").value;
-        arrayOldValuesTable["paidDate"] = document.getElementById("paidDate").value;
-        arrayOldValuesTable["paymentMethod"] = document.getElementById("paymentMethod").value;
-        arrayOldValuesTable["amountPaid"] = document.getElementById("amountPaid").value;
+        arrayOldValuesTable["billingDate"] = grid_billingDate;
+        arrayOldValuesTable["dueDate"] = grid_dueDate;
+        arrayOldValuesTable["billingNumber"] = grid_billingNumber;
+        arrayOldValuesTable["amountDue"] =grid_amountDue
+        arrayOldValuesTable["paidDate"] = grid_paidDate;
+        arrayOldValuesTable["paymentMethod"] = grid_paymentMethod;
+        arrayOldValuesTable["amountPaid"] = grid_amountPaid;
+        
         
         var highlightId = sessionStorage.getItem("highlightRowId");
         
