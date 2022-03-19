@@ -81,7 +81,6 @@ BillingTracker.Onload.prototype = {
         var form_billingAccountId = sessionStorage.getItem("form_billingAccountId");
         document.getElementById("billingAccountId").value = form_billingAccountId;
 
-
         // no billing account selected or no sort column or direction then do not repopulate form
         var billingAccount = form_billingAccountId;
 
@@ -132,6 +131,7 @@ BillingTracker.Onload.prototype = {
 
         var form_gridGetPostBillsFormGridPagingPageNumber = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumber");
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;
+
 
         //var pageSession = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumberSession"));
         
@@ -203,8 +203,6 @@ BillingTracker.Onload.prototype = {
         //var totalPages = totalPagesText.substring(3, totalPagesText.length);
 
         var pageNumber;
-
-        //debugger
 
         if(sessionStorage.getItem("onInputSearchClear") == "true")
         {
