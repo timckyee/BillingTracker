@@ -134,15 +134,6 @@ BillingTracker.Onload.prototype = {
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = form_gridGetPostBillsFormGridPagingPageNumber;
 
         //var pageSession = sessionStorage.getItem("form_gridGetPostBillsFormGridPagingPageNumberSession"));
-
-        // if entering search term, clicking on search, and no records
-        // or entering search term as empty and refreshing the page the page number is 0
-        // if this is the case then records are shown without filter and set page number to 1
-        if(form_gridGetPostBillsFormGridPagingPageNumber == "0")
-        {
-            document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
-        }
-
         
         document.getElementById("gridBillsFormGridPaging").style.display = "block";
         
@@ -206,6 +197,14 @@ BillingTracker.Onload.prototype = {
         sessionStorage.setItem("onInputSearchClear", "false");
 
         document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = pageNumber;
+
+        // if entering search term, clicking on search, and no records
+        // or entering search term as empty and refreshing the page the page number is 0
+        // if this is the case then records are shown without filter and set page number to 1
+        if(pageNumber == "0")
+        {
+            document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value = "1";
+        }
 
         if(searchValue == "" || searchValue == undefined)
         {

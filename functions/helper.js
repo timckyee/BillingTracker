@@ -96,7 +96,7 @@ BillingTracker.Helper.prototype = {
             document.getElementById("accountNumber").value = "";
             document.getElementById("accountUserName").value = "";
 
-            document.getElementById("billsFormGridPagingSearchValue").value;
+            document.getElementById("billsFormGridPagingSearchValue").value = "";
             document.getElementById("billsPrimaryKey").value = "";
             document.getElementById("billingDate").value = "";
             document.getElementById("dueDate").value = "";
