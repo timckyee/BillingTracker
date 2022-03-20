@@ -405,7 +405,7 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 			return;
 		}
 
-		updateString = updateString.substr(0, updateString.length - 1);
+		updateString = updateString.substring(0, updateString.length - 1);
 
 		window.postXmlHttpRequest.onreadystatechange = function() {
 			
@@ -416,6 +416,9 @@ post_updateForm:function (phpFile, postType, htmlObjectPrimaryKeyValue, htmlObje
 					arrayOldValuesTable[fieldsInfo[update].htmlObjectId] = htmlObjectFieldsValuesUpdate[update];
 				}
 				
+				var helper = new BillingTracker.Helper();
+				helper.store_selected_grid_vaues_to_session();
+
 				var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
 				
 				if(tableHtmlObjectId == bills_form_grid_paging.getTableHtmlObjectId())
@@ -585,8 +588,8 @@ post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert,
 		insertString = insertString + "'" + amountPaid + "',";
 	}
 
-	insertString = insertString.substr(0, insertString.length - 1);
-			
+	insertString = insertString.substring(0, insertString.length - 1);
+		
 	insertString = insertString + ")";
 	
 	window.postXmlHttpRequest.onreadystatechange = function() {
@@ -604,6 +607,9 @@ post_insertRecordForm: function(phpFile, postType, htmlObjectFieldsValuesInsert,
 				arrayOldValuesTable[fieldsInfo[insert].htmlObjectId] = htmlObjectFieldsValuesInsert[insert];
 			}		
 			
+			var helper = new BillingTracker.Helper();
+			helper.store_selected_grid_vaues_to_session();
+
 			var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
 
 			if(tableHtmlObjectId == bills_form_grid_paging.getTableHtmlObjectId())

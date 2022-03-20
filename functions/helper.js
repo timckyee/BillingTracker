@@ -287,6 +287,36 @@ BillingTracker.Helper.prototype = {
      },
 
     /**
+     * store selected grid values to session
+     * @function
+     * @name Helper#store_selected_grid_vaues_to_session
+     **/
+    store_selected_grid_vaues_to_session: function() {
+
+        var billingDate = document.getElementById("billingDate").value;
+        sessionStorage.setItem("grid_billingDate", billingDate);
+    
+        var dueDate = document.getElementById("dueDate").value;
+        sessionStorage.setItem("grid_dueDate", dueDate);
+    
+        var amountDue = document.getElementById("amountDue").value;
+        sessionStorage.setItem("grid_amountDue", amountDue);
+    
+        var billingNumber = document.getElementById("billingNumber").value;
+        sessionStorage.setItem("grid_billingNumber", billingNumber);
+    
+        var paidDate = document.getElementById("paidDate").value;
+        sessionStorage.setItem("grid_paidDate", paidDate);
+    
+        var paymentMethod = document.getElementById("paymentMethod").value;
+        sessionStorage.setItem("grid_paymentMethod", paymentMethod);
+    
+        var amountPaid = document.getElementById("amountPaid").value;
+        sessionStorage.setItem("grid_amountPaid", amountPaid);
+
+    },
+
+    /**
      * keyUp function on input box to detect clearing of input text
      * @function
      * @name Helper#keyUp_input_search

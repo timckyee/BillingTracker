@@ -381,6 +381,9 @@ get_populateForm_callback: function(response, fieldsInfo, autocompleteInputs, ar
 		}
 	}
 
+	var helper = new BillingTracker.Helper();
+	helper.store_selected_grid_vaues_to_session();
+
 }
 
 }

@@ -21,6 +21,7 @@ document.getElementById("billingTracker").onbeforeunload = function() {
     var billsFormGridPagingSearchValue = document.getElementById("billsFormGridPagingSearchValue").value;
     sessionStorage.setItem("form_billsFormGridPagingSearchValue", billsFormGridPagingSearchValue);
 
+
     var billsPrimaryKey = document.getElementById("billsPrimaryKey").value;
     sessionStorage.setItem("form_billsPrimaryKey", billsPrimaryKey);
 
@@ -51,36 +52,6 @@ document.getElementById("billingTracker").onbeforeunload = function() {
     // pageNumber will be 0   
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
     sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
-
-
-    var tableGetValues = document.getElementById("tableBillsFormGridPaging");
-
-    var billsPrimaryKey = sessionStorage.getItem("billsPrimaryKey");
-
-    //row.cells[0] - billsPrimaryKey
-    //row.cells[1] - billingDate
-    //row.cells[2] - dueDate
-    //row.cells[4] - billingNumber
-    //row.cells[3] - amountDue
-    //row.cells[5] - paidDate
-    //row.cells[6] - paymentMethod
-    //row.cells[7] - amountPaid
-
-    for(var i=0; i<tableGetValues.rows.length; i++)
-    {
-        if(i == 0)
-            continue;
-
-        row = tableGetValues.rows[i];
-
-        if(row.cells[0].innerHTML == billsPrimaryKey)
-        {
-            gridValuesArray = row.cells[0].innerHTML + ";" + row.cells[1].innerHTML + ";" + row.cells[2].innerHTML + ";" + row.cells[4].innerHTML + ";" + row.cells[3].innerHTML + ";" + row.cells[5].innerHTML + ";" + row.cells[6].innerHTML + ";" + row.cells[7].innerHTML;
-        }
-    }
-    
-    sessionStorage.setItem("gridValuesArray", gridValuesArray);
-
     
     // this is the page number in the session storage
     //var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");
@@ -110,6 +81,7 @@ document.getElementById("billingTracker").onpagehide = function() {
     
     var billsFormGridPagingSearchValue = document.getElementById("billsFormGridPagingSearchValue").value;
     sessionStorage.setItem("form_billsFormGridPagingSearchValue", billsFormGridPagingSearchValue);
+
 
     var billsPrimaryKey = document.getElementById("billsPrimaryKey").value;
     sessionStorage.setItem("form_billsPrimaryKey", billsPrimaryKey);
@@ -141,35 +113,6 @@ document.getElementById("billingTracker").onpagehide = function() {
     // pageNumber will be 0
     var gridGetPostBillsFormGridPagingPageNumber = document.getElementById("gridGetPostBillsFormGridPagingPageNumber").value;
     sessionStorage.setItem("form_gridGetPostBillsFormGridPagingPageNumber", gridGetPostBillsFormGridPagingPageNumber);
-        
-
-    var tableGetValues = document.getElementById("tableBillsFormGridPaging");
-
-    var billsPrimaryKey = sessionStorage.getItem("billsPrimaryKey");
-
-    //row.cells[0] - billsPrimaryKey
-    //row.cells[1] - billingDate
-    //row.cells[2] - dueDate
-    //row.cells[4] - billingNumber
-    //row.cells[3] - amountDue
-    //row.cells[5] - paidDate
-    //row.cells[6] - paymentMethod
-    //row.cells[7] - amountPaid
-
-    for(var i=0; i<tableGetValues.rows.length; i++)
-    {
-        if(i == 0)
-            continue;
-
-        row = tableGetValues.rows[i];
-
-        if(row.cells[0].innerHTML == billsPrimaryKey)
-        {
-            gridValuesArray = row.cells[0].innerHTML + ";" + row.cells[1].innerHTML + ";" + row.cells[2].innerHTML + ";" + row.cells[4].innerHTML + ";" + row.cells[3].innerHTML + ";" + row.cells[5].innerHTML + ";" + row.cells[6].innerHTML + ";" + row.cells[7].innerHTML;
-        }
-    }
-    
-    sessionStorage.setItem("gridValuesArray", gridValuesArray);
     
     // this is the page number in the session storage
     //var gridGetPostBillsFormGridPagingPageNumberSession = sessionStorage.getItem("gridBillsFormGridPagingPageNumber");

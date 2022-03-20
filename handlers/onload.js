@@ -104,6 +104,7 @@ BillingTracker.Onload.prototype = {
         var form_billsFormGridPagingSearchValue = sessionStorage.getItem("form_billsFormGridPagingSearchValue");
         document.getElementById("billsFormGridPagingSearchValue").value = form_billsFormGridPagingSearchValue;
 
+
         var form_billsPrimaryKey = sessionStorage.getItem("form_billsPrimaryKey");
         document.getElementById("billsPrimaryKey").value = form_billsPrimaryKey;
 
@@ -137,6 +138,7 @@ BillingTracker.Onload.prototype = {
         
         document.getElementById("gridBillsFormGridPaging").style.display = "block";
         
+        
         var grid_get_post_functions = new BillingTracker.Grid_Get_Post_Functions();			
     
         var bills_form_grid_paging = new BillingTracker.BillsFormGridPaging();
@@ -145,49 +147,38 @@ BillingTracker.Onload.prototype = {
 
         var bills_form = new BillingTracker.BillsForm();
 
-        
-        var gridValuesArray = sessionStorage.getItem("gridValuesArray");
-        
-        if(gridValuesArray != null)
+
+        var grid_billingDate = sessionStorage.getItem("grid_billingDate");
+        var grid_dueDate = sessionStorage.getItem("grid_dueDate");
+        var grid_amountDue = sessionStorage.getItem("grid_amountDue");
+        var grid_billingNumber = sessionStorage.getItem("grid_billingNumber");
+        var grid_paidDate = sessionStorage.getItem("grid_paidDate");
+        var grid_paymentMethod = sessionStorage.getItem("grid_paymentMethod");
+        var grid_amountPaid = sessionStorage.getItem("grid_amountPaid");
+
+        var paymentMethod = document.getElementById("paymentMethod");
+        var paymentMethodId;
+
+        for(var i=0; i<paymentMethod.length; i++) 
         {
-
-            var gridValuesArrayValues = gridValuesArray.split(";");
-
-            //var grid_billsPrimaryKey = gridValuesArrayValues[0];
-            var grid_billingDate = gridValuesArrayValues[1];
-            var grid_dueDate = gridValuesArrayValues[2];
-            var grid_billingNumber = gridValuesArrayValues[3];
-            var grid_amountDue = gridValuesArrayValues[4];
-            var grid_paidDate = gridValuesArrayValues[5];
-            var grid_paymentMethod = gridValuesArrayValues[6];
-            var grid_amountPaid = gridValuesArrayValues[7];
-
-            var paymentMethod = document.getElementById("paymentMethod");
-            var paymentMethodId;
-
-            for(var i=0; i<paymentMethod.length; i++) 
+            if(paymentMethod[i].innerHTML == grid_paymentMethod)
             {
-                if(paymentMethod[i].innerHTML == grid_paymentMethod)
-                {
-                    paymentMethodId = paymentMethod[i].value;
-                    break;
-                }
+                paymentMethodId = paymentMethod[i].value;
+                break;
             }
+        }            
+
+        var arrayOldValuesTable = bills_form.arrayOldValuesTable;
+
+        arrayOldValuesTable["billingDate"] = grid_billingDate;
+        arrayOldValuesTable["dueDate"] = grid_dueDate;
+        arrayOldValuesTable["amountDue"] = grid_amountDue;
+        arrayOldValuesTable["billingNumber"] = grid_billingNumber;
+        arrayOldValuesTable["paidDate"] = grid_paidDate;
+        arrayOldValuesTable["paymentMethod"] = paymentMethodId;
+        arrayOldValuesTable["amountPaid"] = grid_amountPaid;
 
 
-            var arrayOldValuesTable = bills_form.arrayOldValuesTable;
-
-            arrayOldValuesTable["billingDate"] = grid_billingDate;
-            arrayOldValuesTable["dueDate"] = grid_dueDate;
-            arrayOldValuesTable["billingNumber"] = grid_billingNumber;
-            arrayOldValuesTable["amountDue"] =grid_amountDue
-            arrayOldValuesTable["paidDate"] = grid_paidDate;
-            arrayOldValuesTable["paymentMethod"] = paymentMethodId;
-            arrayOldValuesTable["amountPaid"] = grid_amountPaid;
-
-        }
-        
-        
         var highlightId = sessionStorage.getItem("highlightRowId");
         
         var searchValue = document.getElementById("billsFormGridPagingSearchValue").value;
