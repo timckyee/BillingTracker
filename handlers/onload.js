@@ -156,18 +156,6 @@ BillingTracker.Onload.prototype = {
         var grid_paymentMethod = sessionStorage.getItem("grid_paymentMethod");
         var grid_amountPaid = sessionStorage.getItem("grid_amountPaid");
 
-        var paymentMethod = document.getElementById("paymentMethod");
-        var paymentMethodId;
-
-        for(var i=0; i<paymentMethod.length; i++) 
-        {
-            if(paymentMethod[i].innerHTML == grid_paymentMethod)
-            {
-                paymentMethodId = paymentMethod[i].value;
-                break;
-            }
-        }            
-
         var arrayOldValuesTable = bills_form.arrayOldValuesTable;
 
         arrayOldValuesTable["billingDate"] = grid_billingDate;
@@ -175,7 +163,7 @@ BillingTracker.Onload.prototype = {
         arrayOldValuesTable["amountDue"] = grid_amountDue;
         arrayOldValuesTable["billingNumber"] = grid_billingNumber;
         arrayOldValuesTable["paidDate"] = grid_paidDate;
-        arrayOldValuesTable["paymentMethod"] = paymentMethodId;
+        arrayOldValuesTable["paymentMethod"] = grid_paymentMethod;
         arrayOldValuesTable["amountPaid"] = grid_amountPaid;
 
 
